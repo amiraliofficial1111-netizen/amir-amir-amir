@@ -1,0 +1,14 @@
+{
+    "name": "appsdeddy/website",
+    "description": "AppsDeddy - Premium App Development Agency Website",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "autoload": {
+        "files": [
+            "includes/config.php"
+        ]
+    }
+}

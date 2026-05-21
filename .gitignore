@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Environment & secrets
+.env
+.env.*
+*.local
+
+# OS & editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Dev utilities (optional local scripts)
+remove_logo_bg.js
+remove_logo_bg.py

@@ -770,7 +770,7 @@ require_once 'includes/header.php';
                             <i class="fas fa-plus"></i>
                         </button>
                         <div class="accordion-content">
-                            <p>We use cutting-edge technologies including React Native, Flutter, Swift, Kotlin for mobile; React, Vue.js, Next.js for web; Node.js, Python, PHP for backend; and AWS, Google Cloud for infrastructure.</p>
+                            <p>We use cutting-edge technologies including React Native, Flutter, Swift, Kotlin for mobile; React, Vue.js, Next.js for web; Node.js and Python for backend; and AWS, Google Cloud for infrastructure.</p>
                         </div>
                     </div>
                     <div class="accordion-item">

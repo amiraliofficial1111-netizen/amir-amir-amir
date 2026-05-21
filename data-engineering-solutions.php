@@ -29,7 +29,7 @@ require_once 'includes/header.php';
                     <p>At Appsdeddy, we empower businesses to transform raw data into actionable insights through tailored data engineering solutions. Our expert team designs and implements robust data pipelines, secure architectures, and scalable systems that align with your strategic goals. From startups to enterprises, we help you unlock the full potential of your data with precision and innovation.</p>
                 </div>
                 <div class="service-content-image" data-aos="fade-left">
-                    <img src="https://appsdeddy.com/wp-content/uploads/2025/06/creative-people-working-office-1024x683.jpg" alt="Data Engineering Solutions">
+                    <img src="<?= serviceImage('hero-data-engineering.jpg') ?>" alt="Data Engineering Solutions">
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@ require_once 'includes/header.php';
             <h2 class="section-title" data-aos="fade-up">Data Engineering <span class="gradient-text">Services</span></h2>
             <div class="offerings-grid">
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="offering-image"><img src="https://appsdeddy.com/wp-content/uploads/2023/07/case5.jpg" alt="Data Pipeline Development"></div>
+                    <div class="offering-image"><img src="<?= serviceImage('offering-5.jpg') ?>" alt="Data Pipeline Development"></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-cogs"></i></div>
                         <h3>Data Pipeline Development</h3>
@@ -48,7 +48,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="offering-image"><img src="https://appsdeddy.com/wp-content/uploads/2023/07/case6.jpg" alt="Data Integration"></div>
+                    <div class="offering-image"><img src="<?= serviceImage('offering-6.jpg') ?>" alt="Data Integration"></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-link"></i></div>
                         <h3>Data Integration</h3>
@@ -56,7 +56,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="offering-image"><img src="https://appsdeddy.com/wp-content/uploads/2023/07/case7.jpg" alt="Data Security"></div>
+                    <div class="offering-image"><img src="<?= serviceImage('offering-7.jpg') ?>" alt="Data Security"></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-shield-alt"></i></div>
                         <h3>Data Security</h3>
@@ -64,7 +64,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="offering-image"><img src="https://appsdeddy.com/wp-content/uploads/2023/07/case8.jpg" alt="Big Data & Analytics"></div>
+                    <div class="offering-image"><img src="<?= serviceImage('offering-8.jpg') ?>" alt="Big Data & Analytics"></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-chart-line"></i></div>
                         <h3>Big Data & Analytics</h3>
@@ -108,7 +108,7 @@ require_once 'includes/header.php';
         <div class="container">
             <div class="service-content-wrapper reverse">
                 <div class="service-content-image" data-aos="fade-right">
-                    <img src="https://appsdeddy.com/wp-content/uploads/2025/06/business-executives-using-laptop-1024x683.jpg" alt="Data Engineering">
+                    <img src="<?= serviceImage('custom-data-engineering.jpg') ?>" alt="Data Engineering">
                 </div>
                 <div class="service-content-text" data-aos="fade-left">
                     <h2 class="section-title">Why Choose Appsdeddy for <span class="gradient-text">Data Engineering?</span></h2>

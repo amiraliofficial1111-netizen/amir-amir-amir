@@ -140,7 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { title: 'Web & Mobile App Development', url: 'web-mobile-app-development.php', keywords: 'web mobile app development ios android react native flutter application', icon: 'fa-mobile-alt' },
         { title: 'Data Engineering Solutions', url: 'data-engineering-solutions.php', keywords: 'data engineering pipeline analytics big data integration', icon: 'fa-database' },
         { title: 'Gen AI Integration', url: 'gen-ai-integration.php', keywords: 'ai artificial intelligence generative ai machine learning chatbot', icon: 'fa-robot' },
-        { title: 'UX & UI Design', url: 'ux-ui-design.php', keywords: 'ux ui design user experience interface wireframe prototype', icon: 'fa-paint-brush' },
         { title: 'How We Work', url: 'how-we-work.php', keywords: 'how we work process methodology', icon: 'fa-project-diagram' },
         { title: 'About Us', url: 'about.php', keywords: 'about us company team', icon: 'fa-info-circle' },
         { title: 'Portfolio', url: 'https://www.behance.net/AppsDeddy', keywords: 'portfolio projects case studies work', icon: 'fa-briefcase' },
@@ -169,9 +168,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             const results = searchData.filter(item => {
-                return item.title.toLowerCase().includes(q) || 
-                       item.keywords.toLowerCase().includes(q) ||
-                       item.url.toLowerCase().includes(q);
+                const titleMatch = item.title.toLowerCase().includes(q);
+                const keywordMatch = item.keywords.toLowerCase().includes(q);
+                // Match path only (not .php) — PHP is backend/email only, not a searchable page
+                const urlPath = item.url.replace(/\.php(\?.*)?$/i, '').split('/').pop().toLowerCase();
+                const urlMatch = urlPath.length > 0 && urlPath.includes(q);
+                return titleMatch || keywordMatch || urlMatch;
             });
             renderResults(results, q);
         }

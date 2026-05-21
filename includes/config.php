@@ -73,6 +73,8 @@ function getServiceLabel(string $key): string {
     return $services[$key] ?? ucfirst($key);
 }
 
+require_once __DIR__ . '/service-images.php';
+
 function getBudgetLabel(string $key): string {
     $budgets = [
         '2k-5k'   => '$2,000 - $5,000',

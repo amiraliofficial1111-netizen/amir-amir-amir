@@ -1,0 +1,42 @@
+INSTALL APPSDEDDY WORDPRESS THEME (fix blog design + posts)
+============================================================
+
+1. UPLOAD THEME
+   Upload the entire folder:
+     wordpress-theme/appsdeddy/
+   To Hostinger:
+     public_html/blog/wp-content/themes/appsdeddy/
+
+   Must include:
+     inc/bridge.php
+     style.css, functions.php, header.php, footer.php
+     home.php, index.php, front-page.php, archive.php
+     template-blog-archive.php, single.php
+
+2. UPLOAD MAIN SITE FILES (if not already)
+     public_html/includes/header.php
+     public_html/includes/footer.php
+     public_html/includes/config.php  (must have SITE_BASE)
+
+3. ACTIVATE THEME
+   WP Admin → Appearance → Themes → Activate "AppsDeddy"
+
+4. WORDPRESS SETTINGS
+   Settings → General:
+     Site URL = https://appsdeddy.com/blog
+
+   Settings → Reading:
+     - "Your latest posts" (recommended), OR
+     - Static page: set "Posts page" to a page titled Blog
+
+   Settings → Permalinks → Post name → Save
+
+5. PUBLISH A TEST POST
+   Posts → Add New → Publish
+   Visit https://appsdeddy.com/blog/
+
+6. IF STILL WRONG THEME
+   Delete other active theme cache, re-upload appsdeddy folder.
+   Check wp-config.php:
+     define('WP_HOME', 'https://appsdeddy.com/blog');
+     define('WP_SITEURL', 'https://appsdeddy.com/blog');

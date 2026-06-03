@@ -4,6 +4,10 @@
 
 # ─── Enable Rewrite Engine ───────────────────────────────────────────────────
 RewriteEngine On
+RewriteBase /
+
+# WordPress /blog — never apply main-site PHP rewrites (must stay first)
+RewriteRule ^blog(/.*)?$ - [L]
 
 # ─── Force HTTPS ─────────────────────────────────────────────────────────────
 RewriteCond %{HTTPS} off
@@ -13,13 +17,14 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
 
-# ─── Remove .php Extension (Clean URLs) ──────────────────────────────────────
-# Serve /about instead of /about.php
+# ─── Remove .php Extension (main site only, not /blog) ───────────────────────
+RewriteCond %{REQUEST_URI} !^/blog [NC]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
-# ─── Redirect old .html pages to .php ────────────────────────────────────────
+# ─── Redirect old .html pages to .php (main site only) ───────────────────────
+RewriteCond %{REQUEST_URI} !^/blog [NC]
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
 RewriteRule ^ /%1.php [NC,L,R=301]
 
@@ -33,28 +38,30 @@ RewriteRule ^ /%1.php [NC,L,R=301]
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
 </IfModule>
 
-# ─── Protect Sensitive Files ─────────────────────────────────────────────────
-<FilesMatch "\.(php|log|ini|env|json|lock|md)$">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-</FilesMatch>
+# ─── Protect sensitive PHP (main site root only — NOT WordPress /blog/) ─────
+<IfModule mod_authz_core.c>
+    <FilesMatch "\.(php|log|ini|env|json|lock|md)$">
+        <If "%{REQUEST_URI} =~ m#^/blog(/|$)#">
+            Require all granted
+        </If>
+        <Else>
+            Require all denied
+        </Else>
+    </FilesMatch>
 
-# Allow PHP files that need direct browser access
-<FilesMatch "^(index|contact|about|services|how-we-work|faq|testimonials|web-mobile-app-development|data-engineering-solutions|gen-ai-integration|ux-ui-design|privacy-policy|terms-conditions|cookie-policy)\.php$">
-    <IfModule mod_authz_core.c>
+    <FilesMatch "^(index|contact|about|services|how-we-work|faq|testimonials|web-mobile-app-development|data-engineering-solutions|gen-ai-integration|ux-ui-design|privacy-policy|terms-conditions|cookie-policy)\.php$">
+        <If "%{REQUEST_URI} !~ m#^/blog/#">
+            Require all granted
+        </If>
+    </FilesMatch>
+
+    <FilesMatch "^mail-handler\.php$">
         Require all granted
-    </IfModule>
-</FilesMatch>
+    </FilesMatch>
+</IfModule>
 
-# Allow mail-handler.php for AJAX POST requests
-<FilesMatch "^mail-handler\.php$">
-    <IfModule mod_authz_core.c>
-        Require all granted
-    </IfModule>
-</FilesMatch>
-
-# Block access to includes directory (except mail-handler for AJAX)
+# Block access to includes directory (main site only)
+RewriteCond %{REQUEST_URI} !^/blog [NC]
 RewriteRule ^includes/(?!mail-handler\.php$) - [F,L]
 
 # ─── Block Access to Hidden Files (.git, .env, etc) ─────────────────────────
@@ -89,10 +96,8 @@ AddDefaultCharset UTF-8
     ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
-# ─── Custom Error Pages ──────────────────────────────────────────────────────
-ErrorDocument 404 /index.php
-ErrorDocument 403 /index.php
-ErrorDocument 500 /index.php
+# ─── Custom Error Pages (main site only — do NOT send WP 403/404 to homepage) ─
+# Removed ErrorDocument 403/404/500 → index.php (that broke /blog/wp-admin)
 
 # ─── PHP Settings (Hostinger Compatible) ─────────────────────────────────────
 <IfModule mod_php.c>

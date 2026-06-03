@@ -1,0 +1,6 @@
+Add these lines in public_html/blog/wp-config.php ABOVE "/* That's all, stop editing! */":
+
+define('WP_HOME', 'https://appsdeddy.com/blog');
+define('WP_SITEURL', 'https://appsdeddy.com/blog');
+
+If wp-admin redirects to https://appsdeddy.com/ (homepage without /blog), wrong URLs are the cause.

@@ -1,0 +1,15 @@
+If wp-admin still redirects after uploading root .htaccess:
+
+1. Check WordPress URLs in public_html/blog/wp-config.php (above "That's all"):
+   define('WP_HOME', 'https://appsdeddy.com/blog');
+   define('WP_SITEURL', 'https://appsdeddy.com/blog');
+
+2. In phpMyAdmin (Hostinger), table wp_options:
+   siteurl = https://appsdeddy.com/blog
+   home    = https://appsdeddy.com/blog
+   (table prefix may be wp_ or different)
+
+3. Ensure public_html/blog/.htaccess exists (WordPress standard rules).
+   Re-save Permalinks in WP admin if you can reach it once.
+
+4. Try: https://appsdeddy.com/blog/wp-login.php directly (not /wp-admin first).

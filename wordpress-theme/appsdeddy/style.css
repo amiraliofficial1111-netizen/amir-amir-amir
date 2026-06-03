@@ -1,0 +1,151 @@
+/*
+Theme Name: AppsDeddy
+Theme URI: https://appsdeddy.com/blog/
+Author: AppsDeddy
+Description: Matches the main AppsDeddy website header, footer, and styles.
+Version: 1.0.2
+Text Domain: appsdeddy
+*/
+
+/* ─── Blog layout (uses main site CSS variables) ─────────────────────────── */
+.blog-page .blog-content {
+    padding: 4rem 0 6rem;
+    min-height: 40vh;
+}
+
+.blog-page .blog-post-card {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+}
+
+.blog-page .blog-post-card:last-of-type {
+    border-bottom: none;
+}
+
+.blog-page .blog-post-thumb {
+    display: block;
+    margin-bottom: 1.25rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.blog-page .blog-post-thumb img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.blog-page .blog-post-thumb:hover img {
+    transform: scale(1.02);
+}
+
+.blog-page .blog-post-card h2 {
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    margin-bottom: 0.75rem;
+    font-family: var(--font-heading, 'Space Grotesk', sans-serif);
+}
+
+.blog-page .blog-post-card h2 a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.blog-page .blog-post-card h2 a:hover {
+    color: var(--primary, #6366f1);
+}
+
+.blog-page .blog-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted, #64748b);
+    margin-bottom: 1rem;
+}
+
+.blog-page .blog-meta a {
+    color: var(--primary, #6366f1);
+    text-decoration: none;
+}
+
+.blog-page .blog-excerpt {
+    line-height: 1.7;
+    color: var(--text-secondary, #475569);
+}
+
+.blog-page .blog-read-more {
+    margin-top: 1rem;
+    display: inline-flex;
+}
+
+.blog-page .blog-single .entry-content {
+    line-height: 1.8;
+    max-width: 800px;
+    color: var(--text-primary, #0f172a);
+}
+
+.blog-page .blog-single .entry-content h2,
+.blog-page .blog-single .entry-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-heading, 'Space Grotesk', sans-serif);
+}
+
+.blog-page .blog-single .entry-content p {
+    margin-bottom: 1.25rem;
+}
+
+.blog-page .blog-single .entry-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+}
+
+.blog-page .blog-single .entry-content a {
+    color: var(--primary, #6366f1);
+}
+
+.blog-page .blog-pagination,
+.blog-page .navigation.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.blog-page .blog-pagination a,
+.blog-page .blog-pagination span,
+.blog-page .nav-links a,
+.blog-page .nav-links span {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: var(--bg-secondary, #f1f5f9);
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+}
+
+.blog-page .blog-pagination .current,
+.blog-page .nav-links .current {
+    background: linear-gradient(135deg, var(--primary, #6366f1), var(--accent, #ec4899));
+    color: #fff;
+}
+
+.blog-page .blog-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--bg-secondary, #f8fafc);
+    border-radius: 16px;
+}
+
+.blog-page .blog-empty h2 {
+    margin-bottom: 0.75rem;
+}
+
+/* Hide default WordPress block theme wrappers if any leak through */
+.blog-page #wp--skip-link--target {
+    margin: 0;
+    padding: 0;
+}

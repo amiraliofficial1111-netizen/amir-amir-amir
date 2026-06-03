@@ -1,3 +1,14 @@
+<?php
+// WordPress admin/login — native UI only (no marketing footer)
+if (defined('ABSPATH')) {
+    global $pagenow;
+    $isWpLogin = (isset($pagenow) && $pagenow === 'wp-login.php')
+        || (isset($_SERVER['SCRIPT_NAME']) && str_contains($_SERVER['SCRIPT_NAME'], 'wp-login.php'));
+    if (is_admin() || $isWpLogin || (defined('DOING_LOGIN') && DOING_LOGIN)) {
+        return;
+    }
+}
+?>
     <footer class="footer">
         <div class="footer-top">
             <div class="footer-bg-shapes" aria-hidden="true">
@@ -8,8 +19,8 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-brand">
-                        <a href="index.php" class="logo">
-                            <img src="assets/appsdeddy-logo-full.png" alt="<?= SITE_NAME ?>" class="logo-img">
+                        <a href="<?= SITE_BASE ?>" class="logo">
+                            <img src="<?= SITE_BASE ?>assets/appsdeddy-logo-full.png" alt="<?= SITE_NAME ?>" class="logo-img">
                         </a>
                         <span class="footer-tagline">ENGINEERING SMART SOLUTIONS</span>
                         <p>US-based Premium App Development Agency. Transforming ideas into innovative digital solutions since 2014. Serving businesses across the United States from Indianapolis, IN.</p>
@@ -26,30 +37,31 @@
                         <div class="footer-links-col">
                             <h4>Menu</h4>
                             <ul>
-                                <li><a href="index.php">Home</a></li>
-                                <li><a href="services.php">Services</a></li>
-                                <li><a href="how-we-work.php">How We Work</a></li>
-                                <li><a href="about.php">About Us</a></li>
+                                <li><a href="<?= SITE_BASE ?>">Home</a></li>
+                                <li><a href="<?= SITE_BASE ?>services.php">Services</a></li>
+                                <li><a href="<?= SITE_BASE ?>how-we-work.php">How We Work</a></li>
+                                <li><a href="<?= SITE_BASE ?>about.php">About Us</a></li>
                                 <li><a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
-                                <li><a href="contact.php">Contact</a></li>
+                                <li><a href="<?= SITE_BASE ?>blog/">Blog</a></li>
+                                <li><a href="<?= SITE_BASE ?>contact.php">Contact</a></li>
                             </ul>
                         </div>
                         <div class="footer-links-col">
                             <h4>Services</h4>
                             <ul>
-                                <li><a href="web-mobile-app-development.php">Web & Mobile App Development</a></li>
-                                <li><a href="data-engineering-solutions.php">Data Engineering Solutions</a></li>
-                                <li><a href="gen-ai-integration.php">Gen AI Integration & Consulting</a></li>
-                                <li><a href="ux-ui-design.php">UX & UI Design</a></li>
+                                <li><a href="<?= SITE_BASE ?>web-mobile-app-development.php">Web & Mobile App Development</a></li>
+                                <li><a href="<?= SITE_BASE ?>data-engineering-solutions.php">Data Engineering Solutions</a></li>
+                                <li><a href="<?= SITE_BASE ?>gen-ai-integration.php">Gen AI Integration & Consulting</a></li>
+                                <li><a href="<?= SITE_BASE ?>ux-ui-design.php">UX & UI Design</a></li>
                             </ul>
                         </div>
                         <div class="footer-links-col">
                             <h4>Legal</h4>
                             <ul>
-                                <li><a href="privacy-policy.php">Privacy Policy</a></li>
-                                <li><a href="terms-conditions.php">Terms & Conditions</a></li>
-                                <li><a href="cookie-policy.php">Cookie Policy</a></li>
-                                <li><a href="faq.php">FAQ</a></li>
+                                <li><a href="<?= SITE_BASE ?>privacy-policy.php">Privacy Policy</a></li>
+                                <li><a href="<?= SITE_BASE ?>terms-conditions.php">Terms & Conditions</a></li>
+                                <li><a href="<?= SITE_BASE ?>cookie-policy.php">Cookie Policy</a></li>
+                                <li><a href="<?= SITE_BASE ?>faq.php">FAQ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -78,7 +90,7 @@
                 <div class="footer-cta-inner">
                     <h3>Ready to Build Something Amazing?</h3>
                     <p>Let's turn your idea into reality. Get a free consultation today.</p>
-                    <a href="contact.php" class="btn btn-primary btn-lg">
+                    <a href="<?= SITE_BASE ?>contact.php" class="btn btn-primary btn-lg">
                         <span>Start Your Project</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -112,6 +124,9 @@
         </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script src="<?= SITE_BASE ?>js/script.js"></script>
+    <?php if (defined('ABSPATH') && function_exists('wp_footer')) {
+        wp_footer();
+    } ?>
 </body>
 </html>

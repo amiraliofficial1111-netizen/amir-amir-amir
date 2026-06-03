@@ -31,6 +31,7 @@ define('ADMIN_EMAIL',   'info@appsdeddy.com');
 define('SITE_NAME',     'AppsDeddy');
 define('SITE_TAGLINE',  'Daddy Knows Better');
 define('SITE_URL',      'https://appsdeddy.com');
+define('SITE_BASE', rtrim(SITE_URL, '/') . '/');
 define('SITE_YEAR',     date('Y'));
 define('SITE_ADDRESS',  '8520 Allison Pointe Blvd Ste 223, Indianapolis, IN, US 46250');
 define('SITE_EMAIL',    'info@appsdeddy.com');

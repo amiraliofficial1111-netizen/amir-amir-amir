@@ -1,7 +1,7 @@
 <?php
 /**
  * Local configuration overrides (not committed to git).
- * Copy this file to config.local.php and set your Titan email password.
+ * Copy to config.local.php and set your Titan email password on the server.
  */
 if (!defined('APPSDEDDY')) {
     define('APPSDEDDY', true);

@@ -1,0 +1,10 @@
+<?php
+/**
+ * Local configuration overrides (not committed to git).
+ * Copy this file to config.local.php and set your Titan email password.
+ */
+if (!defined('APPSDEDDY')) {
+    define('APPSDEDDY', true);
+}
+
+define('SMTP_PASSWORD', 'your-titan-email-password-here');

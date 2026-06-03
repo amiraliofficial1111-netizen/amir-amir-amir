@@ -9,13 +9,18 @@ if (!defined('APPSDEDDY')) {
     define('APPSDEDDY', true);
 }
 
+// Optional local overrides (copy includes/config.local.php.example → config.local.php)
+if (is_readable(__DIR__ . '/config.local.php')) {
+    require_once __DIR__ . '/config.local.php';
+}
+
 // ─── SMTP Configuration (Titan Email) ───────────────────────────────────────
-define('SMTP_HOST',     'smtp.titan.email');
-define('SMTP_PORT',     465);
-define('SMTP_SECURE',   'ssl');
-define('SMTP_USERNAME', 'info@appsdeddy.com');
-define('SMTP_PASSWORD', 'Info@Email@123'); // <-- Replace with your Titan email password
-define('SMTP_FROM',     'info@appsdeddy.com');
+if (!defined('SMTP_HOST'))     define('SMTP_HOST',     'smtp.titan.email');
+if (!defined('SMTP_PORT'))     define('SMTP_PORT',     465);
+if (!defined('SMTP_SECURE'))   define('SMTP_SECURE',   'ssl');
+if (!defined('SMTP_USERNAME')) define('SMTP_USERNAME', 'info@appsdeddy.com');
+if (!defined('SMTP_PASSWORD')) define('SMTP_PASSWORD', 'YOUR_TITAN_EMAIL_PASSWORD_HERE');
+if (!defined('SMTP_FROM'))     define('SMTP_FROM',     'info@appsdeddy.com');
 define('SMTP_FROM_NAME','AppsDeddy');
 define('SMTP_REPLY_TO', 'info@appsdeddy.com');
 

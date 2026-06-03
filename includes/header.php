@@ -35,6 +35,8 @@ $csrfToken = generateCsrfToken();
     <meta property="og:title" content="<?= sanitize($pageTitle) ?>">
     <meta property="og:description" content="<?= sanitize($pageDescription) ?>">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="<?= sanitize(rtrim(SITE_URL, '/') . '/' . basename($_SERVER['SCRIPT_NAME'] ?? 'index.php')) ?>">
+    <link rel="canonical" href="<?= sanitize(rtrim(SITE_URL, '/') . '/' . basename($_SERVER['SCRIPT_NAME'] ?? 'index.php')) ?>">
     
     <title><?= sanitize($pageTitle) ?></title>
     
@@ -77,6 +79,12 @@ $csrfToken = generateCsrfToken();
             </div>
             
             <ul class="nav-menu" id="navMenu">
+                <li class="nav-search-item">
+                    <div class="nav-search-wrap">
+                        <input type="search" id="navSearch" class="nav-search-input" placeholder="Search..." aria-label="Search site" autocomplete="off">
+                        <i class="fas fa-search nav-search-icon" aria-hidden="true"></i>
+                    </div>
+                </li>
                 <li><a href="index.php" class="nav-link<?= $activePage === 'home' ? ' active' : '' ?>">Home</a></li>
                 <li class="nav-dropdown">
                     <a href="services.php" class="nav-link<?= $activePage === 'services' ? ' active' : '' ?>">Services <i class="fas fa-chevron-down nav-arrow"></i></a>

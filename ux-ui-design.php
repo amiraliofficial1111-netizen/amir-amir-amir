@@ -29,7 +29,7 @@ require_once 'includes/header.php';
                     <p>At Appsdeddy, we specialize in creating user-centered designs that combine aesthetics with functionality. Our UX/UI design team crafts intuitive, engaging, and visually stunning digital experiences that resonate with your audience. From wireframes to pixel-perfect interfaces, we transform ideas into beautiful, user-friendly designs that drive engagement and conversions.</p>
                 </div>
                 <div class="service-content-image" data-aos="fade-left">
-                    <img src="<?= serviceImage('hero-ux-ui.jpg') ?>" alt="UX & UI Design">
+                    <img loading="lazy" decoding="async" src="<?= serviceImage('hero-ux-ui.jpg') ?>" alt="UX & UI Design">
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@ require_once 'includes/header.php';
             <h2 class="section-title" data-aos="fade-up">UX & UI Design <span class="gradient-text">Services</span></h2>
             <div class="offerings-grid">
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="offering-image"><img src="<?= serviceImage('offering-5.jpg') ?>" alt="User Research & Analysis"></div>
+                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-5.jpg') ?>" alt="User Research & Analysis"></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-palette"></i></div>
                         <h3>User Research & Analysis</h3>
@@ -48,7 +48,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="offering-image"><img src="<?= serviceImage('offering-6.jpg') ?>" alt="Wireframing & Prototyping"></div>
+                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-6.jpg') ?>" alt="Wireframing & Prototyping"></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-drafting-compass"></i></div>
                         <h3>Wireframing & Prototyping</h3>
@@ -56,7 +56,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="offering-image"><img src="<?= serviceImage('offering-7.jpg') ?>" alt="UI Design & Branding"></div>
+                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-7.jpg') ?>" alt="UI Design & Branding"></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-paint-brush"></i></div>
                         <h3>UI Design & Branding</h3>
@@ -64,7 +64,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="offering-image"><img src="<?= serviceImage('offering-8.jpg') ?>" alt="Responsive Design"></div>
+                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-8.jpg') ?>" alt="Responsive Design"></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-mobile-alt"></i></div>
                         <h3>Responsive Design</h3>
@@ -108,7 +108,7 @@ require_once 'includes/header.php';
         <div class="container">
             <div class="service-content-wrapper reverse">
                 <div class="service-content-image" data-aos="fade-right">
-                    <img src="<?= serviceImage('custom-ux-ui.jpg') ?>" alt="UX UI Design">
+                    <img loading="lazy" decoding="async" src="<?= serviceImage('custom-ux-ui.jpg') ?>" alt="UX UI Design">
                 </div>
                 <div class="service-content-text" data-aos="fade-left">
                     <h2 class="section-title">Why Choose Appsdeddy for <span class="gradient-text">UX/UI Design?</span></h2>

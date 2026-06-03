@@ -122,10 +122,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Set active state on current page's dropdown link
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPath = window.location.pathname.split('/').pop() || 'index.php';
     document.querySelectorAll('.dropdown-menu a').forEach(link => {
         const href = link.getAttribute('href') || '';
-        if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+        if (href === currentPath || (currentPath === '' && href === 'index.php')) {
             link.classList.add('active');
         }
     });

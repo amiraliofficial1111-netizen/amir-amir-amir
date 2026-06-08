@@ -40,14 +40,18 @@ function serviceImg(string $filename, string $alt, array $options = []): string 
  * Brand logo with WebP + PNG fallback.
  */
 function brandLogo(string $alt, string $class = 'logo-img', bool $priority = false): string {
-    $base  = SITE_BASE . 'assets/appsdeddy-logo-full';
-    $extra = ' class="' . sanitize($class) . '" width="220" height="40" decoding="async"';
+    $base   = SITE_BASE . 'assets/appsdeddy-logo-full';
+    $extra  = ' class="' . sanitize($class) . '" width="202" height="40" decoding="async"';
     if ($priority) {
         $extra .= ' fetchpriority="high"';
     }
 
     return '<picture>'
-        . '<source srcset="' . $base . '.webp" type="image/webp">'
-        . '<img src="' . $base . '.png" alt="' . sanitize($alt) . '"' . $extra . '>'
+        . '<source srcset="' . $base . '.webp" type="image/webp" sizes="(max-width:768px) 160px, 202px">'
+        . '<img src="' . $base . '.webp" alt="' . sanitize($alt) . '"' . $extra . '>'
         . '</picture>';
+}
+
+function assetImage(string $path): string {
+    return SITE_BASE . ltrim($path, '/');
 }

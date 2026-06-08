@@ -76,7 +76,7 @@ if (defined('ABSPATH')) {
                         </div>
                         <div class="footer-contact-item">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:<?= SITE_EMAIL ?>"><?= SITE_EMAIL ?></a>
+                            <?= emailLink() ?>
                         </div>
                         <div class="footer-contact-item">
                             <i class="fas fa-clock"></i>

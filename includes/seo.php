@@ -26,7 +26,7 @@ function seoCanonicalUrl(): string {
 
 function seoPageSlug(): string {
     $script = basename($_SERVER['SCRIPT_NAME'] ?? 'index.php');
-    return $script === 'index.php' ? '' : preg_replace('/\.php$/i', '', $script);
+    return $script === 'index.php' ? 'index' : preg_replace('/\.php$/i', '', $script);
 }
 
 function seoDefaultKeywords(): string {
@@ -37,9 +37,9 @@ function seoDefaultKeywords(): string {
 function seoPageRegistry(): array {
     return [
         'index' => [
-            'title'       => 'AppsDeddy | Premium App & Web Development Agency',
-            'description' => 'AppsDeddy is a US-based app development agency building mobile apps, web platforms, UI/UX, cloud, and AI solutions for businesses nationwide.',
-            'keywords'    => 'app development agency, mobile app development company, web development Indianapolis, custom software development USA',
+            'title'       => 'AppsDeddy | App Development, Web Design & Business Solutions',
+            'description' => 'AppsDeddy is a US-based app development agency delivering custom mobile apps, web design, data engineering, and AI solutions that help businesses grow. Free consultation from Indianapolis.',
+            'keywords'    => 'AppsDeddy, app development, web development, business solutions, UI UX design, mobile apps, custom software, Indianapolis',
         ],
         'about' => [
             'title'       => 'About Us | AppsDeddy - App Development Experts',
@@ -110,7 +110,7 @@ function seoResolveMeta(): array {
 
     return [
         'title'       => $GLOBALS['pageTitle'] ?? ($meta['title'] ?? (SITE_NAME . ' | ' . SITE_TAGLINE)),
-        'description' => $GLOBALS['pageDescription'] ?? ($meta['description'] ?? 'AppsDeddy — US-based premium app development agency.'),
+        'description' => $GLOBALS['pageDescription'] ?? ($meta['description'] ?? 'AppsDeddy is a US-based app development agency delivering custom mobile apps, web design, and business software solutions from Indianapolis.'),
         'keywords'    => $GLOBALS['pageKeywords'] ?? ($meta['keywords'] ?? seoDefaultKeywords()),
         'robots'      => $GLOBALS['pageRobots'] ?? ($meta['robots'] ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'),
         'og_image'    => $GLOBALS['pageOgImage'] ?? SEO_OG_IMAGE,

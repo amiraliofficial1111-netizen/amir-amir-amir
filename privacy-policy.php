@@ -79,7 +79,7 @@ require_once 'includes/header.php';
                         <li>Data portability</li>
                         <li>Withdraw consent at any time</li>
                     </ul>
-                    <p>To exercise these rights, contact us at <a href="mailto:<?= SITE_EMAIL ?>"><?= SITE_EMAIL ?></a>.</p>
+                    <p>To exercise these rights, contact us at <?= emailLink() ?>.</p>
                 </div>
 
                 <div class="legal-section">
@@ -100,7 +100,7 @@ require_once 'includes/header.php';
                 <div class="legal-section">
                     <h2><i class="fas fa-envelope"></i> Contact Us</h2>
                     <p>For questions about this Privacy Policy or our data practices:</p>
-                    <p><strong>AppsDeddy</strong><br><?= SITE_ADDRESS ?><br>Email: <a href="mailto:<?= SITE_EMAIL ?>"><?= SITE_EMAIL ?></a></p>
+                    <p><strong>AppsDeddy</strong><br><?= SITE_ADDRESS ?><br>Email: <?= emailLink() ?></p>
                 </div>
             </div>
         </div>

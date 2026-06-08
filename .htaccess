@@ -56,7 +56,7 @@ RewriteRule ^ /%1.php [NC,L,R=301]
         </Else>
     </FilesMatch>
 
-    <FilesMatch "^(index|contact|about|services|how-we-work|faq|testimonials|web-mobile-app-development|data-engineering-solutions|gen-ai-integration|ux-ui-design|privacy-policy|terms-conditions|cookie-policy|sitemap)\.php$">
+    <FilesMatch "^(index|contact|about|services|how-we-work|faq|testimonials|web-mobile-app-development|data-engineering-solutions|gen-ai-integration|ux-ui-design|privacy-policy|terms-conditions|cookie-policy|sitemap|404)\.php$">
         <If "%{REQUEST_URI} !~ m#^/blog/#">
             Require all granted
         </If>
@@ -108,8 +108,14 @@ AddDefaultCharset UTF-8
     ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
-# ─── Custom Error Pages (main site only — do NOT send WP 403/404 to homepage) ─
-# Removed ErrorDocument 403/404/500 → index.php (that broke /blog/wp-admin)
+# ─── Custom 404 (main site only — WordPress /blog handles its own errors) ───
+RewriteCond %{REQUEST_URI} !^/blog [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.(css|js|webp|png|jpg|jpeg|gif|svg|ico|woff2?)$ [NC]
+RewriteRule ^ 404.php [L]
+
+ErrorDocument 404 /404.php
 
 # ─── PHP Settings (Hostinger Compatible) ─────────────────────────────────────
 <IfModule mod_php.c>

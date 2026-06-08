@@ -38,7 +38,7 @@ require_once 'includes/header.php';
                     </div>
                     <div class="info-card">
                         <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                        <div class="info-content"><h3>Email Us</h3><p><a href="mailto:<?= SITE_EMAIL ?>"><?= SITE_EMAIL ?></a></p></div>
+                        <div class="info-content"><h3>Email Us</h3><p><?= emailLink() ?></p></div>
                     </div>
                     <div class="info-card">
                         <div class="info-icon"><i class="fas fa-clock"></i></div>

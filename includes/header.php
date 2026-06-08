@@ -82,14 +82,10 @@ $jsHref    = $isCustomSite ? seoAsset('js/script.js') : (SITE_BASE . 'js/script.
     <meta name="twitter:site" content="<?= defined('SEO_TWITTER_HANDLE') ? SEO_TWITTER_HANDLE : '@appsdeddy_' ?>">
 
     <link rel="icon" type="image/webp" href="<?= SITE_BASE ?>assets/appsdeddy-favicon-daddy.webp">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= SITE_BASE ?>assets/favicon-32x32.png">
-    <link rel="apple-touch-icon" href="<?= SITE_BASE ?>assets/appsdeddy-favicon-daddy.png">
+    <link rel="icon" type="image/webp" sizes="32x32" href="<?= SITE_BASE ?>assets/appsdeddy-favicon-daddy.webp">
+    <link rel="apple-touch-icon" href="<?= SITE_BASE ?>assets/appsdeddy-favicon-daddy.webp">
 
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link rel="preload" href="<?= SITE_BASE ?>assets/appsdeddy-logo-full.webp" as="image" type="image/webp" fetchpriority="high">
     <?php if (!empty($pagePreloadImage)) : ?>
@@ -100,8 +96,13 @@ $jsHref    = $isCustomSite ? seoAsset('js/script.js') : (SITE_BASE . 'js/script.
     <link rel="preload" href="<?= $cssHref ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="<?= $cssHref ?>"></noscript>
 
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap" onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('fonts-loaded')">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap"></noscript>
+    <?php if (defined('GA_MEASUREMENT_ID') && GA_MEASUREMENT_ID !== '') : ?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= sanitize(GA_MEASUREMENT_ID) ?>"></script>
+    <script>
+    window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());gtag('config','<?= sanitize(GA_MEASUREMENT_ID) ?>',{anonymize_ip:true});
+    </script>
+    <?php endif; ?>
 
     <?= $jsonLdHtml ?>
 

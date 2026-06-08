@@ -32,7 +32,10 @@ define('SITE_NAME',     'AppsDeddy');
 define('SITE_TAGLINE',  'Daddy Knows Better');
 define('SITE_URL',      'https://appsdeddy.com');
 define('SITE_BASE', rtrim(SITE_URL, '/') . '/');
-define('ASSET_VERSION', '2.2.0');
+define('ASSET_VERSION', '2.3.0');
+
+// Google Analytics (set in config.local.php, e.g. G-XXXXXXXXXX)
+if (!defined('GA_MEASUREMENT_ID')) define('GA_MEASUREMENT_ID', '');
 define('SITE_YEAR',     date('Y'));
 define('SITE_ADDRESS',  '8520 Allison Pointe Blvd Ste 223, Indianapolis, IN, US 46250');
 define('SITE_EMAIL',    'info@appsdeddy.com');
@@ -65,6 +68,16 @@ function validateCsrfToken(string $token): bool {
 // ─── Sanitization Helper ─────────────────────────────────────────────────────
 function sanitize(string $input): string {
     return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
+}
+
+/** Encode email for mailto links to reduce spam harvesting. */
+function obfuscatedEmail(string $email = SITE_EMAIL): string {
+    return implode('', array_map(fn(string $c): string => '&#' . ord($c) . ';', str_split($email)));
+}
+
+function emailLink(string $email = SITE_EMAIL, ?string $label = null): string {
+    $label = $label ?? $email;
+    return '<a href="mailto:' . obfuscatedEmail($email) . '">' . sanitize($label) . '</a>';
 }
 
 // ─── Service Labels ──────────────────────────────────────────────────────────

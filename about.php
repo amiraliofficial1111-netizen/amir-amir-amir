@@ -34,7 +34,7 @@ require_once 'includes/header.php';
                 </div>
                 <div class="about-intro-visual" data-aos="fade-left">
                     <div class="about-intro-image">
-                        <div class="intro-img-wrapper" style="background-image: linear-gradient(135deg, rgba(99, 102, 241, 0.75) 0%, rgba(236, 72, 153, 0.7) 100%), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800'); background-size: cover; background-position: center;">
+                        <div class="intro-img-wrapper intro-img-team">
                             <div class="intro-img-overlay"></div>
                             <i class="fas fa-play-circle play-icon"></i>
                         </div>

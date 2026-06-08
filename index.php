@@ -24,12 +24,14 @@ require_once 'includes/header.php';
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
-                    <span class="title-line">Innovate Create Succeed!!</span>
+                    <span class="title-line">AppsDeddy App Development &amp; Design Solutions</span>
                 </h1>
                 
+                <p class="hero-tagline" data-aos="fade-up" data-aos-delay="150">Innovate · Create · Succeed</p>
+                
                 <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
-                    Empowering your business with innovative solutions, delivering reliable, high-quality services, 
-                    and partnering for seamless growth and success.
+                    Empowering your business with custom app development, web design, and software solutions — 
+                    delivering reliable, high-quality services for growth and success across the United States.
                 </p>
                 
                 <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
@@ -309,16 +311,16 @@ require_once 'includes/header.php';
             <div class="about-grid">
                 <div class="about-visual" data-aos="fade-right">
                     <div class="about-image-wrapper">
-                        <div class="about-img main-img" style="background-image: linear-gradient(135deg, rgba(99, 102, 241, 0.85) 0%, rgba(236, 72, 153, 0.75) 100%), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800');">
+                        <div class="about-img main-img about-img-team" role="img" aria-label="AppsDeddy development team collaborating">
                             <div class="img-overlay"></div>
                         </div>
-                        <div class="about-img secondary-img" style="background-image: linear-gradient(135deg, rgba(6, 182, 212, 0.8) 0%, rgba(99, 102, 241, 0.75) 100%), url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=600');">
+                        <div class="about-img secondary-img about-img-workshop" role="img" aria-label="AppsDeddy business workshop session">
                             <div class="img-overlay"></div>
                         </div>
                         
                         <div class="experience-badge">
                             <div class="exp-icon badge-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=200" alt="Years of Excellence" class="badge-professional-img" width="200" height="200" loading="lazy" decoding="async">
+                                <?= serviceImg('offering-1.jpg', 'Years of excellence in app development', ['width' => 80, 'height' => 80, 'class' => 'badge-professional-img']) ?>
                             </div>
                             <div class="exp-content">
                                 <span class="exp-number">15+</span>
@@ -328,7 +330,7 @@ require_once 'includes/header.php';
                         
                         <div class="projects-badge">
                             <div class="projects-icon badge-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=200" alt="Projects" class="badge-professional-img" width="200" height="200" loading="lazy" decoding="async">
+                                <?= serviceImg('offering-2.jpg', 'Completed app development projects', ['width' => 80, 'height' => 80, 'class' => 'badge-professional-img']) ?>
                             </div>
                             <span class="projects-number">250+</span>
                             <span class="projects-text">Projects</span>
@@ -866,7 +868,7 @@ require_once 'includes/header.php';
                         <div class="info-icon"><i class="fas fa-envelope"></i></div>
                         <div class="info-content">
                             <h3>Email Us</h3>
-                            <p><a href="mailto:<?= SITE_EMAIL ?>"><?= SITE_EMAIL ?></a></p>
+                            <p><?= emailLink() ?></p>
                         </div>
                     </div>
                     <div class="info-card">

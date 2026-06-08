@@ -280,5 +280,8 @@ function seoSitemapUrls(): array {
 
 function seoAsset(string $path): string {
     $version = defined('ASSET_VERSION') ? ASSET_VERSION : '1';
-    return SITE_BASE . ltrim($path, '/') . '?v=' . rawurlencode($version);
+    $minPath = preg_replace('/\.(css|js)$/', '.min.$1', $path);
+    $fullMin = dirname(__DIR__) . '/' . ltrim($minPath, '/');
+    $usePath = is_readable($fullMin) ? $minPath : $path;
+    return SITE_BASE . ltrim($usePath, '/') . '?v=' . rawurlencode($version);
 }

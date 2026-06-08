@@ -34,15 +34,15 @@ require_once 'includes/header.php';
                 <div class="contact-info" data-aos="fade-right">
                     <div class="info-card">
                         <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="info-content"><h4>Our Office</h4><p>8520 Allison Pointe Blvd Ste 223<br>Indianapolis, IN, US 46250</p></div>
+                        <div class="info-content"><h3>Our Office</h3><p>8520 Allison Pointe Blvd Ste 223<br>Indianapolis, IN, US 46250</p></div>
                     </div>
                     <div class="info-card">
                         <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                        <div class="info-content"><h4>Email Us</h4><p><a href="mailto:<?= SITE_EMAIL ?>"><?= SITE_EMAIL ?></a></p></div>
+                        <div class="info-content"><h3>Email Us</h3><p><a href="mailto:<?= SITE_EMAIL ?>"><?= SITE_EMAIL ?></a></p></div>
                     </div>
                     <div class="info-card">
                         <div class="info-icon"><i class="fas fa-clock"></i></div>
-                        <div class="info-content"><h4>Working Hours</h4><p>Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 2:00 PM</p></div>
+                        <div class="info-content"><h3>Working Hours</h3><p>Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 2:00 PM</p></div>
                     </div>
                     <div class="social-links">
                         <a href="<?= SOCIAL_FACEBOOK ?>" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -55,7 +55,10 @@ require_once 'includes/header.php';
                 <div class="contact-form-wrapper" data-aos="fade-left">
                     <form class="contact-form" id="contactForm" action="includes/mail-handler.php" method="POST">
                         <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
-                        <div style="position:absolute;left:-9999px;"><input type="text" name="website_url" tabindex="-1" autocomplete="off"></div>
+                        <div class="hp-field" aria-hidden="true">
+                            <label for="website_url_contact">Leave this field empty</label>
+                            <input type="text" id="website_url_contact" name="website_url" class="hp-field" tabindex="-1" autocomplete="off">
+                        </div>
                         
                         <div class="form-header">
                             <h3>Send us a message</h3>
@@ -99,13 +102,15 @@ require_once 'includes/header.php';
                                 </div>
                             </div>
                             <div class="form-group full-width">
-                                <label for="budget">Estimated Budget</label>
-                                <div class="budget-options">
-                                    <label class="budget-option"><input type="radio" name="budget" value="2k-5k"><span>$2K - $5K</span></label>
-                                    <label class="budget-option"><input type="radio" name="budget" value="5k-10k"><span>$5K - $10K</span></label>
-                                    <label class="budget-option"><input type="radio" name="budget" value="10k-25k"><span>$10K - $25K</span></label>
-                                    <label class="budget-option"><input type="radio" name="budget" value="25k+"><span>$25K+</span></label>
-                                </div>
+                                <fieldset class="budget-fieldset">
+                                    <legend id="budget-legend-contact">Estimated Budget</legend>
+                                    <div class="budget-options" role="radiogroup" aria-labelledby="budget-legend-contact">
+                                        <label class="budget-option" for="budget-contact-2k-5k"><input type="radio" id="budget-contact-2k-5k" name="budget" value="2k-5k"><span>$2K - $5K</span></label>
+                                        <label class="budget-option" for="budget-contact-5k-10k"><input type="radio" id="budget-contact-5k-10k" name="budget" value="5k-10k"><span>$5K - $10K</span></label>
+                                        <label class="budget-option" for="budget-contact-10k-25k"><input type="radio" id="budget-contact-10k-25k" name="budget" value="10k-25k"><span>$10K - $25K</span></label>
+                                        <label class="budget-option" for="budget-contact-25k"><input type="radio" id="budget-contact-25k" name="budget" value="25k+"><span>$25K+</span></label>
+                                    </div>
+                                </fieldset>
                             </div>
                             <div class="form-group full-width">
                                 <label for="message">Project Details</label>

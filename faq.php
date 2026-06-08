@@ -87,47 +87,47 @@ require_once 'includes/header.php';
                 </div>
                 <div class="faq-accordion" data-aos="fade-left">
                     <div class="accordion-item active">
-                        <button class="accordion-header">
+                        <button type="button" class="accordion-header" aria-expanded="true" aria-controls="faq-page-panel-1" id="faq-page-trigger-1">
                             <span>How long does it take to build an app?</span>
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="faq-page-panel-1" role="region" aria-labelledby="faq-page-trigger-1">
                             <p>The timeline depends on the complexity of your project. A simple MVP can take 4-8 weeks, while a complex enterprise app might take 3-6 months. We'll provide a detailed timeline after our initial consultation.</p>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <button class="accordion-header">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-page-panel-2" id="faq-page-trigger-2">
                             <span>What technologies do you use?</span>
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="faq-page-panel-2" role="region" aria-labelledby="faq-page-trigger-2">
                             <p>We use cutting-edge technologies including React Native, Flutter, Swift, Kotlin for mobile; React, Vue.js, Next.js for web; Node.js and Python for backend; and AWS, Google Cloud for infrastructure.</p>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <button class="accordion-header">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-page-panel-3" id="faq-page-trigger-3">
                             <span>Do you provide post-launch support?</span>
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="faq-page-panel-3" role="region" aria-labelledby="faq-page-trigger-3">
                             <p>Yes! All our packages include post-launch support. We offer maintenance plans ranging from 1 to 12 months, including bug fixes, updates, and feature enhancements to ensure your app runs smoothly.</p>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <button class="accordion-header">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-page-panel-4" id="faq-page-trigger-4">
                             <span>How much does app development cost?</span>
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="faq-page-panel-4" role="region" aria-labelledby="faq-page-trigger-4">
                             <p>Costs vary based on complexity, features, and platforms. Basic apps start around $2,999, while complex apps can range from $15,000+. We offer free consultations to provide accurate quotes based on your requirements.</p>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <button class="accordion-header">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-page-panel-5" id="faq-page-trigger-5">
                             <span>Will I own the source code?</span>
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="faq-page-panel-5" role="region" aria-labelledby="faq-page-trigger-5">
                             <p>Absolutely! Upon project completion and final payment, you receive full ownership of all source code, designs, and assets. We also provide documentation for easy handover or future development.</p>
                         </div>
                     </div>

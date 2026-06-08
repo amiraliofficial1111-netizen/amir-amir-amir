@@ -227,8 +227,8 @@ require_once 'includes/header.php';
                         </ul>
                     </div>
                     <a href="web-mobile-app-development.php" class="service-link">
-                        <span>Learn More</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>Learn more about Web &amp; Mobile App Development</span>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <div class="service-number">01</div>
                 </div>
@@ -252,8 +252,8 @@ require_once 'includes/header.php';
                         </ul>
                     </div>
                     <a href="data-engineering-solutions.php" class="service-link">
-                        <span>Learn More</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>Learn more about Data Engineering Solutions</span>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <div class="service-number">02</div>
                 </div>
@@ -273,8 +273,8 @@ require_once 'includes/header.php';
                         </ul>
                     </div>
                     <a href="gen-ai-integration.php" class="service-link">
-                        <span>Learn More</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>Learn more about Gen AI Integration</span>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <div class="service-number">03</div>
                 </div>
@@ -294,8 +294,8 @@ require_once 'includes/header.php';
                         </ul>
                     </div>
                     <a href="ux-ui-design.php" class="service-link">
-                        <span>Learn More</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>Learn more about UX &amp; UI Design</span>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <div class="service-number">04</div>
                 </div>
@@ -318,7 +318,7 @@ require_once 'includes/header.php';
                         
                         <div class="experience-badge">
                             <div class="exp-icon badge-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=200" alt="Years of Excellence" class="badge-professional-img">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=200" alt="Years of Excellence" class="badge-professional-img" width="200" height="200" loading="lazy" decoding="async">
                             </div>
                             <div class="exp-content">
                                 <span class="exp-number">15+</span>
@@ -328,7 +328,7 @@ require_once 'includes/header.php';
                         
                         <div class="projects-badge">
                             <div class="projects-icon badge-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=200" alt="Projects" class="badge-professional-img">
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=200" alt="Projects" class="badge-professional-img" width="200" height="200" loading="lazy" decoding="async">
                             </div>
                             <span class="projects-number">250+</span>
                             <span class="projects-text">Projects</span>
@@ -354,28 +354,28 @@ require_once 'includes/header.php';
                         <div class="about-feature">
                             <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
                             <div class="feature-text">
-                                <h4>Innovation-Driven</h4>
+                                <h3>Innovation-Driven</h3>
                                 <p>We stay ahead of technology trends to deliver forward-thinking solutions.</p>
                             </div>
                         </div>
                         <div class="about-feature">
                             <div class="feature-icon"><i class="fas fa-users"></i></div>
                             <div class="feature-text">
-                                <h4>Client-Focused</h4>
+                                <h3>Client-Focused</h3>
                                 <p>Your success is our priority, with solutions tailored to your specific needs.</p>
                             </div>
                         </div>
                         <div class="about-feature">
                             <div class="feature-icon"><i class="fas fa-award"></i></div>
                             <div class="feature-text">
-                                <h4>Quality-Obsessed</h4>
+                                <h3>Quality-Obsessed</h3>
                                 <p>We maintain rigorous standards throughout the development process.</p>
                             </div>
                         </div>
                         <div class="about-feature">
                             <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
                             <div class="feature-text">
-                                <h4>Result-Oriented</h4>
+                                <h3>Result-Oriented</h3>
                                 <p>We focus on delivering measurable outcomes that drive business value.</p>
                             </div>
                         </div>
@@ -468,21 +468,21 @@ require_once 'includes/header.php';
                 </p>
             </div>
             
-            <div class="portfolio-filters" data-aos="fade-up">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-th"></i>
+            <div class="portfolio-filters" data-aos="fade-up" role="group" aria-label="Filter portfolio projects">
+                <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true" aria-label="Show all projects">
+                    <i class="fas fa-th" aria-hidden="true"></i>
                     <span>All</span>
                 </button>
-                <button class="filter-btn" data-filter="mobile">
-                    <i class="fas fa-mobile-alt"></i>
+                <button type="button" class="filter-btn" data-filter="mobile" aria-pressed="false" aria-label="Show mobile app projects">
+                    <i class="fas fa-mobile-alt" aria-hidden="true"></i>
                     <span>Mobile Apps</span>
                 </button>
-                <button class="filter-btn" data-filter="web">
-                    <i class="fas fa-globe"></i>
+                <button type="button" class="filter-btn" data-filter="web" aria-pressed="false" aria-label="Show web app projects">
+                    <i class="fas fa-globe" aria-hidden="true"></i>
                     <span>Web Apps</span>
                 </button>
-                <button class="filter-btn" data-filter="design">
-                    <i class="fas fa-palette"></i>
+                <button type="button" class="filter-btn" data-filter="design" aria-pressed="false" aria-label="Show UI/UX design projects">
+                    <i class="fas fa-palette" aria-hidden="true"></i>
                     <span>UI/UX</span>
                 </button>
             </div>
@@ -501,7 +501,7 @@ require_once 'includes/header.php';
                                 <div class="portfolio-tech">
                                     <span>React Native</span><span>Node.js</span><span>MongoDB</span>
                                 </div>
-                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View on Behance"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View Green Platter project on Behance"><i class="fas fa-external-link-alt" aria-hidden="true"></i><span class="sr-only">View Green Platter on Behance</span></a>
                             </div>
                         </div>
                     </div>
@@ -520,7 +520,7 @@ require_once 'includes/header.php';
                                 <div class="portfolio-tech">
                                     <span>Next.js</span><span>Stripe</span><span>PostgreSQL</span>
                                 </div>
-                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View on Behance"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View Aurora Tales project on Behance"><i class="fas fa-external-link-alt" aria-hidden="true"></i><span class="sr-only">View Aurora Tales on Behance</span></a>
                             </div>
                         </div>
                     </div>
@@ -539,7 +539,7 @@ require_once 'includes/header.php';
                                 <div class="portfolio-tech">
                                     <span>Figma</span><span>React</span><span>D3.js</span>
                                 </div>
-                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View on Behance"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View HealthHub project on Behance"><i class="fas fa-external-link-alt" aria-hidden="true"></i><span class="sr-only">View HealthHub on Behance</span></a>
                             </div>
                         </div>
                     </div>
@@ -558,7 +558,7 @@ require_once 'includes/header.php';
                                 <div class="portfolio-tech">
                                     <span>Flutter</span><span>Firebase</span><span>Stripe</span>
                                 </div>
-                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View on Behance"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View FoodieGo project on Behance"><i class="fas fa-external-link-alt" aria-hidden="true"></i><span class="sr-only">View FoodieGo on Behance</span></a>
                             </div>
                         </div>
                     </div>
@@ -577,7 +577,7 @@ require_once 'includes/header.php';
                                 <div class="portfolio-tech">
                                     <span>Vue.js</span><span>Laravel</span><span>MySQL</span>
                                 </div>
-                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View on Behance"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View LearnPro project on Behance"><i class="fas fa-external-link-alt" aria-hidden="true"></i><span class="sr-only">View LearnPro on Behance</span></a>
                             </div>
                         </div>
                     </div>
@@ -596,7 +596,7 @@ require_once 'includes/header.php';
                                 <div class="portfolio-tech">
                                     <span>Sketch</span><span>Swift</span><span>Kotlin</span>
                                 </div>
-                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View on Behance"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="View TravelMate project on Behance"><i class="fas fa-external-link-alt" aria-hidden="true"></i><span class="sr-only">View TravelMate on Behance</span></a>
                             </div>
                         </div>
                     </div>
@@ -707,11 +707,11 @@ require_once 'includes/header.php';
                 </div>
                 
                 <div class="testimonial-controls">
-                    <button class="testimonial-btn prev" id="prevTestimonial"><i class="fas fa-arrow-left"></i></button>
-                    <div class="testimonial-dots" id="testimonialDots">
-                        <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                    <button type="button" class="testimonial-btn prev" id="prevTestimonial" aria-label="Previous testimonial"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+                    <div class="testimonial-dots" id="testimonialDots" role="tablist" aria-label="Testimonial slides">
+                        <span class="dot active" role="tab" aria-selected="true" aria-label="Testimonial 1"></span><span class="dot" role="tab" aria-selected="false" aria-label="Testimonial 2"></span><span class="dot" role="tab" aria-selected="false" aria-label="Testimonial 3"></span><span class="dot" role="tab" aria-selected="false" aria-label="Testimonial 4"></span>
                     </div>
-                    <button class="testimonial-btn next" id="nextTestimonial"><i class="fas fa-arrow-right"></i></button>
+                    <button type="button" class="testimonial-btn next" id="nextTestimonial" aria-label="Next testimonial"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
@@ -754,47 +754,47 @@ require_once 'includes/header.php';
                 
                 <div class="faq-accordion" data-aos="fade-left">
                     <div class="accordion-item active">
-                        <button class="accordion-header">
+                        <button type="button" class="accordion-header" aria-expanded="true" aria-controls="faq-panel-1" id="faq-trigger-1">
                             <span>How long does it take to build an app?</span>
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="faq-panel-1" role="region" aria-labelledby="faq-trigger-1">
                             <p>The timeline depends on the complexity of your project. A simple MVP can take 4-8 weeks, while a complex enterprise app might take 3-6 months. We'll provide a detailed timeline after our initial consultation.</p>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <button class="accordion-header">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-panel-2" id="faq-trigger-2">
                             <span>What technologies do you use?</span>
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="faq-panel-2" role="region" aria-labelledby="faq-trigger-2">
                             <p>We use cutting-edge technologies including React Native, Flutter, Swift, Kotlin for mobile; React, Vue.js, Next.js for web; Node.js and Python for backend; and AWS, Google Cloud for infrastructure.</p>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <button class="accordion-header">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-panel-3" id="faq-trigger-3">
                             <span>Do you provide post-launch support?</span>
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="faq-panel-3" role="region" aria-labelledby="faq-trigger-3">
                             <p>Yes! All our packages include post-launch support. We offer maintenance plans ranging from 1 to 12 months, including bug fixes, updates, and feature enhancements to ensure your app runs smoothly.</p>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <button class="accordion-header">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-panel-4" id="faq-trigger-4">
                             <span>How much does app development cost?</span>
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="faq-panel-4" role="region" aria-labelledby="faq-trigger-4">
                             <p>Costs vary based on complexity, features, and platforms. Basic apps start around $2,999, while complex apps can range from $15,000+. We offer free consultations to provide accurate quotes based on your requirements.</p>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <button class="accordion-header">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-panel-5" id="faq-trigger-5">
                             <span>Will I own the source code?</span>
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="accordion-content">
+                        <div class="accordion-content" id="faq-panel-5" role="region" aria-labelledby="faq-trigger-5">
                             <p>Absolutely! Upon project completion and final payment, you receive full ownership of all source code, designs, and assets. We also provide documentation for easy handover or future development.</p>
                         </div>
                     </div>
@@ -858,21 +858,21 @@ require_once 'includes/header.php';
                     <div class="info-card">
                         <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="info-content">
-                            <h4>Our Office</h4>
+                            <h3>Our Office</h3>
                             <p>8520 Allison Pointe Blvd Ste 223<br>Indianapolis, IN, US 46250</p>
                         </div>
                     </div>
                     <div class="info-card">
                         <div class="info-icon"><i class="fas fa-envelope"></i></div>
                         <div class="info-content">
-                            <h4>Email Us</h4>
+                            <h3>Email Us</h3>
                             <p><a href="mailto:<?= SITE_EMAIL ?>"><?= SITE_EMAIL ?></a></p>
                         </div>
                     </div>
                     <div class="info-card">
                         <div class="info-icon"><i class="fas fa-clock"></i></div>
                         <div class="info-content">
-                            <h4>Working Hours</h4>
+                            <h3>Working Hours</h3>
                             <p>Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 2:00 PM</p>
                         </div>
                     </div>
@@ -889,7 +889,10 @@ require_once 'includes/header.php';
                 <div class="contact-form-wrapper" data-aos="fade-left">
                     <form class="contact-form" id="contactForm" action="includes/mail-handler.php" method="POST">
                         <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
-                        <div style="position:absolute;left:-9999px;"><input type="text" name="website_url" tabindex="-1" autocomplete="off"></div>
+                        <div class="hp-field" aria-hidden="true">
+                            <label for="website_url_hp">Leave this field empty</label>
+                            <input type="text" id="website_url_hp" name="website_url" class="hp-field" tabindex="-1" autocomplete="off">
+                        </div>
                         
                         <div class="form-header">
                             <h3>Send us a message</h3>
@@ -927,13 +930,15 @@ require_once 'includes/header.php';
                                 </div>
                             </div>
                             <div class="form-group full-width">
-                                <label for="budget">Estimated Budget</label>
-                                <div class="budget-options">
-                                    <label class="budget-option"><input type="radio" name="budget" value="2k-5k"><span>$2K - $5K</span></label>
-                                    <label class="budget-option"><input type="radio" name="budget" value="5k-10k"><span>$5K - $10K</span></label>
-                                    <label class="budget-option"><input type="radio" name="budget" value="10k-25k"><span>$10K - $25K</span></label>
-                                    <label class="budget-option"><input type="radio" name="budget" value="25k+"><span>$25K+</span></label>
-                                </div>
+                                <fieldset class="budget-fieldset">
+                                    <legend id="budget-legend">Estimated Budget</legend>
+                                    <div class="budget-options" role="radiogroup" aria-labelledby="budget-legend">
+                                        <label class="budget-option" for="budget-2k-5k"><input type="radio" id="budget-2k-5k" name="budget" value="2k-5k"><span>$2K - $5K</span></label>
+                                        <label class="budget-option" for="budget-5k-10k"><input type="radio" id="budget-5k-10k" name="budget" value="5k-10k"><span>$5K - $10K</span></label>
+                                        <label class="budget-option" for="budget-10k-25k"><input type="radio" id="budget-10k-25k" name="budget" value="10k-25k"><span>$10K - $25K</span></label>
+                                        <label class="budget-option" for="budget-25k"><input type="radio" id="budget-25k" name="budget" value="25k+"><span>$25K+</span></label>
+                                    </div>
+                                </fieldset>
                             </div>
                             <div class="form-group full-width">
                                 <label for="message">Project Details</label>

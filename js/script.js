@@ -3,6 +3,28 @@
 // Advanced JavaScript with Premium Features
 // ========================================
 
+(function() {
+    'use strict';
+
+    function loadStylesheet(href) {
+        if (document.querySelector('link[href="' + href + '"]')) return;
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+    }
+
+    function loadDeferredAssets() {
+        loadStylesheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+    }
+
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadDeferredAssets, { timeout: 2500 });
+    } else {
+        window.addEventListener('load', loadDeferredAssets, { once: true });
+    }
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
@@ -310,9 +332,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== Particle Effect =====
     function createParticles() {
         const particlesContainer = document.getElementById('particles');
-        if (!particlesContainer) return;
-        
-        for (let i = 0; i < 50; i++) {
+        if (!particlesContainer || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        const count = isMobile ? 12 : 30;
+
+        for (let i = 0; i < count; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
@@ -321,8 +346,12 @@ document.addEventListener('DOMContentLoaded', function() {
             particlesContainer.appendChild(particle);
         }
     }
-    
-    createParticles();
+
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(createParticles, { timeout: 3000 });
+    } else {
+        createParticles();
+    }
 
     // ===== Counter Animation =====
     const counters = document.querySelectorAll('.stat-number');
@@ -391,8 +420,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            filterBtns.forEach(b => b.classList.remove('active'));
+            filterBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
             this.classList.add('active');
+            this.setAttribute('aria-pressed', 'true');
             
             const filter = this.getAttribute('data-filter');
             
@@ -433,7 +466,9 @@ document.addEventListener('DOMContentLoaded', function() {
         testimonialTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
         
         dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentSlide);
+            const isActive = i === currentSlide;
+            dot.classList.toggle('active', isActive);
+            dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
         });
     }
     
@@ -491,16 +526,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     accordionItems.forEach(item => {
         const header = item.querySelector('.accordion-header');
-        
+        if (!header) return;
+
         header.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
-            
-            // Close all
-            accordionItems.forEach(i => i.classList.remove('active'));
-            
-            // Open clicked if wasn't active
+
+            accordionItems.forEach(i => {
+                i.classList.remove('active');
+                const h = i.querySelector('.accordion-header');
+                if (h) h.setAttribute('aria-expanded', 'false');
+            });
+
             if (!isActive) {
                 item.classList.add('active');
+                header.setAttribute('aria-expanded', 'true');
             }
         });
     });

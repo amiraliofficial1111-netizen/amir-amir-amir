@@ -116,8 +116,8 @@ if (defined('ABSPATH')) {
     <div class="video-modal" id="videoModal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
-            <button class="modal-close" id="closeModal">
-                <i class="fas fa-times"></i>
+            <button type="button" class="modal-close" id="closeModal" aria-label="Close video modal">
+                <i class="fas fa-times" aria-hidden="true"></i>
             </button>
             <div class="video-placeholder">
                 <i class="fas fa-play-circle"></i>
@@ -126,7 +126,8 @@ if (defined('ABSPATH')) {
         </div>
     </div>
 
-    <script src="<?= SITE_BASE ?>js/script.js<?= defined('ASSET_VERSION') ? '?v=' . rawurlencode(ASSET_VERSION) : '' ?>" defer></script>
+    <?php $jsSrc = function_exists('seoAsset') ? seoAsset('js/script.js') : SITE_BASE . 'js/script.js?v=' . rawurlencode(ASSET_VERSION); ?>
+    <script src="<?= $jsSrc ?>" defer></script>
     <?php if (defined('ABSPATH') && function_exists('wp_footer')) {
         wp_footer();
     } ?>

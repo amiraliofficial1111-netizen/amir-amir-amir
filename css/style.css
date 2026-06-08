@@ -100,7 +100,7 @@
     --bg-secondary: #f1f5f9;
     --bg-tertiary: #e2e8f0;
     --text-primary: #0f172a;
-    --text-secondary: #64748b;
+    --text-secondary: #475569;
     --border-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -123,7 +123,7 @@ html {
 }
 
 body {
-    font-family: var(--font-display);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg-primary, var(--white));
     color: var(--text-primary, var(--dark));
     line-height: 1.7;
@@ -132,6 +132,10 @@ body {
     max-width: 100vw;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.fonts-loaded body {
+    font-family: var(--font-primary);
 }
 
 /* Innovate Create Succeed style - display font for all headings site-wide */
@@ -937,12 +941,13 @@ body:has(.page-header) .navbar:not(.scrolled) .theme-label {
 }
 
 .btn-glow {
-    animation: glow 2s ease-in-out infinite alternate;
+    animation: glowPulse 2s ease-in-out infinite alternate;
+    will-change: transform;
 }
 
-@keyframes glow {
-    from { box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35); }
-    to { box-shadow: 0 4px 40px rgba(99, 102, 241, 0.55); }
+@keyframes glowPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.02); }
 }
 
 .btn-outline {
@@ -1660,8 +1665,8 @@ body.home .hero-title .title-line {
 .client-logo {
     flex-shrink: 0;
     font-size: var(--text-4xl);
-    color: var(--gray-400);
-    opacity: 0.6;
+    color: var(--gray-600);
+    opacity: 0.85;
     transition: var(--transition);
 }
 
@@ -1711,7 +1716,7 @@ body.home .faq-content .faq-description {
     gap: 8px;
     padding: 10px 20px;
     background: rgba(99, 102, 241, 0.1);
-    color: var(--primary);
+    color: var(--primary-dark);
     border-radius: var(--radius-full);
     font-weight: 600;
     font-size: var(--text-base);
@@ -1747,7 +1752,7 @@ body.home .faq-content .faq-description {
 }
 
 .section-description.light {
-    color: var(--gray-400);
+    color: #cbd5e1;
 }
 
 /* ===== Non-home, non-service pages: section text center ===== */
@@ -2162,6 +2167,7 @@ body:has(.page-header):not(.service-page) .work-process .section-title {
     flex-shrink: 0;
 }
 
+.feature-text h3,
 .feature-text h4 {
     font-size: var(--text-base);
     font-weight: 700;
@@ -3368,6 +3374,7 @@ body:has(.page-header):not(.service-page) .work-process .section-title {
     flex-shrink: 0;
 }
 
+.info-content h3,
 .info-content h4 {
     font-size: var(--text-base);
     margin-bottom: 4px;
@@ -3399,7 +3406,8 @@ body:has(.page-header):not(.service-page) .work-process .section-title {
         min-width: 40px;
         font-size: var(--text-base);
     }
-    .info-content h4 { font-size: var(--text-lg); }
+    .info-content h3,
+.info-content h4 { font-size: var(--text-lg); }
     .info-content p { font-size: var(--text-base); line-height: 1.6; }
 }
 
@@ -3519,6 +3527,20 @@ body:has(.page-header):not(.service-page) .work-process .section-title {
     color: var(--primary);
 }
 
+.budget-fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+}
+
+.budget-fieldset legend {
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--text-primary, var(--dark));
+    margin-bottom: 12px;
+}
+
 .budget-options {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -3561,7 +3583,7 @@ body:has(.page-header):not(.service-page) .work-process .section-title {
     gap: 8px;
     margin-top: 20px;
     font-size: var(--text-sm);
-    color: var(--text-secondary, var(--gray-500));
+    color: var(--text-secondary, var(--gray-600));
 }
 
 .form-note i {
@@ -6851,6 +6873,38 @@ body:has(.page-header):not(.service-page) .work-process .section-title {
 }
 
 /* ===== Performance & Accessibility ===== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.fonts-loaded h1,
+.fonts-loaded h2,
+.fonts-loaded h3,
+.fonts-loaded h4,
+.fonts-loaded h5,
+.fonts-loaded h6,
+.fonts-loaded .section-title,
+.fonts-loaded .section-tag,
+.fonts-loaded .hero-title {
+    font-family: var(--font-display);
+}
+
 .skip-link {
     position: absolute;
     top: -100px;

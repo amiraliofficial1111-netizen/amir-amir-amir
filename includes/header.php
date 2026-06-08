@@ -91,19 +91,17 @@ $jsHref    = $isCustomSite ? seoAsset('js/script.js') : (SITE_BASE . 'js/script.
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preload" href="<?= $cssHref ?>" as="style">
     <link rel="preload" href="<?= SITE_BASE ?>assets/appsdeddy-logo-full.webp" as="image" type="image/webp" fetchpriority="high">
     <?php if (!empty($pagePreloadImage)) : ?>
     <link rel="preload" href="<?= sanitize($pagePreloadImage) ?>" as="image" type="image/webp">
     <?php endif; ?>
 
-    <link rel="stylesheet" href="<?= $cssHref ?>">
+    <style><?php require __DIR__ . '/critical-css.php'; ?></style>
+    <link rel="preload" href="<?= $cssHref ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="<?= $cssHref ?>"></noscript>
 
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"></noscript>
-
-    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap" onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('fonts-loaded')">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap"></noscript>
 
     <?= $jsonLdHtml ?>
 
@@ -147,7 +145,8 @@ $jsHref    = $isCustomSite ? seoAsset('js/script.js') : (SITE_BASE . 'js/script.
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-search-item">
                     <div class="nav-search-wrap">
-                        <input type="search" id="navSearch" class="nav-search-input" placeholder="Search..." aria-label="Search site" autocomplete="off">
+                        <label for="navSearch" class="sr-only">Search site</label>
+                        <input type="search" id="navSearch" class="nav-search-input" placeholder="Search..." autocomplete="off">
                         <i class="fas fa-search nav-search-icon" aria-hidden="true"></i>
                     </div>
                 </li>

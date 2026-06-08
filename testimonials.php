@@ -60,11 +60,11 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="testimonial-controls">
-                    <button class="testimonial-btn prev" id="prevTestimonial"><i class="fas fa-arrow-left"></i></button>
+                    <button type="button" class="testimonial-btn prev" id="prevTestimonial" aria-label="Previous testimonial"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
                     <div class="testimonial-dots" id="testimonialDots">
                         <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
                     </div>
-                    <button class="testimonial-btn next" id="nextTestimonial"><i class="fas fa-arrow-right"></i></button>
+                    <button type="button" class="testimonial-btn next" id="nextTestimonial" aria-label="Next testimonial"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>

@@ -9,14 +9,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== Preloader =====
     const preloader = document.getElementById('preloader');
     
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            if (preloader) {
-                preloader.classList.add('hidden');
-            }
-            document.body.classList.remove('no-scroll');
-        }, preloader ? 1500 : 0);
-    });
+    function hidePreloader() {
+        if (preloader) {
+            preloader.classList.add('hidden');
+        }
+        document.body.classList.remove('no-scroll');
+    }
+
+    if (preloader) {
+        window.addEventListener('load', () => requestAnimationFrame(hidePreloader));
+        setTimeout(hidePreloader, 800);
+    }
 
     // ===== Theme Toggle =====
     const themeToggle = document.getElementById('themeToggle');
@@ -73,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const isOpening = !navMenu.classList.contains('active');
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', isOpening ? 'true' : 'false');
             document.body.classList.toggle('no-scroll');
             if (navOverlay) navOverlay.classList.toggle('active', navMenu.classList.contains('active'));
             if (!isOpening) {
@@ -86,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (navToggle && navMenu && window.innerWidth <= 992) {
             navToggle.classList.remove('active');
             navMenu.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
             document.body.classList.remove('no-scroll');
             if (navOverlay) navOverlay.classList.remove('active');
             const navDropdown = document.querySelector('.nav-dropdown');
@@ -629,15 +634,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== Parallax Effect on Orbs =====
     const orbs = document.querySelectorAll('.gradient-orb');
     
-    document.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 2;
-        const y = (e.clientY / window.innerHeight - 0.5) * 2;
-        
+    let parallaxTicking = false;
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+
+    function updateParallax() {
+        const x = (lastMouseX / window.innerWidth - 0.5) * 2;
+        const y = (lastMouseY / window.innerHeight - 0.5) * 2;
         orbs.forEach((orb, index) => {
             const speed = (index + 1) * 15;
             orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
         });
-    });
+        parallaxTicking = false;
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+        if (!parallaxTicking && orbs.length) {
+            parallaxTicking = true;
+            requestAnimationFrame(updateParallax);
+        }
+    }, { passive: true });
 
     // ===== Scroll Progress Indicator =====
     function createScrollProgress() {
@@ -743,11 +761,6 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
         });
     });
-
-    // ===== Console Welcome Message =====
-    console.log('%c AppsDeddy ', 'background: linear-gradient(135deg, #6366f1, #ec4899); color: white; font-size: 24px; padding: 10px 20px; border-radius: 10px;');
-    console.log('%c US-based Premium App Development Agency ', 'color: #6366f1; font-size: 14px;');
-    console.log('%c Website initialized successfully! ', 'color: #10b981; font-size: 12px;');
 
 });
 

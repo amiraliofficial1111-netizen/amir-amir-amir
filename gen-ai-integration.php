@@ -6,6 +6,7 @@ $pageTitle = 'Gen AI Integration & Consulting | AppsDeddy - Daddy Knows Better';
 $pageDescription = 'Gen AI integration and consulting. Automate processes and enhance decision-making with expert AI solutions from AppsDeddy.';
 $bodyClass = 'service-page';
 $activePage = 'services';
+$pagePreloadImage = SITE_BASE . serviceImage('hero-gen-ai');
 
 require_once 'includes/header.php';
 ?>
@@ -29,7 +30,7 @@ require_once 'includes/header.php';
                     <p>At Appsdeddy, we specialize in integrating generative AI solutions that drive innovation, streamline operations, and enhance user experiences. Our expert consultants work closely with you to design, develop, and deploy AI-powered systems that align with your business objectives. From startups to enterprises, we help you harness the power of generative AI to stay ahead in a competitive landscape.</p>
                 </div>
                 <div class="service-content-image" data-aos="fade-left">
-                    <img loading="lazy" decoding="async" src="<?= serviceImage('hero-gen-ai.jpg') ?>" alt="Gen AI Integration">
+                    <?= serviceImg('hero-gen-ai', 'Gen AI Integration', ['eager' => true, 'width' => 800, 'height' => 500]) ?>
                 </div>
             </div>
         </div>
@@ -40,7 +41,7 @@ require_once 'includes/header.php';
             <h2 class="section-title" data-aos="fade-up">Generative AI <span class="gradient-text">Services</span></h2>
             <div class="offerings-grid">
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-1.jpg') ?>" alt="AI Strategy Consulting"></div>
+                    <div class="offering-image"><?= serviceImg('offering-1', 'AI Strategy Consulting') ?></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-bullseye"></i></div>
                         <h3>AI Strategy Consulting</h3>
@@ -48,7 +49,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-2.jpg') ?>" alt="Generative AI Integration"></div>
+                    <div class="offering-image"><?= serviceImg('offering-2', 'Generative AI Integration') ?></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-robot"></i></div>
                         <h3>Generative AI Integration</h3>
@@ -56,7 +57,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-3.jpg') ?>" alt="Custom AI Development"></div>
+                    <div class="offering-image"><?= serviceImg('offering-3', 'Custom AI Development') ?></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-cog"></i></div>
                         <h3>Custom AI Development</h3>
@@ -64,7 +65,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-4.jpg') ?>" alt="AI Security & Ethics"></div>
+                    <div class="offering-image"><?= serviceImg('offering-4', 'AI Security & Ethics') ?></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-shield-alt"></i></div>
                         <h3>AI Security & Ethics</h3>
@@ -108,7 +109,7 @@ require_once 'includes/header.php';
         <div class="container">
             <div class="service-content-wrapper reverse">
                 <div class="service-content-image" data-aos="fade-right">
-                    <img loading="lazy" decoding="async" src="<?= serviceImage('custom-gen-ai.jpg') ?>" alt="Gen AI">
+                    <?= serviceImg('custom-gen-ai', 'Gen AI') ?>
                 </div>
                 <div class="service-content-text" data-aos="fade-left">
                     <h2 class="section-title">Why Appsdeddy for <span class="gradient-text">Generative AI?</span></h2>

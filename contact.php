@@ -7,6 +7,14 @@ $pageDescription = 'Contact AppsDeddy - Get a free quote for your mobile app or 
 $bodyClass = '';
 $activePage = 'contact';
 
+$pageSchema = [
+    '@context' => 'https://schema.org',
+    '@type'    => 'ContactPage',
+    'name'     => 'Contact AppsDeddy',
+    'url'      => rtrim(SITE_URL, '/') . '/contact',
+    'about'    => ['@id' => SITE_URL . '/#organization'],
+];
+
 require_once 'includes/header.php';
 ?>
 

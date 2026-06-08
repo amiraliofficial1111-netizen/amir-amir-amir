@@ -7,6 +7,53 @@ $pageDescription = 'AppsDeddy FAQ - Frequently asked questions about app develop
 $bodyClass = '';
 $activePage = 'faq';
 
+$pageSchema = [
+    '@context'   => 'https://schema.org',
+    '@type'      => 'FAQPage',
+    'mainEntity' => [
+        [
+            '@type' => 'Question',
+            'name'  => 'How long does it take to build an app?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text'  => 'The timeline depends on project complexity. A simple MVP can take 4-8 weeks, while a complex enterprise app might take 3-6 months. We provide a detailed timeline after our initial consultation.',
+            ],
+        ],
+        [
+            '@type' => 'Question',
+            'name'  => 'What technologies do you use?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text'  => 'We use React Native, Flutter, Swift, Kotlin for mobile; React, Vue.js, Next.js for web; Node.js and Python for backend; and AWS, Google Cloud for infrastructure.',
+            ],
+        ],
+        [
+            '@type' => 'Question',
+            'name'  => 'Do you provide post-launch support?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text'  => 'Yes. All packages include post-launch support with maintenance plans from 1 to 12 months, including bug fixes, updates, and feature enhancements.',
+            ],
+        ],
+        [
+            '@type' => 'Question',
+            'name'  => 'How much does app development cost?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text'  => 'Costs vary by complexity and platforms. Basic apps start around $2,999, while complex apps can range from $15,000+. We offer free consultations for accurate quotes.',
+            ],
+        ],
+        [
+            '@type' => 'Question',
+            'name'  => 'Will I own the source code?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text'  => 'Yes. Upon project completion and final payment, you receive full ownership of source code, designs, and assets, plus documentation for handover.',
+            ],
+        ],
+    ],
+];
+
 require_once 'includes/header.php';
 ?>
 

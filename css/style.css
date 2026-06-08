@@ -6849,3 +6849,50 @@ body:has(.page-header):not(.service-page) .work-process .section-title {
         gap: 64px;
     }
 }
+
+/* ===== Performance & Accessibility ===== */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    z-index: 10001;
+    padding: 10px 16px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 16px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+img[loading="lazy"] {
+    content-visibility: auto;
+}
+
+section:not(.hero):not(.page-header) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}

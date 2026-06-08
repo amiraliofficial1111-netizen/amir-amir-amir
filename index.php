@@ -2,11 +2,9 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'AppsDeddy - Daddy Knows Better';
-$pageDescription = 'AppsDeddy - US-based Premium App Development Agency. We build world-class mobile apps, web applications, and digital solutions for businesses across the United States.';
 $bodyClass = 'home';
 $activePage = 'home';
-$showPreloader = true;
+$showPreloader = false;
 
 require_once 'includes/header.php';
 ?>

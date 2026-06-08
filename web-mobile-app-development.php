@@ -6,6 +6,7 @@ $pageTitle = 'Web & Mobile App Development | AppsDeddy - Daddy Knows Better';
 $pageDescription = 'Custom web and mobile app development - native, cross-platform, and cloud solutions. AppsDeddy delivers scalable, user-centric applications.';
 $bodyClass = 'service-page';
 $activePage = 'services';
+$pagePreloadImage = SITE_BASE . serviceImage('hero-web-mobile');
 
 require_once 'includes/header.php';
 ?>
@@ -29,7 +30,7 @@ require_once 'includes/header.php';
                     <p>At Appsdeddy, we craft custom web and mobile applications that empower businesses to thrive in the digital world. Our solutions are designed to align with your unique goals, delivering seamless user experiences, robust functionality, and scalability. From startups to enterprises, we partner with you to build innovative, secure, and user-centric applications that drive results.</p>
                 </div>
                 <div class="service-content-image" data-aos="fade-left">
-                    <img loading="lazy" decoding="async" src="<?= serviceImage('hero-web-mobile.jpg') ?>" alt="Web & Mobile App Development">
+                    <?= serviceImg('hero-web-mobile', 'Web & Mobile App Development', ['eager' => true, 'width' => 800, 'height' => 500]) ?>
                 </div>
             </div>
         </div>
@@ -40,7 +41,7 @@ require_once 'includes/header.php';
             <h2 class="section-title" data-aos="fade-up">Web & Mobile App Development <span class="gradient-text">Services</span></h2>
             <div class="offerings-grid">
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-1.jpg') ?>" alt="Native Mobile App Development"></div>
+                    <div class="offering-image"><?= serviceImg('offering-1', 'Native Mobile App Development') ?></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-mobile-alt"></i></div>
                         <h3>Native Mobile App Development</h3>
@@ -48,7 +49,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-2.jpg') ?>" alt="Cross-Platform App Development"></div>
+                    <div class="offering-image"><?= serviceImg('offering-2', 'Cross-Platform App Development') ?></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-sync-alt"></i></div>
                         <h3>Cross-Platform App Development</h3>
@@ -56,7 +57,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-3.jpg') ?>" alt="Web Application Development"></div>
+                    <div class="offering-image"><?= serviceImg('offering-3', 'Web Application Development') ?></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-globe"></i></div>
                         <h3>Web Application Development</h3>
@@ -64,7 +65,7 @@ require_once 'includes/header.php';
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="offering-image"><img loading="lazy" decoding="async" src="<?= serviceImage('offering-4.jpg') ?>" alt="Cloud Integration"></div>
+                    <div class="offering-image"><?= serviceImg('offering-4', 'Cloud Integration') ?></div>
                     <div class="offering-content">
                         <div class="offering-icon"><i class="fas fa-cloud"></i></div>
                         <h3>Cloud Integration</h3>
@@ -108,7 +109,7 @@ require_once 'includes/header.php';
         <div class="container">
             <div class="service-content-wrapper reverse">
                 <div class="service-content-image" data-aos="fade-right">
-                    <img loading="lazy" decoding="async" src="<?= serviceImage('custom-web-mobile.jpg') ?>" alt="Custom Solutions">
+                    <?= serviceImg('custom-web-mobile', 'Custom Solutions') ?>
                 </div>
                 <div class="service-content-text" data-aos="fade-left">
                     <h2 class="section-title">Why Custom <span class="gradient-text">Solutions?</span></h2>

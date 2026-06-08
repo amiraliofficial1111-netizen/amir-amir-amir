@@ -9,6 +9,8 @@ if (defined('ABSPATH')) {
     }
 }
 ?>
+    </main>
+
     <footer class="footer">
         <div class="footer-top">
             <div class="footer-bg-shapes" aria-hidden="true">
@@ -20,7 +22,7 @@ if (defined('ABSPATH')) {
                 <div class="footer-grid">
                     <div class="footer-brand">
                         <a href="<?= SITE_BASE ?>" class="logo">
-                            <img src="<?= SITE_BASE ?>assets/appsdeddy-logo-full.png" alt="<?= SITE_NAME ?>" class="logo-img">
+                            <?= brandLogo(SITE_NAME, 'logo-img') ?>
                         </a>
                         <span class="footer-tagline">ENGINEERING SMART SOLUTIONS</span>
                         <p>US-based Premium App Development Agency. Transforming ideas into innovative digital solutions since 2014. Serving businesses across the United States from Indianapolis, IN.</p>
@@ -124,7 +126,7 @@ if (defined('ABSPATH')) {
         </div>
     </div>
 
-    <script src="<?= SITE_BASE ?>js/script.js"></script>
+    <script src="<?= SITE_BASE ?>js/script.js<?= defined('ASSET_VERSION') ? '?v=' . rawurlencode(ASSET_VERSION) : '' ?>" defer></script>
     <?php if (defined('ABSPATH') && function_exists('wp_footer')) {
         wp_footer();
     } ?>

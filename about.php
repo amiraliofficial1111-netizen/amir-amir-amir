@@ -47,13 +47,13 @@ require_once 'includes/header.php';
 
     <section class="about-founder-editorial" aria-labelledby="founder-heading">
         <div class="founder-editorial-grid">
-            <div class="founder-editorial-visual" data-aos="fade-right">
+            <div class="founder-editorial-visual">
                 <div class="founder-editorial-photo">
                     <img src="<?= assetImage(FOUNDER_PHOTO) ?>" alt="<?= sanitize(FOUNDER_NAME) ?>, <?= sanitize(FOUNDER_TITLE) ?> of <?= SITE_NAME ?>" width="720" height="900" loading="lazy" decoding="async">
                 </div>
                 <p class="founder-editorial-caption"><?= sanitize(SITE_TAGLINE) ?>.</p>
             </div>
-            <div class="founder-editorial-content" data-aos="fade-left">
+            <div class="founder-editorial-content">
                 <div class="founder-editorial-inner">
                     <span class="section-tag"><i class="fas fa-user-tie"></i> Our Founder</span>
                     <h2 class="section-title" id="founder-heading">Meet <span class="gradient-text">Our Founder</span></h2>

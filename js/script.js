@@ -402,19 +402,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== AOS (Animate On Scroll) =====
     const animatedElements = document.querySelectorAll('[data-aos]');
-    
+
+    function revealAosElement(el) {
+        if (el.classList.contains('aos-animate')) return;
+        const delay = parseInt(el.getAttribute('data-aos-delay') || '0', 10);
+        setTimeout(() => el.classList.add('aos-animate'), delay);
+    }
+
     const aosObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const delay = entry.target.getAttribute('data-aos-delay') || 0;
-                setTimeout(() => {
-                    entry.target.classList.add('aos-animate');
-                }, parseInt(delay));
+                revealAosElement(entry.target);
             }
         });
     }, { threshold: 0.1 });
-    
-    animatedElements.forEach(el => aosObserver.observe(el));
+
+    animatedElements.forEach(el => {
+        aosObserver.observe(el);
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            revealAosElement(el);
+        }
+    });
 
     // ===== Portfolio Filter =====
     const filterBtns = document.querySelectorAll('.filter-btn');

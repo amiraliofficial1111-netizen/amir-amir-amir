@@ -59,9 +59,10 @@ function assetImage(string $path): string {
     if (is_readable($localFile)) {
         $script = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? '/index.php'));
         $dir = dirname($script);
-        $prefix = ($dir === '/' || $dir === '\\' || $dir === '.') ? '' : rtrim($dir, '/');
-
-        return $prefix . '/' . $relative;
+        if ($dir === '/' || $dir === '\\' || $dir === '.') {
+            return '/' . $relative;
+        }
+        return rtrim($dir, '/') . '/' . $relative;
     }
 
     return SITE_BASE . $relative;

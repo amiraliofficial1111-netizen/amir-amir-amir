@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AppsDeddy LinkedIn Profile Photo — 800×800</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            padding: 32px;
+            background: #1e293b;
+            font-family: system-ui, sans-serif;
+        }
+        .note {
+            color: #94a3b8;
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.6;
+            max-width: 520px;
+        }
+        .preview-row {
+            display: flex;
+            gap: 48px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card {
+            text-align: center;
+        }
+        .card h3 {
+            color: #e2e8f0;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .square {
+            width: 320px;
+            height: 320px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        .square img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            filter: grayscale(100%) contrast(1.08) brightness(1.02);
+            display: block;
+        }
+        .circle {
+            border-radius: 50%;
+        }
+        .linkedin-mock {
+            width: 360px;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+        .mock-banner {
+            height: 72px;
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+        }
+        .mock-body {
+            padding: 0 20px 24px;
+            position: relative;
+        }
+        .mock-avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            margin-top: -48px;
+            overflow: hidden;
+            background: #d4d4d4;
+        }
+        .mock-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            filter: grayscale(100%) contrast(1.08);
+        }
+        .mock-name {
+            margin-top: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            text-align: left;
+        }
+        .mock-title {
+            font-size: 13px;
+            color: #475569;
+            text-align: left;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <p class="note">
+        LinkedIn profile photo preview. Export: <strong>800 × 800 px</strong> square (PNG).<br>
+        LinkedIn displays it as a circle — check the round preview below.
+    </p>
+
+    <div class="preview-row">
+        <div class="card">
+            <h3>Square (upload file)</h3>
+            <div class="square">
+                <img src="../images/team/faizan-khan.jpg" alt="Faizan Khan">
+            </div>
+        </div>
+        <div class="card">
+            <h3>Circle (LinkedIn display)</h3>
+            <div class="square circle">
+                <img src="../images/team/faizan-khan.jpg" alt="Faizan Khan">
+            </div>
+        </div>
+        <div class="card">
+            <h3>On profile mockup</h3>
+            <div class="linkedin-mock">
+                <div class="mock-banner"></div>
+                <div class="mock-body">
+                    <div class="mock-avatar">
+                        <img src="../images/team/faizan-khan.jpg" alt="Faizan Khan">
+                    </div>
+                    <p class="mock-name">Faizan Khan</p>
+                    <p class="mock-title">Founder &amp; CEO at AppsDeddy</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

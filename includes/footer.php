@@ -51,9 +51,9 @@ if (defined('ABSPATH')) {
                         <div class="footer-links-col">
                             <h4>Services</h4>
                             <ul>
+                                <li><a href="<?= SITE_BASE ?>gen-ai-integration.php">Gen AI Integration & Consulting</a></li>
                                 <li><a href="<?= SITE_BASE ?>web-mobile-app-development.php">Web & Mobile App Development</a></li>
                                 <li><a href="<?= SITE_BASE ?>data-engineering-solutions.php">Data Engineering Solutions</a></li>
-                                <li><a href="<?= SITE_BASE ?>gen-ai-integration.php">Gen AI Integration & Consulting</a></li>
                                 <li><a href="<?= SITE_BASE ?>ux-ui-design.php">UX & UI Design</a></li>
                             </ul>
                         </div>

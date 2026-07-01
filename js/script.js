@@ -164,9 +164,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchData = [
         { title: 'Home', url: 'index.php', keywords: 'home main page index', icon: 'fa-home' },
         { title: 'Services', url: 'services.php', keywords: 'services all offerings', icon: 'fa-cogs' },
+        { title: 'Gen AI Integration', url: 'gen-ai-integration.php', keywords: 'ai artificial intelligence generative ai machine learning chatbot', icon: 'fa-robot' },
         { title: 'Web & Mobile App Development', url: 'web-mobile-app-development.php', keywords: 'web mobile app development ios android react native flutter application', icon: 'fa-mobile-alt' },
         { title: 'Data Engineering Solutions', url: 'data-engineering-solutions.php', keywords: 'data engineering pipeline analytics big data integration', icon: 'fa-database' },
-        { title: 'Gen AI Integration', url: 'gen-ai-integration.php', keywords: 'ai artificial intelligence generative ai machine learning chatbot', icon: 'fa-robot' },
+        { title: 'UX & UI Design', url: 'ux-ui-design.php', keywords: 'ux ui design user experience interface wireframe prototype', icon: 'fa-paint-brush' },
         { title: 'How We Work', url: 'how-we-work.php', keywords: 'how we work process methodology', icon: 'fa-project-diagram' },
         { title: 'About Us', url: 'about.php', keywords: 'about us company team', icon: 'fa-info-circle' },
         { title: 'Portfolio', url: 'https://www.behance.net/AppsDeddy', keywords: 'portfolio projects case studies work', icon: 'fa-briefcase' },

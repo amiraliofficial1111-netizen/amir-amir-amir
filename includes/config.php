@@ -29,10 +29,14 @@ define('ADMIN_EMAIL',   'info@appsdeddy.com');
 
 // ─── Site Settings ───────────────────────────────────────────────────────────
 define('SITE_NAME',     'AppsDeddy');
-define('SITE_TAGLINE',  'Daddy Knows Better');
-define('SITE_URL',      'https://appsdeddy.com');
-define('SITE_BASE', rtrim(SITE_URL, '/') . '/');
-define('ASSET_VERSION', '2.3.0');
+define('SITE_TAGLINE',  'Engineering Smart Solutions');
+if (!defined('SITE_URL')) {
+    define('SITE_URL', appsdeddyResolveSiteUrl());
+}
+if (!defined('SITE_BASE')) {
+    define('SITE_BASE', rtrim(SITE_URL, '/') . '/');
+}
+define('ASSET_VERSION', '2.3.4');
 
 // Google Analytics (set in config.local.php, e.g. G-XXXXXXXXXX)
 if (!defined('GA_MEASUREMENT_ID')) define('GA_MEASUREMENT_ID', '');
@@ -49,6 +53,15 @@ define('SOCIAL_TWITTER',   '#');
 define('SOCIAL_YOUTUBE',   '#');
 define('SOCIAL_BEHANCE',   'https://www.behance.net/AppsDeddy');
 
+// ─── Founder ─────────────────────────────────────────────────────────────────
+define('FOUNDER_NAME',     'Faizan Khan');
+define('FOUNDER_TITLE',    'Founder & CEO');
+define('FOUNDER_LINKEDIN', 'https://www.linkedin.com/in/faizan-khan-777575a7');
+define('FOUNDER_PHOTO',    'assets/images/team/faizan-khan.jpg');
+define('FOUNDER_BIO_1',    'Hi there, my name is Faizan Khan. I\'m the Founder and CEO of AppsDeddy, and it\'s a pleasure to meet you.');
+define('FOUNDER_BIO_2',    'My journey into software started as an engineer shipping production systems, leading teams, and learning what it takes to scale. Along the way, I became curious about what makes great products great. Why do some teams move fast with AI and automation while others stay buried in manual work?');
+define('FOUNDER_BIO_3',    'was born from that curiosity. We believe great software should not only look polished, but also solve real problems, automate what\'s repetitive, and help US startups grow with software they can trust long after launch.');
+
 // ─── CSRF Token Helpers ──────────────────────────────────────────────────────
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -63,6 +76,32 @@ function generateCsrfToken(): string {
 
 function validateCsrfToken(string $token): bool {
     return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
+}
+
+/**
+ * Production URL on live host; auto-detect current origin for local dev (localhost, .local, LAN).
+ */
+function appsdeddyResolveSiteUrl(): string {
+    $production = 'https://appsdeddy.com';
+
+    if (php_sapi_name() === 'cli' || empty($_SERVER['HTTP_HOST'])) {
+        return $production;
+    }
+
+    $host = strtolower((string) $_SERVER['HTTP_HOST']);
+    $hostName = preg_replace('/:\d+$/', '', $host) ?? $host;
+    $productionHosts = ['appsdeddy.com', 'www.appsdeddy.com'];
+
+    if (in_array($hostName, $productionHosts, true)) {
+        return $production;
+    }
+
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $script = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? '/index.php'));
+    $dir = dirname($script);
+    $basePath = ($dir === '/' || $dir === '\\' || $dir === '.') ? '' : rtrim($dir, '/');
+
+    return $scheme . '://' . $host . $basePath;
 }
 
 // ─── Sanitization Helper ─────────────────────────────────────────────────────

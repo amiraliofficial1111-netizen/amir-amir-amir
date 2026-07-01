@@ -27,11 +27,10 @@ require_once 'includes/header.php';
                     <span class="title-line">AppsDeddy App Development &amp; Design Solutions</span>
                 </h1>
                 
-                <p class="hero-tagline" data-aos="fade-up" data-aos-delay="150">Innovate · Create · Succeed</p>
+                <p class="hero-tagline" data-aos="fade-up" data-aos-delay="150">We build AI-powered apps and automations for US businesses, backed by 10 years of engineering depth.</p>
                 
                 <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
-                    Empowering your business with custom app development, web design, and software solutions — 
-                    delivering reliable, high-quality services for growth and success across the United States.
+                    From custom AI agents to full-stack apps, we ship what others only promise.
                 </p>
                 
                 <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
@@ -214,7 +213,32 @@ require_once 'includes/header.php';
             </div>
             
             <div class="services-grid services-grid-4">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-card featured" data-aos="fade-up" data-aos-delay="100">
+                    <div class="featured-label">
+                        <i class="fas fa-fire"></i>
+                        <span>Most Popular</span>
+                    </div>
+                    <div class="service-icon-wrapper">
+                        <div class="service-icon"><i class="fas fa-robot"></i></div>
+                        <div class="icon-bg"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Gen AI Integration</h3>
+                        <p>Document processing, chatbots, workflow automation, and LLM integration — built around the problems your business actually has. Projects start at $3,500.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> AI Document Processing</li>
+                            <li><i class="fas fa-check-circle"></i> Custom AI Chatbots</li>
+                            <li><i class="fas fa-check-circle"></i> AI Workflow Automation</li>
+                        </ul>
+                    </div>
+                    <a href="gen-ai-integration.php" class="service-link">
+                        <span>Learn more about Gen AI Integration</span>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <div class="service-number">01</div>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon-wrapper">
                         <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
                         <div class="icon-bg"></div>
@@ -232,14 +256,10 @@ require_once 'includes/header.php';
                         <span>Learn more about Web &amp; Mobile App Development</span>
                         <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
-                    <div class="service-number">01</div>
+                    <div class="service-number">02</div>
                 </div>
 
-                <div class="service-card featured" data-aos="fade-up" data-aos-delay="200">
-                    <div class="featured-label">
-                        <i class="fas fa-fire"></i>
-                        <span>Most Popular</span>
-                    </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-icon-wrapper">
                         <div class="service-icon"><i class="fas fa-database"></i></div>
                         <div class="icon-bg"></div>
@@ -255,27 +275,6 @@ require_once 'includes/header.php';
                     </div>
                     <a href="data-engineering-solutions.php" class="service-link">
                         <span>Learn more about Data Engineering Solutions</span>
-                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                    <div class="service-number">02</div>
-                </div>
-
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon-wrapper">
-                        <div class="service-icon"><i class="fas fa-robot"></i></div>
-                        <div class="icon-bg"></div>
-                    </div>
-                    <div class="service-content">
-                        <h3>Gen AI Integration</h3>
-                        <p>Expert guidance and implementation of AI solutions to automate processes and enhance decision-making capabilities.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check-circle"></i> AI Strategy</li>
-                            <li><i class="fas fa-check-circle"></i> Custom AI Development</li>
-                            <li><i class="fas fa-check-circle"></i> Process Automation</li>
-                        </ul>
-                    </div>
-                    <a href="gen-ai-integration.php" class="service-link">
-                        <span>Learn more about Gen AI Integration</span>
                         <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <div class="service-number">03</div>
@@ -793,10 +792,19 @@ require_once 'includes/header.php';
                     </div>
                     <div class="accordion-item">
                         <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-panel-5" id="faq-trigger-5">
-                            <span>Will I own the source code?</span>
+                            <span>How much do AI projects cost?</span>
                             <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
                         <div class="accordion-content" id="faq-panel-5" role="region" aria-labelledby="faq-trigger-5">
+                            <p>AI projects typically start at $3,500 for a focused automation. Enterprise integrations from $15,000. Book a free scoping call to get an accurate quote for your project.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-panel-6" id="faq-trigger-6">
+                            <span>Will I own the source code?</span>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                        </button>
+                        <div class="accordion-content" id="faq-panel-6" role="region" aria-labelledby="faq-trigger-6">
                             <p>Absolutely! Upon project completion and final payment, you receive full ownership of all source code, designs, and assets. We also provide documentation for easy handover or future development.</p>
                         </div>
                     </div>

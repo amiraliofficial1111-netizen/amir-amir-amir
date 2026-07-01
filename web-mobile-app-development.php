@@ -2,8 +2,9 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'Web & Mobile App Development | AppsDeddy - Daddy Knows Better';
-$pageDescription = 'Custom web and mobile app development - native, cross-platform, and cloud solutions. AppsDeddy delivers scalable, user-centric applications.';
+$pageTitle = 'Web & Mobile App Development | AppsDeddy - Engineering Smart Solutions';
+$pageDescription = 'Custom web and mobile app development for US businesses. Native iOS & Android, React Native, Flutter, and scalable web applications from Indianapolis.';
+$pageKeywords = 'mobile app development, iOS Android development, React Native, Flutter, web application development, custom app development Indianapolis';
 $bodyClass = 'service-page';
 $activePage = 'services';
 $pagePreloadImage = SITE_BASE . serviceImage('hero-web-mobile');

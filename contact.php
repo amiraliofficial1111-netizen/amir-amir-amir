@@ -2,7 +2,7 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'Contact Us | AppsDeddy - Daddy Knows Better';
+$pageTitle = 'Contact Us | AppsDeddy - Engineering Smart Solutions';
 $pageDescription = 'Contact AppsDeddy - Get a free quote for your mobile app or web development project. We\'re here to help.';
 $bodyClass = '';
 $activePage = 'contact';

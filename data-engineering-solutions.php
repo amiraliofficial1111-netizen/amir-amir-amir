@@ -2,8 +2,9 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'Data Engineering Solutions | AppsDeddy - Daddy Knows Better';
-$pageDescription = 'Data engineering, architecture, and analytics solutions. Transform raw data into actionable insights with AppsDeddy.';
+$pageTitle = 'Data Engineering Solutions | AppsDeddy - Engineering Smart Solutions';
+$pageDescription = 'Data pipelines, ETL, integration, and analytics for US businesses. Turn raw data into actionable insights with secure, scalable data engineering from AppsDeddy.';
+$pageKeywords = 'data engineering services, data pipeline development, ETL integration, big data analytics, data architecture, data engineering Indianapolis';
 $bodyClass = 'service-page';
 $activePage = 'services';
 $pagePreloadImage = SITE_BASE . serviceImage('hero-data-engineering');

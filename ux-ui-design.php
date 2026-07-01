@@ -2,8 +2,9 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'UX & UI Design | AppsDeddy - Daddy Knows Better';
-$pageDescription = 'User-centered UX and UI design. Intuitive, engaging digital experiences crafted by AppsDeddy design experts.';
+$pageTitle = 'UX & UI Design | AppsDeddy - Engineering Smart Solutions';
+$pageDescription = 'User-centered UX research, wireframes, prototypes, and polished UI design for web and mobile products. Create engaging digital experiences with AppsDeddy.';
+$pageKeywords = 'UX UI design services, user experience design, UI design agency, wireframing prototyping, mobile app design, web design Indianapolis';
 $bodyClass = 'service-page';
 $activePage = 'services';
 $pagePreloadImage = SITE_BASE . serviceImage('hero-ux-ui');

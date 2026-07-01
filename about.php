@@ -2,8 +2,9 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'About Us | AppsDeddy - Daddy Knows Better';
-$pageDescription = 'About AppsDeddy - US-based leading app development agency since 2014. Expert team, agile methodology, 24/7 support.';
+$pageTitle = 'About Us | AppsDeddy - Engineering Smart Solutions';
+$pageDescription = 'Learn about AppsDeddy, a US digital agency since 2014. AI integration, mobile and web apps, data engineering, and UX design with agile delivery and 24/7 support from Indianapolis.';
+$pageKeywords = 'about AppsDeddy, digital agency Indianapolis, AI app development team, software company USA, web development agency, AppsDeddy';
 $bodyClass = '';
 $activePage = 'about';
 
@@ -38,6 +39,34 @@ require_once 'includes/header.php';
                             <div class="intro-img-overlay"></div>
                             <i class="fas fa-play-circle play-icon"></i>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-founder-editorial" aria-labelledby="founder-heading">
+        <div class="founder-editorial-grid">
+            <div class="founder-editorial-visual" data-aos="fade-right">
+                <div class="founder-editorial-photo">
+                    <img src="<?= assetImage(FOUNDER_PHOTO) ?>" alt="<?= sanitize(FOUNDER_NAME) ?>, <?= sanitize(FOUNDER_TITLE) ?> of <?= SITE_NAME ?>" width="720" height="900" loading="lazy" decoding="async">
+                </div>
+                <p class="founder-editorial-caption"><?= sanitize(SITE_TAGLINE) ?>.</p>
+            </div>
+            <div class="founder-editorial-content" data-aos="fade-left">
+                <div class="founder-editorial-inner">
+                    <span class="section-tag"><i class="fas fa-user-tie"></i> Our Founder</span>
+                    <h2 class="section-title" id="founder-heading">Meet <span class="gradient-text">Our Founder</span></h2>
+                    <div class="founder-editorial-copy">
+                        <p class="about-intro-text"><?= sanitize(FOUNDER_BIO_1) ?></p>
+                        <p class="about-intro-text"><?= sanitize(FOUNDER_BIO_2) ?></p>
+                        <p class="about-intro-text"><strong><?= sanitize(SITE_NAME) ?></strong> <?= sanitize(FOUNDER_BIO_3) ?></p>
+                    </div>
+                    <div class="about-intro-actions">
+                        <a href="<?= FOUNDER_LINKEDIN ?>" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg">
+                            <span><?= sanitize(FOUNDER_NAME) ?> on LinkedIn</span>
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
             </div>

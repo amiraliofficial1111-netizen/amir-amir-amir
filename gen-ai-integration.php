@@ -2,8 +2,9 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'Gen AI Integration & Consulting | AppsDeddy - Daddy Knows Better';
-$pageDescription = 'Gen AI integration and consulting. Automate processes and enhance decision-making with expert AI solutions from AppsDeddy.';
+$pageTitle = 'Gen AI Integration & Consulting | AppsDeddy - Engineering Smart Solutions';
+$pageDescription = 'Custom AI integration and automation services for US businesses. We build AI agents, RAG pipelines, LLM integrations, and workflow automation. Based in Indianapolis.';
+$pageKeywords = 'gen AI integration, AI automation agency, custom AI development, LLM integration, AI consulting Indianapolis, workflow automation AI';
 $bodyClass = 'service-page';
 $activePage = 'services';
 $pagePreloadImage = SITE_BASE . serviceImage('hero-gen-ai');
@@ -38,40 +39,44 @@ require_once 'includes/header.php';
 
     <section class="service-offerings">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Generative AI <span class="gradient-text">Services</span></h2>
+            <h2 class="section-title" data-aos="fade-up">AI Solutions for <span class="gradient-text">Real Business Problems</span></h2>
             <div class="offerings-grid">
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="offering-image"><?= serviceImg('offering-1', 'AI Strategy Consulting') ?></div>
+                    <div class="offering-image"><?= serviceImg('offering-1', 'AI Document Processing') ?></div>
                     <div class="offering-content">
-                        <div class="offering-icon"><i class="fas fa-bullseye"></i></div>
-                        <h3>AI Strategy Consulting</h3>
-                        <p>Develop a tailored AI roadmap to align generative AI with your business goals and maximize ROI.</p>
+                        <div class="offering-icon"><i class="fas fa-file-invoice"></i></div>
+                        <h3>AI Document Processing</h3>
+                        <p>Extract data from invoices, contracts, and forms automatically — no more manual data entry.</p>
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="offering-image"><?= serviceImg('offering-2', 'Generative AI Integration') ?></div>
+                    <div class="offering-image"><?= serviceImg('offering-2', 'Custom AI Chatbots') ?></div>
                     <div class="offering-content">
-                        <div class="offering-icon"><i class="fas fa-robot"></i></div>
-                        <h3>Generative AI Integration</h3>
-                        <p>Integrate advanced AI models (e.g., GPT, DALL-E, Stable Diffusion) into your applications for enhanced functionality.</p>
+                        <div class="offering-icon"><i class="fas fa-comments"></i></div>
+                        <h3>Custom AI Chatbots</h3>
+                        <p>Train on your data, answer your customers 24/7 — support, sales, and internal help desks.</p>
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="offering-image"><?= serviceImg('offering-3', 'Custom AI Development') ?></div>
+                    <div class="offering-image"><?= serviceImg('offering-3', 'AI Workflow Automation') ?></div>
                     <div class="offering-content">
-                        <div class="offering-icon"><i class="fas fa-cog"></i></div>
-                        <h3>Custom AI Development</h3>
-                        <p>Build bespoke generative AI solutions using Python, TensorFlow, and PyTorch for unique business needs.</p>
+                        <div class="offering-icon"><i class="fas fa-project-diagram"></i></div>
+                        <h3>AI Workflow Automation</h3>
+                        <p>Connect your tools and remove manual steps — from lead routing to report generation.</p>
                     </div>
                 </div>
                 <div class="offering-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="offering-image"><?= serviceImg('offering-4', 'AI Security & Ethics') ?></div>
+                    <div class="offering-image"><?= serviceImg('offering-4', 'LLM Integration') ?></div>
                     <div class="offering-content">
-                        <div class="offering-icon"><i class="fas fa-shield-alt"></i></div>
-                        <h3>AI Security & Ethics</h3>
-                        <p>Ensure secure, compliant, and ethical AI systems with robust encryption and responsible AI practices.</p>
+                        <div class="offering-icon"><i class="fas fa-plug"></i></div>
+                        <h3>LLM Integration</h3>
+                        <p>Add GPT-4, Claude, or Gemini into your existing product — without rebuilding from scratch.</p>
                     </div>
                 </div>
+            </div>
+            <div class="pricing-note" data-aos="fade-up">
+                <i class="fas fa-tag" aria-hidden="true"></i>
+                <p>AI projects typically start at <strong>$3,500</strong> for a focused automation. Enterprise integrations from <strong>$15,000</strong>. <a href="contact.php">Free scoping call</a> to get an accurate quote for your project.</p>
             </div>
         </div>
     </section>
@@ -126,7 +131,7 @@ require_once 'includes/header.php';
         <div class="container">
             <div class="cta-content" data-aos="fade-up">
                 <h2>Ready to Harness <span class="gradient-text-light">AI Power?</span></h2>
-                <p>Let's discuss how generative AI can transform your business.</p>
+                <p>Let's discuss how generative AI can transform your business. Projects start at $3,500 — book a free scoping call for a quote tailored to you.</p>
                 <div class="cta-buttons">
                     <a href="contact.php" class="btn btn-white btn-lg"><span>Get Free Quote</span><i class="fas fa-arrow-right"></i></a>
                 </div>

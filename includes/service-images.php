@@ -53,5 +53,16 @@ function brandLogo(string $alt, string $class = 'logo-img', bool $priority = fal
 }
 
 function assetImage(string $path): string {
-    return SITE_BASE . ltrim($path, '/');
+    $relative = ltrim($path, '/');
+    $localFile = dirname(__DIR__) . '/' . $relative;
+
+    if (is_readable($localFile)) {
+        $script = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? '/index.php'));
+        $dir = dirname($script);
+        $prefix = ($dir === '/' || $dir === '\\' || $dir === '.') ? '' : rtrim($dir, '/');
+
+        return $prefix . '/' . $relative;
+    }
+
+    return SITE_BASE . $relative;
 }

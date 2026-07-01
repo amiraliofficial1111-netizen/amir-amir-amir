@@ -2,8 +2,9 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'Client Reviews | AppsDeddy - Daddy Knows Better';
-$pageDescription = 'AppsDeddy Client Reviews - What our satisfied clients say about our app development services.';
+$pageTitle = 'Client Reviews | AppsDeddy - Engineering Smart Solutions';
+$pageDescription = 'Real client reviews of AppsDeddy AI, mobile, and web development projects. See what US businesses say about our delivery and support.';
+$pageKeywords = 'AppsDeddy reviews, app development testimonials, client reviews software agency, AI development reviews Indianapolis';
 $bodyClass = '';
 $activePage = '';
 

@@ -2,7 +2,7 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'Terms & Conditions | AppsDeddy - Daddy Knows Better';
+$pageTitle = 'Terms & Conditions | AppsDeddy - Engineering Smart Solutions';
 $pageDescription = 'AppsDeddy Terms & Conditions - Read our terms of service for using our website and services.';
 $bodyClass = 'legal-page';
 $activePage = '';

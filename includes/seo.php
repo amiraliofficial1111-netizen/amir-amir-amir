@@ -37,19 +37,19 @@ function seoDefaultKeywords(): string {
 function seoPageRegistry(): array {
     return [
         'index' => [
-            'title'       => 'AppsDeddy | App Development, Web Design & Business Solutions',
-            'description' => 'AppsDeddy is a US-based app development agency delivering custom mobile apps, web design, data engineering, and AI solutions that help businesses grow. Free consultation from Indianapolis.',
-            'keywords'    => 'AppsDeddy, app development, web development, business solutions, UI UX design, mobile apps, custom software, Indianapolis',
+            'title'       => 'AppsDeddy | AI App Development, Automation & Digital Solutions',
+            'description' => 'AI-powered app development and automation for US businesses. Custom AI agents, mobile apps, web design, data engineering, and UX — Indianapolis-based since 2014.',
+            'keywords'    => 'AI app development, AI automation agency, custom software Indianapolis, web development USA, Gen AI integration, mobile app development, AppsDeddy',
         ],
         'about' => [
             'title'       => 'About Us | AppsDeddy - App Development Experts',
-            'description' => 'Learn about AppsDeddy — US app development experts since 2014. Agile teams, proven delivery, and 24/7 support from Indianapolis.',
-            'keywords'    => 'about AppsDeddy, app development team, software company Indianapolis',
+            'description' => 'Learn about AppsDeddy, a US digital agency since 2014. AI integration, mobile and web apps, data engineering, and UX design with agile delivery and 24/7 support from Indianapolis.',
+            'keywords'    => 'about AppsDeddy, digital agency Indianapolis, AI app development team, software company USA, web development agency, AppsDeddy',
         ],
         'services' => [
-            'title'       => 'App Development Services | AppsDeddy',
-            'description' => 'Mobile apps, web development, UI/UX design, cloud solutions, data engineering, and Gen AI integration — end-to-end digital services.',
-            'keywords'    => 'app development services, web development services, UI UX design, cloud solutions, AI integration',
+            'title'       => 'Digital & AI Services | AppsDeddy',
+            'description' => 'Gen AI integration, mobile & web apps, data engineering, and UX/UI design — full-stack digital services for US businesses from AppsDeddy Indianapolis.',
+            'keywords'    => 'digital agency services, AI integration services, app development services, data engineering, UX UI design, web development Indianapolis',
         ],
         'contact' => [
             'title'       => 'Contact AppsDeddy | Free Project Consultation',
@@ -58,32 +58,38 @@ function seoPageRegistry(): array {
         ],
         'how-we-work' => [
             'title'       => 'How We Work | AppsDeddy Development Process',
-            'description' => 'Discover the AppsDeddy process: discovery, design, development, QA, and launch — built for clarity and on-time delivery.',
+            'description' => 'Our proven process: discovery, design, development, QA, and launch. Transparent collaboration and on-time delivery for AI, app, and digital projects.',
+            'keywords'    => 'software development process, agile development agency, app development workflow, project delivery process, AppsDeddy how we work',
         ],
         'faq' => [
-            'title'       => 'FAQ | App Development Questions Answered',
-            'description' => 'Frequently asked questions about app development cost, timeline, technologies, support, and working with AppsDeddy.',
+            'title'       => 'FAQ | App Development & AI Questions Answered',
+            'description' => 'Answers to common questions about AI integration, app development cost, timelines, technologies, support, and working with AppsDeddy.',
+            'keywords'    => 'app development FAQ, AI integration questions, software development cost, project timeline FAQ, hire development agency',
         ],
         'testimonials' => [
             'title'       => 'Client Reviews | AppsDeddy Testimonials',
-            'description' => 'Read what clients say about AppsDeddy mobile and web development projects across the United States.',
-        ],
-        'web-mobile-app-development' => [
-            'title'       => 'Web & Mobile App Development | AppsDeddy',
-            'description' => 'Native iOS & Android, React Native, Flutter, and custom web apps — scalable, secure, and user-focused.',
-            'keywords'    => 'mobile app development, iOS Android development, React Native, Flutter, web application development',
-        ],
-        'data-engineering-solutions' => [
-            'title'       => 'Data Engineering Solutions | AppsDeddy',
-            'description' => 'Data pipelines, integration, analytics, and secure data architecture to turn raw data into business insights.',
+            'description' => 'Real client reviews of AppsDeddy AI, mobile, and web development projects. See what US businesses say about our delivery and support.',
+            'keywords'    => 'AppsDeddy reviews, app development testimonials, client reviews software agency, AI development reviews Indianapolis',
         ],
         'gen-ai-integration' => [
             'title'       => 'Gen AI Integration & Consulting | AppsDeddy',
-            'description' => 'Generative AI consulting and integration — automate workflows, enhance products, and deploy practical AI solutions.',
+            'description' => 'Custom AI integration and automation services for US businesses. We build AI agents, RAG pipelines, LLM integrations, and workflow automation. Based in Indianapolis.',
+            'keywords'    => 'gen AI integration, AI automation agency, custom AI development, LLM integration, AI consulting Indianapolis, workflow automation AI',
+        ],
+        'web-mobile-app-development' => [
+            'title'       => 'Web & Mobile App Development | AppsDeddy',
+            'description' => 'Custom web and mobile app development for US businesses. Native iOS & Android, React Native, Flutter, and scalable web applications from Indianapolis.',
+            'keywords'    => 'mobile app development, iOS Android development, React Native, Flutter, web application development, custom app development Indianapolis',
+        ],
+        'data-engineering-solutions' => [
+            'title'       => 'Data Engineering Solutions | AppsDeddy',
+            'description' => 'Data pipelines, ETL, integration, and analytics for US businesses. Turn raw data into actionable insights with secure, scalable data engineering from AppsDeddy.',
+            'keywords'    => 'data engineering services, data pipeline development, ETL integration, big data analytics, data architecture, data engineering Indianapolis',
         ],
         'ux-ui-design' => [
             'title'       => 'UX & UI Design Services | AppsDeddy',
-            'description' => 'User-centered UX research, wireframes, prototypes, and polished UI design for web and mobile products.',
+            'description' => 'User-centered UX research, wireframes, prototypes, and polished UI design for web and mobile products. Create engaging digital experiences with AppsDeddy.',
+            'keywords'    => 'UX UI design services, user experience design, UI design agency, wireframing prototyping, mobile app design, web design Indianapolis',
         ],
         'privacy-policy' => [
             'title'       => 'Privacy Policy | AppsDeddy',
@@ -219,9 +225,9 @@ function seoAutoServiceSchema(string $slug): ?array {
         return null;
     }
     $serviceSlugs = [
+        'gen-ai-integration',
         'web-mobile-app-development',
         'data-engineering-solutions',
-        'gen-ai-integration',
         'ux-ui-design',
     ];
     if (!in_array($slug, $serviceSlugs, true)) {

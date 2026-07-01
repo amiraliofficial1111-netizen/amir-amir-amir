@@ -2,7 +2,7 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'Cookie Policy | AppsDeddy - Daddy Knows Better';
+$pageTitle = 'Cookie Policy | AppsDeddy - Engineering Smart Solutions';
 $pageDescription = 'AppsDeddy Cookie Policy - Learn how we use cookies and similar technologies on our website.';
 $bodyClass = 'legal-page';
 $activePage = '';

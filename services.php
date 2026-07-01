@@ -2,8 +2,9 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'Our Services | AppsDeddy - Daddy Knows Better';
-$pageDescription = 'AppsDeddy Services - Mobile App Development, Web Development, UI/UX Design, Cloud Solutions, AI & Cybersecurity.';
+$pageTitle = 'Our Services | AppsDeddy - Engineering Smart Solutions';
+$pageDescription = 'Gen AI integration, mobile & web apps, data engineering, and UX/UI design — full-stack digital services for US businesses from AppsDeddy Indianapolis.';
+$pageKeywords = 'digital agency services, AI integration services, app development services, data engineering, UX UI design, web development Indianapolis';
 $bodyClass = 'service-page';
 $activePage = 'services';
 
@@ -28,22 +29,22 @@ require_once 'includes/header.php';
                 <p class="section-description">Comprehensive digital services tailored to transform your business and create exceptional user experiences.</p>
             </div>
             <div class="services-core-grid">
-                <a href="web-mobile-app-development.php" class="service-core-card" data-aos="fade-up" data-aos-delay="100">
+                <a href="gen-ai-integration.php" class="service-core-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-core-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Gen AI Integration & Consulting</h3>
+                    <p>AI document processing, custom chatbots, workflow automation, and LLM integration for your product. Projects start at $3,500.</p>
+                    <span class="service-core-link">Learn More <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="web-mobile-app-development.php" class="service-core-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-core-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Web & Mobile App Development</h3>
                     <p>Native and cross-platform apps, web applications, and cloud integration for iOS, Android, and web.</p>
                     <span class="service-core-link">Learn More <i class="fas fa-arrow-right"></i></span>
                 </a>
-                <a href="data-engineering-solutions.php" class="service-core-card" data-aos="fade-up" data-aos-delay="200">
+                <a href="data-engineering-solutions.php" class="service-core-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-core-icon"><i class="fas fa-database"></i></div>
                     <h3>Data Engineering Solutions</h3>
                     <p>Data pipelines, integration, security, and big data analytics with modern tools and frameworks.</p>
-                    <span class="service-core-link">Learn More <i class="fas fa-arrow-right"></i></span>
-                </a>
-                <a href="gen-ai-integration.php" class="service-core-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-core-icon"><i class="fas fa-robot"></i></div>
-                    <h3>Gen AI Integration & Consulting</h3>
-                    <p>AI strategy, generative AI integration, custom AI development, and AI security & ethics.</p>
                     <span class="service-core-link">Learn More <i class="fas fa-arrow-right"></i></span>
                 </a>
                 <a href="ux-ui-design.php" class="service-core-card" data-aos="fade-up" data-aos-delay="400">

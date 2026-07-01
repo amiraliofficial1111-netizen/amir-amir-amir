@@ -164,7 +164,7 @@ $autoReplyHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>'
     . '<p>In the meantime, feel free to explore our <a href="https://www.behance.net/AppsDeddy" style="color:#6366f1">portfolio</a> to see our recent work.</p>'
     . '<div class="cta"><a href="https://www.behance.net/AppsDeddy">View Our Portfolio</a></div>'
     . '<p style="color:#6b7280;font-size:14px">If you have any urgent questions, reply directly to this email or contact us at <a href="mailto:info@appsdeddy.com" style="color:#6366f1">info@appsdeddy.com</a>.</p>'
-    . '<p>Best regards,<br><strong>The AppsDeddy Team</strong><br><em>Daddy Knows Better</em></p>'
+    . '<p>Best regards,<br><strong>The AppsDeddy Team</strong><br><em>Engineering Smart Solutions</em></p>'
     . '</div>'
     . '<div class="footer">AppsDeddy &bull; 8520 Allison Pointe Blvd Ste 223, Indianapolis, IN 46250<br>&copy; ' . $siteYear . ' AppsDeddy. All rights reserved.</div>'
     . '</div></div></body></html>';

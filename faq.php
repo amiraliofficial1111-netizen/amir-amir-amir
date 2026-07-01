@@ -2,8 +2,9 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'FAQ | AppsDeddy - Daddy Knows Better';
-$pageDescription = 'AppsDeddy FAQ - Frequently asked questions about app development, pricing, timeline and support.';
+$pageTitle = 'FAQ | AppsDeddy - Engineering Smart Solutions';
+$pageDescription = 'Answers to common questions about AI integration, app development cost, timelines, technologies, support, and working with AppsDeddy.';
+$pageKeywords = 'app development FAQ, AI integration questions, software development cost, project timeline FAQ, hire development agency';
 $bodyClass = '';
 $activePage = 'faq';
 
@@ -41,6 +42,14 @@ $pageSchema = [
             'acceptedAnswer' => [
                 '@type' => 'Answer',
                 'text'  => 'Costs vary by complexity and platforms. Basic apps start around $2,999, while complex apps can range from $15,000+. We offer free consultations for accurate quotes.',
+            ],
+        ],
+        [
+            '@type' => 'Question',
+            'name'  => 'How much do AI projects cost?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text'  => 'AI projects typically start at $3,500 for a focused automation. Enterprise integrations from $15,000. Book a free scoping call to get an accurate quote for your project.',
             ],
         ],
         [
@@ -124,10 +133,19 @@ require_once 'includes/header.php';
                     </div>
                     <div class="accordion-item">
                         <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-page-panel-5" id="faq-page-trigger-5">
-                            <span>Will I own the source code?</span>
+                            <span>How much do AI projects cost?</span>
                             <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
                         <div class="accordion-content" id="faq-page-panel-5" role="region" aria-labelledby="faq-page-trigger-5">
+                            <p>AI projects typically start at $3,500 for a focused automation. Enterprise integrations from $15,000. Book a free scoping call to get an accurate quote for your project.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-page-panel-6" id="faq-page-trigger-6">
+                            <span>Will I own the source code?</span>
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                        </button>
+                        <div class="accordion-content" id="faq-page-panel-6" role="region" aria-labelledby="faq-page-trigger-6">
                             <p>Absolutely! Upon project completion and final payment, you receive full ownership of all source code, designs, and assets. We also provide documentation for easy handover or future development.</p>
                         </div>
                     </div>

@@ -2,8 +2,9 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'How We Work | AppsDeddy - Daddy Knows Better';
-$pageDescription = 'How We Work - Discover the AppsDeddy approach to delivering exceptional digital solutions. Our process, values, and collaboration.';
+$pageTitle = 'How We Work | AppsDeddy - Engineering Smart Solutions';
+$pageDescription = 'Our proven process: discovery, design, development, QA, and launch. Transparent collaboration and on-time delivery for AI, app, and digital projects.';
+$pageKeywords = 'software development process, agile development agency, app development workflow, project delivery process, AppsDeddy how we work';
 $bodyClass = '';
 $activePage = 'how-we-work';
 

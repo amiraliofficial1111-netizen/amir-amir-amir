@@ -24,9 +24,9 @@ require_once 'includes/header.php';
     <section class="legal-content">
         <div class="container">
             <nav class="legal-quick-nav" aria-label="Legal documents">
-                <a href="privacy-policy.php"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
-                <a href="terms-conditions.php"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
-                <a href="cookie-policy.php" class="active"><i class="fas fa-cookie-bite"></i> Cookie Policy</a>
+                <a href="<?= pageUrl('privacy-policy') ?>"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+                <a href="<?= pageUrl('terms-conditions') ?>"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
+                <a href="<?= pageUrl('cookie-policy') ?>" class="active"><i class="fas fa-cookie-bite"></i> Cookie Policy</a>
             </nav>
             <div class="legal-inner">
                 <p class="legal-intro">AppsDeddy uses cookies and similar technologies to enhance your experience on our website. This Cookie Policy explains what cookies are, how we use them, and your choices regarding their use.</p>

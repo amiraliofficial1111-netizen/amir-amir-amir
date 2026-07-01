@@ -153,21 +153,21 @@ $jsHref    = $isCustomSite ? seoAsset('js/script.js') : (SITE_BASE . 'js/script.
                 </li>
                 <li><a href="<?= SITE_BASE ?>" class="nav-link<?= $activePage === 'home' ? ' active' : '' ?>">Home</a></li>
                 <li class="nav-dropdown">
-                    <a href="<?= SITE_BASE ?>services.php" class="nav-link<?= $activePage === 'services' ? ' active' : '' ?>">Services <i class="fas fa-chevron-down nav-arrow" aria-hidden="true"></i></a>
+                    <a href="<?= pageUrl('services') ?>" class="nav-link<?= $activePage === 'services' ? ' active' : '' ?>">Services <i class="fas fa-chevron-down nav-arrow" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?= SITE_BASE ?>services.php">All Services</a></li>
-                        <li><a href="<?= SITE_BASE ?>gen-ai-integration.php">Gen AI Integration & Consulting</a></li>
-                        <li><a href="<?= SITE_BASE ?>web-mobile-app-development.php">Web & Mobile App Development</a></li>
-                        <li><a href="<?= SITE_BASE ?>data-engineering-solutions.php">Data Engineering Solutions</a></li>
-                        <li><a href="<?= SITE_BASE ?>ux-ui-design.php">UX & UI Design</a></li>
+                        <li><a href="<?= pageUrl('services') ?>">All Services</a></li>
+                        <li><a href="<?= pageUrl('gen-ai-integration') ?>">Gen AI Integration & Consulting</a></li>
+                        <li><a href="<?= pageUrl('web-mobile-app-development') ?>">Web & Mobile App Development</a></li>
+                        <li><a href="<?= pageUrl('data-engineering-solutions') ?>">Data Engineering Solutions</a></li>
+                        <li><a href="<?= pageUrl('ux-ui-design') ?>">UX & UI Design</a></li>
                     </ul>
                 </li>
-                <li><a href="<?= SITE_BASE ?>how-we-work.php" class="nav-link<?= $activePage === 'how-we-work' ? ' active' : '' ?>">How We Work</a></li>
-                <li><a href="<?= SITE_BASE ?>about.php" class="nav-link<?= $activePage === 'about' ? ' active' : '' ?>">About</a></li>
+                <li><a href="<?= pageUrl('how-we-work') ?>" class="nav-link<?= $activePage === 'how-we-work' ? ' active' : '' ?>">How We Work</a></li>
+                <li><a href="<?= pageUrl('about') ?>" class="nav-link<?= $activePage === 'about' ? ' active' : '' ?>">About</a></li>
                 <li><a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="nav-link">Portfolio</a></li>
                 <li><a href="<?= SITE_BASE ?>blog/" class="nav-link<?= $activePage === 'blog' ? ' active' : '' ?>">Blog</a></li>
-                <li><a href="<?= SITE_BASE ?>faq.php" class="nav-link<?= $activePage === 'faq' ? ' active' : '' ?>">FAQ</a></li>
-                <li><a href="<?= SITE_BASE ?>contact.php" class="nav-link<?= $activePage === 'contact' ? ' active' : '' ?>">Contact</a></li>
+                <li><a href="<?= pageUrl('faq') ?>" class="nav-link<?= $activePage === 'faq' ? ' active' : '' ?>">FAQ</a></li>
+                <li><a href="<?= pageUrl('contact') ?>" class="nav-link<?= $activePage === 'contact' ? ' active' : '' ?>">Contact</a></li>
                 <li class="nav-menu-theme">
                     <div class="theme-toggle-wrap">
                         <span class="theme-label theme-label-bright">Bright</span>
@@ -185,7 +185,7 @@ $jsHref    = $isCustomSite ? seoAsset('js/script.js') : (SITE_BASE . 'js/script.
                     <i class="fas fa-moon" aria-hidden="true"></i>
                     <i class="fas fa-sun" aria-hidden="true"></i>
                 </button>
-                <a href="<?= SITE_BASE ?>contact.php" class="btn btn-primary nav-btn">
+                <a href="<?= pageUrl('contact') ?>" class="btn btn-primary nav-btn">
                     <span>Get in Touch</span>
                     <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </a>

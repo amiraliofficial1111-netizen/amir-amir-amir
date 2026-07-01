@@ -29,7 +29,7 @@ require_once 'includes/header.php';
                     <h2 class="section-title">We Are a Digital Agency That <span class="gradient-text">Drives Results</span></h2>
                     <p class="about-intro-text"><strong>AppsDeddy</strong> is a digital agency that specializes in helping businesses improve their online presence. Our team of experts has years of experience in website design and development. We are passionate about helping our clients succeed and we take pride in delivering high quality work.</p>
                     <div class="about-intro-actions">
-                        <a href="contact.php" class="btn btn-primary btn-lg"><span>Get Started</span><i class="fas fa-arrow-right"></i></a>
+                        <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg"><span>Get Started</span><i class="fas fa-arrow-right"></i></a>
                         <a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg"><span>View Portfolio</span></a>
                     </div>
                 </div>
@@ -197,7 +197,7 @@ require_once 'includes/header.php';
                 <h2>Ready to Build Something <span class="gradient-text-light">Amazing?</span></h2>
                 <p>Let's turn your idea into a reality. Get a free consultation today.</p>
                 <div class="cta-buttons">
-                    <a href="contact.php" class="btn btn-white btn-lg"><span>Start Your Project</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Start Your Project</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

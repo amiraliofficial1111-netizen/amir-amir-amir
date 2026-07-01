@@ -76,7 +76,7 @@ require_once 'includes/header.php';
             </div>
             <div class="pricing-note" data-aos="fade-up">
                 <i class="fas fa-tag" aria-hidden="true"></i>
-                <p>AI projects typically start at <strong>$3,500</strong> for a focused automation. Enterprise integrations from <strong>$15,000</strong>. <a href="contact.php">Free scoping call</a> to get an accurate quote for your project.</p>
+                <p>AI projects typically start at <strong>$3,500</strong> for a focused automation. Enterprise integrations from <strong>$15,000</strong>. <a href="<?= pageUrl('contact') ?>">Free scoping call</a> to get an accurate quote for your project.</p>
             </div>
         </div>
     </section>
@@ -120,7 +120,7 @@ require_once 'includes/header.php';
                     <h2 class="section-title">Why Appsdeddy for <span class="gradient-text">Generative AI?</span></h2>
                     <h3 class="service-subtitle">Experience and Expertise</h3>
                     <p>Our generative AI solutions are custom-built to integrate seamlessly with your existing systems, ensuring scalability, security, and efficiency. With expertise in cutting-edge AI frameworks and a commitment to ethical practices, we deliver solutions that drive innovation and business value. Our nearshore model offers cost-effective, high-quality services tailored to your needs.</p>
-                    <a href="contact.php" class="btn btn-primary btn-lg"><span>Get Started Today</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg"><span>Get Started Today</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -133,7 +133,7 @@ require_once 'includes/header.php';
                 <h2>Ready to Harness <span class="gradient-text-light">AI Power?</span></h2>
                 <p>Let's discuss how generative AI can transform your business. Projects start at $3,500 — book a free scoping call for a quote tailored to you.</p>
                 <div class="cta-buttons">
-                    <a href="contact.php" class="btn btn-white btn-lg"><span>Get Free Quote</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Get Free Quote</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

@@ -116,7 +116,7 @@ require_once 'includes/header.php';
                     <h2 class="section-title">Why Choose Appsdeddy for <span class="gradient-text">Data Engineering?</span></h2>
                     <h3 class="service-subtitle">Experience and Expertise</h3>
                     <p>Our data engineering solutions are custom-built to integrate seamlessly with your existing systems, ensuring efficiency, scalability, and security. With expertise in modern data technologies and a client-centric approach, we deliver solutions that empower data-driven decisions. Our nearshore model offers cost-effective, high-quality services tailored to your business needs.</p>
-                    <a href="contact.php" class="btn btn-primary btn-lg"><span>Get Started Today</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg"><span>Get Started Today</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@ require_once 'includes/header.php';
                 <h2>Ready to Unlock Your <span class="gradient-text-light">Data?</span></h2>
                 <p>Let's transform your data into actionable insights.</p>
                 <div class="cta-buttons">
-                    <a href="contact.php" class="btn btn-white btn-lg"><span>Get Free Quote</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Get Free Quote</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

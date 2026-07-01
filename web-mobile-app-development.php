@@ -116,7 +116,7 @@ require_once 'includes/header.php';
                     <h2 class="section-title">Why Custom <span class="gradient-text">Solutions?</span></h2>
                     <h3 class="service-subtitle">Experience and Expertise</h3>
                     <p>Unlike off-the-shelf software, our custom web and mobile apps are built to fit your business processes, eliminating inefficiencies and ensuring seamless integration with existing systems. With AI-driven features and cloud scalability, our solutions are future-proof, adapting to your growth and industry trends.</p>
-                    <a href="contact.php" class="btn btn-primary btn-lg"><span>Get Started Today</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg"><span>Get Started Today</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@ require_once 'includes/header.php';
                 <h2>Ready to Build Your <span class="gradient-text-light">App?</span></h2>
                 <p>Let's discuss your project and create something amazing together.</p>
                 <div class="cta-buttons">
-                    <a href="contact.php" class="btn btn-white btn-lg"><span>Get Free Quote</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Get Free Quote</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

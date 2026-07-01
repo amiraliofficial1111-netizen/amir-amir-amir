@@ -29,25 +29,25 @@ require_once 'includes/header.php';
                 <p class="section-description">Comprehensive digital services tailored to transform your business and create exceptional user experiences.</p>
             </div>
             <div class="services-core-grid">
-                <a href="gen-ai-integration.php" class="service-core-card" data-aos="fade-up" data-aos-delay="100">
+                <a href="<?= pageUrl('gen-ai-integration') ?>" class="service-core-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-core-icon"><i class="fas fa-robot"></i></div>
                     <h3>Gen AI Integration & Consulting</h3>
                     <p>AI document processing, custom chatbots, workflow automation, and LLM integration for your product. Projects start at $3,500.</p>
                     <span class="service-core-link">Learn More <i class="fas fa-arrow-right"></i></span>
                 </a>
-                <a href="web-mobile-app-development.php" class="service-core-card" data-aos="fade-up" data-aos-delay="200">
+                <a href="<?= pageUrl('web-mobile-app-development') ?>" class="service-core-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-core-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Web & Mobile App Development</h3>
                     <p>Native and cross-platform apps, web applications, and cloud integration for iOS, Android, and web.</p>
                     <span class="service-core-link">Learn More <i class="fas fa-arrow-right"></i></span>
                 </a>
-                <a href="data-engineering-solutions.php" class="service-core-card" data-aos="fade-up" data-aos-delay="300">
+                <a href="<?= pageUrl('data-engineering-solutions') ?>" class="service-core-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-core-icon"><i class="fas fa-database"></i></div>
                     <h3>Data Engineering Solutions</h3>
                     <p>Data pipelines, integration, security, and big data analytics with modern tools and frameworks.</p>
                     <span class="service-core-link">Learn More <i class="fas fa-arrow-right"></i></span>
                 </a>
-                <a href="ux-ui-design.php" class="service-core-card" data-aos="fade-up" data-aos-delay="400">
+                <a href="<?= pageUrl('ux-ui-design') ?>" class="service-core-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-core-icon"><i class="fas fa-paint-brush"></i></div>
                     <h3>UX & UI Design</h3>
                     <p>User research, wireframing, prototyping, UI design, branding, and responsive design.</p>
@@ -73,7 +73,7 @@ require_once 'includes/header.php';
                             <li><i class="fas fa-check-circle"></i> App Store Optimization</li>
                         </ul>
                     </div>
-                    <a href="web-mobile-app-development.php" class="service-link"><span>Learn More</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('web-mobile-app-development') ?>" class="service-link"><span>Learn More</span><i class="fas fa-arrow-right"></i></a>
                     <div class="service-number">01</div>
                 </div>
                 <div class="service-card featured" data-aos="fade-up" data-aos-delay="200">
@@ -91,7 +91,7 @@ require_once 'includes/header.php';
                             <li><i class="fas fa-check-circle"></i> Progressive Web Apps</li>
                         </ul>
                     </div>
-                    <a href="web-mobile-app-development.php" class="service-link"><span>Learn More</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('web-mobile-app-development') ?>" class="service-link"><span>Learn More</span><i class="fas fa-arrow-right"></i></a>
                     <div class="service-number">02</div>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
@@ -108,7 +108,7 @@ require_once 'includes/header.php';
                             <li><i class="fas fa-check-circle"></i> Design Systems</li>
                         </ul>
                     </div>
-                    <a href="ux-ui-design.php" class="service-link"><span>Learn More</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('ux-ui-design') ?>" class="service-link"><span>Learn More</span><i class="fas fa-arrow-right"></i></a>
                     <div class="service-number">03</div>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="400">
@@ -125,7 +125,7 @@ require_once 'includes/header.php';
                             <li><i class="fas fa-check-circle"></i> Cloud Migration</li>
                         </ul>
                     </div>
-                    <a href="web-mobile-app-development.php" class="service-link"><span>Learn More</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('web-mobile-app-development') ?>" class="service-link"><span>Learn More</span><i class="fas fa-arrow-right"></i></a>
                     <div class="service-number">04</div>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="500">
@@ -142,7 +142,7 @@ require_once 'includes/header.php';
                             <li><i class="fas fa-check-circle"></i> Computer Vision</li>
                         </ul>
                     </div>
-                    <a href="gen-ai-integration.php" class="service-link"><span>Learn More</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('gen-ai-integration') ?>" class="service-link"><span>Learn More</span><i class="fas fa-arrow-right"></i></a>
                     <div class="service-number">05</div>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="600">
@@ -159,7 +159,7 @@ require_once 'includes/header.php';
                             <li><i class="fas fa-check-circle"></i> Compliance</li>
                         </ul>
                     </div>
-                    <a href="contact.php" class="service-link"><span>Get Started</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="service-link"><span>Get Started</span><i class="fas fa-arrow-right"></i></a>
                     <div class="service-number">06</div>
                 </div>
             </div>
@@ -173,7 +173,7 @@ require_once 'includes/header.php';
                 <h2>Ready to Build Something <span class="gradient-text-light">Amazing?</span></h2>
                 <p>Let's turn your idea into a reality. Get a free consultation and project estimate today.</p>
                 <div class="cta-buttons">
-                    <a href="contact.php" class="btn btn-white btn-lg"><span>Start Your Project</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Start Your Project</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

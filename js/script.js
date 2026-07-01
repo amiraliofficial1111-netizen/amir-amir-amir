@@ -149,10 +149,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Set active state on current page's dropdown link
-    const currentPath = window.location.pathname.split('/').pop() || 'index.php';
+    const currentSlug = (window.location.pathname.split('/').pop() || '').replace(/\.php$/i, '') || 'index';
     document.querySelectorAll('.dropdown-menu a').forEach(link => {
-        const href = link.getAttribute('href') || '';
-        if (href === currentPath || (currentPath === '' && href === 'index.php')) {
+        const href = (link.getAttribute('href') || '').replace(/\.php$/i, '');
+        const hrefSlug = href.split('/').filter(Boolean).pop() || 'index';
+        if (hrefSlug === currentSlug || (currentSlug === 'index' && (hrefSlug === '' || hrefSlug === 'index'))) {
             link.classList.add('active');
         }
     });
@@ -162,21 +163,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const navSearchWrap = document.querySelector('.nav-search-wrap');
     
     const searchData = [
-        { title: 'Home', url: 'index.php', keywords: 'home main page index', icon: 'fa-home' },
-        { title: 'Services', url: 'services.php', keywords: 'services all offerings', icon: 'fa-cogs' },
-        { title: 'Gen AI Integration', url: 'gen-ai-integration.php', keywords: 'ai artificial intelligence generative ai machine learning chatbot', icon: 'fa-robot' },
-        { title: 'Web & Mobile App Development', url: 'web-mobile-app-development.php', keywords: 'web mobile app development ios android react native flutter application', icon: 'fa-mobile-alt' },
-        { title: 'Data Engineering Solutions', url: 'data-engineering-solutions.php', keywords: 'data engineering pipeline analytics big data integration', icon: 'fa-database' },
-        { title: 'UX & UI Design', url: 'ux-ui-design.php', keywords: 'ux ui design user experience interface wireframe prototype', icon: 'fa-paint-brush' },
-        { title: 'How We Work', url: 'how-we-work.php', keywords: 'how we work process methodology', icon: 'fa-project-diagram' },
-        { title: 'About Us', url: 'about.php', keywords: 'about us company team', icon: 'fa-info-circle' },
+        { title: 'Home', url: '/', keywords: 'home main page index', icon: 'fa-home' },
+        { title: 'Services', url: '/services', keywords: 'services all offerings', icon: 'fa-cogs' },
+        { title: 'Gen AI Integration', url: '/gen-ai-integration', keywords: 'ai artificial intelligence generative ai machine learning chatbot', icon: 'fa-robot' },
+        { title: 'Web & Mobile App Development', url: '/web-mobile-app-development', keywords: 'web mobile app development ios android react native flutter application', icon: 'fa-mobile-alt' },
+        { title: 'Data Engineering Solutions', url: '/data-engineering-solutions', keywords: 'data engineering pipeline analytics big data integration', icon: 'fa-database' },
+        { title: 'UX & UI Design', url: '/ux-ui-design', keywords: 'ux ui design user experience interface wireframe prototype', icon: 'fa-paint-brush' },
+        { title: 'How We Work', url: '/how-we-work', keywords: 'how we work process methodology', icon: 'fa-project-diagram' },
+        { title: 'About Us', url: '/about', keywords: 'about us company team', icon: 'fa-info-circle' },
         { title: 'Portfolio', url: 'https://www.behance.net/AppsDeddy', keywords: 'portfolio projects case studies work', icon: 'fa-briefcase' },
-        { title: 'FAQ', url: 'faq.php', keywords: 'faq frequently asked questions help', icon: 'fa-question-circle' },
-        { title: 'Contact', url: 'contact.php', keywords: 'contact get in touch email phone message', icon: 'fa-envelope' },
-        { title: 'Privacy Policy', url: 'privacy-policy.php', keywords: 'privacy policy data', icon: 'fa-shield-alt' },
-        { title: 'Terms & Conditions', url: 'terms-conditions.php', keywords: 'terms conditions', icon: 'fa-file-alt' },
-        { title: 'Cookie Policy', url: 'cookie-policy.php', keywords: 'cookie policy cookies', icon: 'fa-cookie-bite' },
-        { title: 'Testimonials', url: 'testimonials.php', keywords: 'testimonials reviews feedback', icon: 'fa-star' }
+        { title: 'FAQ', url: '/faq', keywords: 'faq frequently asked questions help', icon: 'fa-question-circle' },
+        { title: 'Contact', url: '/contact', keywords: 'contact get in touch email phone message', icon: 'fa-envelope' },
+        { title: 'Privacy Policy', url: '/privacy-policy', keywords: 'privacy policy data', icon: 'fa-shield-alt' },
+        { title: 'Terms & Conditions', url: '/terms-conditions', keywords: 'terms conditions', icon: 'fa-file-alt' },
+        { title: 'Cookie Policy', url: '/cookie-policy', keywords: 'cookie policy cookies', icon: 'fa-cookie-bite' },
+        { title: 'Testimonials', url: '/testimonials', keywords: 'testimonials reviews feedback', icon: 'fa-star' }
     ];
     
     if (navSearch && navSearchWrap) {

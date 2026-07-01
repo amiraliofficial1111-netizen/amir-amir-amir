@@ -24,16 +24,16 @@ require_once 'includes/header.php';
     <section class="legal-content">
         <div class="container">
             <nav class="legal-quick-nav" aria-label="Legal documents">
-                <a href="privacy-policy.php"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
-                <a href="terms-conditions.php" class="active"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
-                <a href="cookie-policy.php"><i class="fas fa-cookie-bite"></i> Cookie Policy</a>
+                <a href="<?= pageUrl('privacy-policy') ?>"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+                <a href="<?= pageUrl('terms-conditions') ?>" class="active"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
+                <a href="<?= pageUrl('cookie-policy') ?>"><i class="fas fa-cookie-bite"></i> Cookie Policy</a>
             </nav>
             <div class="legal-inner">
                 <p class="legal-intro">Welcome to AppsDeddy. By accessing or using our website and services, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not use our services.</p>
 
                 <div class="legal-section">
                     <h2><i class="fas fa-file-contract"></i> Acceptance of Terms</h2>
-                    <p>By accessing the AppsDeddy website (appsdeddy.com) or engaging our services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions, along with our <a href="privacy-policy.php">Privacy Policy</a> and <a href="cookie-policy.php">Cookie Policy</a>.</p>
+                    <p>By accessing the AppsDeddy website (appsdeddy.com) or engaging our services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions, along with our <a href="<?= pageUrl('privacy-policy') ?>">Privacy Policy</a> and <a href="<?= pageUrl('cookie-policy') ?>">Cookie Policy</a>.</p>
                 </div>
 
                 <div class="legal-section">

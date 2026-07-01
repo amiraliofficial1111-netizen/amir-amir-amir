@@ -36,7 +36,7 @@ if (!defined('SITE_URL')) {
 if (!defined('SITE_BASE')) {
     define('SITE_BASE', rtrim(SITE_URL, '/') . '/');
 }
-define('ASSET_VERSION', '2.3.4');
+define('ASSET_VERSION', '2.3.5');
 
 // Google Analytics (set in config.local.php, e.g. G-XXXXXXXXXX)
 if (!defined('GA_MEASUREMENT_ID')) define('GA_MEASUREMENT_ID', '');
@@ -102,6 +102,18 @@ function appsdeddyResolveSiteUrl(): string {
     $basePath = ($dir === '/' || $dir === '\\' || $dir === '.') ? '' : rtrim($dir, '/');
 
     return $scheme . '://' . $host . $basePath;
+}
+
+/**
+ * Public page URL without .php extension.
+ */
+function pageUrl(string $page = ''): string {
+    $page = trim($page);
+    if ($page === '' || $page === 'home' || $page === 'index' || strcasecmp($page, 'index.php') === 0) {
+        return SITE_BASE;
+    }
+    $page = preg_replace('/\.php$/i', '', ltrim($page, '/'));
+    return SITE_BASE . $page;
 }
 
 // ─── Sanitization Helper ─────────────────────────────────────────────────────

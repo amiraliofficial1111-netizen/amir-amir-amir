@@ -82,7 +82,7 @@ require_once 'includes/header.php';
                 <div class="faq-content" data-aos="fade-right">
                     <span class="section-tag"><i class="fas fa-question-circle"></i> FAQ</span>
                     <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
-                    <p class="faq-description">Can't find the answer you're looking for? <a href="contact.php">Contact our support team</a>.</p>
+                    <p class="faq-description">Can't find the answer you're looking for? <a href="<?= pageUrl('contact') ?>">Contact our support team</a>.</p>
                     <div class="faq-stats">
                         <div class="faq-stat">
                             <div class="stat-icon"><i class="fas fa-comments"></i></div>
@@ -161,7 +161,7 @@ require_once 'includes/header.php';
                 <h2>Still Have Questions?</h2>
                 <p>Our team is here to help. Get in touch for a free consultation.</p>
                 <div class="cta-buttons">
-                    <a href="contact.php" class="btn btn-white btn-lg"><span>Contact Us</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Contact Us</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

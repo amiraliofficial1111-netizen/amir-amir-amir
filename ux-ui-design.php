@@ -116,7 +116,7 @@ require_once 'includes/header.php';
                     <h2 class="section-title">Why Choose Appsdeddy for <span class="gradient-text">UX/UI Design?</span></h2>
                     <h3 class="service-subtitle">Experience and Expertise</h3>
                     <p>Our design solutions are crafted with a deep understanding of user psychology and modern design principles. We combine creativity with data-driven insights to create interfaces that not only look beautiful but also drive business results. With expertise in the latest design tools and trends, we deliver designs that are both timeless and cutting-edge, ensuring your digital products stand out in the market.</p>
-                    <a href="contact.php" class="btn btn-primary btn-lg"><span>Get Started Today</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg"><span>Get Started Today</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@ require_once 'includes/header.php';
                 <h2>Ready for Beautiful <span class="gradient-text-light">Designs?</span></h2>
                 <p>Let's create digital experiences that users love.</p>
                 <div class="cta-buttons">
-                    <a href="contact.php" class="btn btn-white btn-lg"><span>Get Free Quote</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Get Free Quote</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

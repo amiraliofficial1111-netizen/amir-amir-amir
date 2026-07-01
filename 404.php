@@ -26,13 +26,13 @@ require_once 'includes/header.php';
                 <p>Here are some helpful links to get you back on track:</p>
                 <ul class="error-links">
                     <li><a href="<?= SITE_BASE ?>">Home — App Development &amp; Design Solutions</a></li>
-                    <li><a href="<?= SITE_BASE ?>services.php">Our Services</a></li>
-                    <li><a href="<?= SITE_BASE ?>about.php">About AppsDeddy</a></li>
+                    <li><a href="<?= pageUrl('services') ?>">Our Services</a></li>
+                    <li><a href="<?= pageUrl('about') ?>">About AppsDeddy</a></li>
                     <li><a href="<?= SITE_BASE ?>blog/">Blog</a></li>
-                    <li><a href="<?= SITE_BASE ?>contact.php">Contact Us</a></li>
-                    <li><a href="<?= SITE_BASE ?>faq.php">FAQ</a></li>
+                    <li><a href="<?= pageUrl('contact') ?>">Contact Us</a></li>
+                    <li><a href="<?= pageUrl('faq') ?>">FAQ</a></li>
                 </ul>
-                <a href="<?= SITE_BASE ?>contact.php" class="btn btn-primary btn-lg">
+                <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg">
                     <span>Get a Free Consultation</span>
                     <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </a>

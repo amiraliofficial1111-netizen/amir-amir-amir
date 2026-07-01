@@ -26,10 +26,16 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
-# ─── Redirect old .html pages to .php (main site only) ───────────────────────
+# ─── Redirect .php URLs to clean URLs (main site only) ───────────────────────
+RewriteCond %{REQUEST_URI} !^/blog [NC]
+RewriteCond %{REQUEST_URI} !^/includes/ [NC]
+RewriteCond %{THE_REQUEST} \s/+([^?\s]*?)\.php[\s?] [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# ─── Redirect old .html pages to clean URLs (main site only) ─────────────────
 RewriteCond %{REQUEST_URI} !^/blog [NC]
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
-RewriteRule ^ /%1.php [NC,L,R=301]
+RewriteRule ^ /%1 [NC,L,R=301]
 
 # ─── Security & Performance Headers ────────────────────────────────────────────
 <IfModule mod_headers.c>
@@ -115,7 +121,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !\.(css|js|webp|png|jpg|jpeg|gif|svg|ico|woff2?)$ [NC]
 RewriteRule ^ 404.php [L]
 
-ErrorDocument 404 /404.php
+ErrorDocument 404 /404
 
 # ─── PHP Settings (Hostinger Compatible) ─────────────────────────────────────
 <IfModule mod_php.c>

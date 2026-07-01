@@ -34,7 +34,7 @@ require_once 'includes/header.php';
                 </p>
                 
                 <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
-                    <a href="contact.php" class="btn btn-primary btn-lg btn-glow">
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg btn-glow">
                         <span>Contact Us</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -231,7 +231,7 @@ require_once 'includes/header.php';
                             <li><i class="fas fa-check-circle"></i> AI Workflow Automation</li>
                         </ul>
                     </div>
-                    <a href="gen-ai-integration.php" class="service-link">
+                    <a href="<?= pageUrl('gen-ai-integration') ?>" class="service-link">
                         <span>Learn more about Gen AI Integration</span>
                         <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
@@ -252,7 +252,7 @@ require_once 'includes/header.php';
                             <li><i class="fas fa-check-circle"></i> Progressive Web Apps</li>
                         </ul>
                     </div>
-                    <a href="web-mobile-app-development.php" class="service-link">
+                    <a href="<?= pageUrl('web-mobile-app-development') ?>" class="service-link">
                         <span>Learn more about Web &amp; Mobile App Development</span>
                         <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
@@ -273,7 +273,7 @@ require_once 'includes/header.php';
                             <li><i class="fas fa-check-circle"></i> Cloud Data Warehousing</li>
                         </ul>
                     </div>
-                    <a href="data-engineering-solutions.php" class="service-link">
+                    <a href="<?= pageUrl('data-engineering-solutions') ?>" class="service-link">
                         <span>Learn more about Data Engineering Solutions</span>
                         <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
@@ -294,7 +294,7 @@ require_once 'includes/header.php';
                             <li><i class="fas fa-check-circle"></i> Design Systems</li>
                         </ul>
                     </div>
-                    <a href="ux-ui-design.php" class="service-link">
+                    <a href="<?= pageUrl('ux-ui-design') ?>" class="service-link">
                         <span>Learn more about UX &amp; UI Design</span>
                         <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>

@@ -133,8 +133,8 @@ require_once 'includes/header.php';
                     <h2 class="section-title">Why Choose <span class="gradient-text">AppsDeddy?</span></h2>
                     <p class="about-intro-text">With a passion for technology and a commitment to excellence, AppsDeddy stands out as your trusted partner. We combine creativity, technical expertise, and a client-first mindset to deliver solutions that drive results.</p>
                     <div class="about-intro-actions">
-                        <a href="contact.php" class="btn btn-primary btn-lg"><span>Get Started</span><i class="fas fa-arrow-right"></i></a>
-                        <a href="services.php" class="btn btn-outline btn-lg"><span>Our Services</span></a>
+                        <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg"><span>Get Started</span><i class="fas fa-arrow-right"></i></a>
+                        <a href="<?= pageUrl('services') ?>" class="btn btn-outline btn-lg"><span>Our Services</span></a>
                     </div>
                 </div>
                 <div class="about-intro-visual" data-aos="fade-left">
@@ -156,7 +156,7 @@ require_once 'includes/header.php';
                 <h2>Ready to Get <span class="gradient-text-light">Started?</span></h2>
                 <p>Let's turn your idea into a reality. Get a free consultation today.</p>
                 <div class="cta-buttons">
-                    <a href="contact.php" class="btn btn-white btn-lg"><span>Get in Touch</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Get in Touch</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

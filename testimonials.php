@@ -78,7 +78,7 @@ require_once 'includes/header.php';
                 <h2>Ready to Build Something <span class="gradient-text-light">Amazing?</span></h2>
                 <p>Join our satisfied clients. Get a free consultation today.</p>
                 <div class="cta-buttons">
-                    <a href="contact.php" class="btn btn-white btn-lg"><span>Start Your Project</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Start Your Project</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

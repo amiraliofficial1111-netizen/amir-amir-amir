@@ -24,9 +24,9 @@ require_once 'includes/header.php';
     <section class="legal-content">
         <div class="container">
             <nav class="legal-quick-nav" aria-label="Legal documents">
-                <a href="privacy-policy.php" class="active"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
-                <a href="terms-conditions.php"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
-                <a href="cookie-policy.php"><i class="fas fa-cookie-bite"></i> Cookie Policy</a>
+                <a href="<?= pageUrl('privacy-policy') ?>" class="active"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+                <a href="<?= pageUrl('terms-conditions') ?>"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
+                <a href="<?= pageUrl('cookie-policy') ?>"><i class="fas fa-cookie-bite"></i> Cookie Policy</a>
             </nav>
             <div class="legal-inner">
                 <p class="legal-intro">AppsDeddy ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.</p>
@@ -37,7 +37,7 @@ require_once 'includes/header.php';
                     <ul>
                         <li><strong>Personal Information:</strong> Name, email address, phone number, company name, and other contact details you provide when contacting us or requesting a quote</li>
                         <li><strong>Usage Data:</strong> IP address, browser type, pages visited, time spent on our site, and similar analytics data</li>
-                        <li><strong>Cookies:</strong> See our <a href="cookie-policy.php">Cookie Policy</a> for details on how we use cookies</li>
+                        <li><strong>Cookies:</strong> See our <a href="<?= pageUrl('cookie-policy') ?>">Cookie Policy</a> for details on how we use cookies</li>
                     </ul>
                 </div>
 

@@ -40,30 +40,30 @@ if (defined('ABSPATH')) {
                             <h4>Menu</h4>
                             <ul>
                                 <li><a href="<?= SITE_BASE ?>">Home</a></li>
-                                <li><a href="<?= SITE_BASE ?>services.php">Services</a></li>
-                                <li><a href="<?= SITE_BASE ?>how-we-work.php">How We Work</a></li>
-                                <li><a href="<?= SITE_BASE ?>about.php">About Us</a></li>
+                                <li><a href="<?= pageUrl('services') ?>">Services</a></li>
+                                <li><a href="<?= pageUrl('how-we-work') ?>">How We Work</a></li>
+                                <li><a href="<?= pageUrl('about') ?>">About Us</a></li>
                                 <li><a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
                                 <li><a href="<?= SITE_BASE ?>blog/">Blog</a></li>
-                                <li><a href="<?= SITE_BASE ?>contact.php">Contact</a></li>
+                                <li><a href="<?= pageUrl('contact') ?>">Contact</a></li>
                             </ul>
                         </div>
                         <div class="footer-links-col">
                             <h4>Services</h4>
                             <ul>
-                                <li><a href="<?= SITE_BASE ?>gen-ai-integration.php">Gen AI Integration & Consulting</a></li>
-                                <li><a href="<?= SITE_BASE ?>web-mobile-app-development.php">Web & Mobile App Development</a></li>
-                                <li><a href="<?= SITE_BASE ?>data-engineering-solutions.php">Data Engineering Solutions</a></li>
-                                <li><a href="<?= SITE_BASE ?>ux-ui-design.php">UX & UI Design</a></li>
+                                <li><a href="<?= pageUrl('gen-ai-integration') ?>">Gen AI Integration & Consulting</a></li>
+                                <li><a href="<?= pageUrl('web-mobile-app-development') ?>">Web & Mobile App Development</a></li>
+                                <li><a href="<?= pageUrl('data-engineering-solutions') ?>">Data Engineering Solutions</a></li>
+                                <li><a href="<?= pageUrl('ux-ui-design') ?>">UX & UI Design</a></li>
                             </ul>
                         </div>
                         <div class="footer-links-col">
                             <h4>Legal</h4>
                             <ul>
-                                <li><a href="<?= SITE_BASE ?>privacy-policy.php">Privacy Policy</a></li>
-                                <li><a href="<?= SITE_BASE ?>terms-conditions.php">Terms & Conditions</a></li>
-                                <li><a href="<?= SITE_BASE ?>cookie-policy.php">Cookie Policy</a></li>
-                                <li><a href="<?= SITE_BASE ?>faq.php">FAQ</a></li>
+                                <li><a href="<?= pageUrl('privacy-policy') ?>">Privacy Policy</a></li>
+                                <li><a href="<?= pageUrl('terms-conditions') ?>">Terms & Conditions</a></li>
+                                <li><a href="<?= pageUrl('cookie-policy') ?>">Cookie Policy</a></li>
+                                <li><a href="<?= pageUrl('faq') ?>">FAQ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -92,7 +92,7 @@ if (defined('ABSPATH')) {
                 <div class="footer-cta-inner">
                     <h3>Ready to Build Something Amazing?</h3>
                     <p>Let's turn your idea into reality. Get a free consultation today.</p>
-                    <a href="<?= SITE_BASE ?>contact.php" class="btn btn-primary btn-lg">
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg">
                         <span>Start Your Project</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>

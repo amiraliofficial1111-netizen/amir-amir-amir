@@ -38,14 +38,12 @@ def draw_gradient_text(draw: ImageDraw.ImageDraw, xy: tuple[int, int], text: str
 def build_photo_panel() -> Image.Image:
     """Full-opacity grayscale portrait for the left panel."""
     photo = Image.open(PHOTO).convert("RGB")
-    # Shift face right/up so LinkedIn profile circle (bottom-left) covers less of the face.
     photo = ImageOps.fit(photo, (LEFT_W, H), method=Image.Resampling.LANCZOS, centering=(0.62, 0.16))
     photo = ImageEnhance.Contrast(ImageOps.grayscale(photo).convert("RGB")).enhance(1.08)
 
     panel = Image.new("RGB", (LEFT_W, H), "#d4d4d4")
     panel.paste(photo, (0, 0))
 
-    # Soft blend only on the right edge of the photo panel.
     fade = Image.new("L", (LEFT_W, H), 0)
     fade_draw = ImageDraw.Draw(fade)
     fade_start = int(LEFT_W * 0.78)
@@ -59,21 +57,6 @@ def build_photo_panel() -> Image.Image:
     white_blend = Image.new("RGB", (LEFT_W, H), "#ffffff")
     panel = Image.composite(white_blend, panel, fade)
     return panel
-
-
-def draw_tag(draw: ImageDraw.ImageDraw, x: int, y: int) -> int:
-    tag_font = load_font(14, bold=True)
-    tag_text = "Our Founder"
-    tag_w = int(draw.textlength(tag_text, font=tag_font)) + 46
-    tag_h = 34
-
-    tag_layer = Image.new("RGBA", (tag_w, tag_h), (0, 0, 0, 0))
-    tag_draw = ImageDraw.Draw(tag_layer)
-    tag_draw.rounded_rectangle((0, 0, tag_w, tag_h), radius=17, fill=(99, 102, 241, 38))
-    tag_draw.ellipse((12, 13, 22, 23), fill="#4f46e5")
-    tag_draw.text((28, 8), tag_text, font=tag_font, fill="#4f46e5")
-
-    return tag_layer, tag_w
 
 
 def main() -> None:
@@ -95,28 +78,19 @@ def main() -> None:
         stripe_draw.line([(0, y), (6, y)], fill=color)
     canvas.paste(stripe, (W - 6, 0))
 
-    # Text block — safe from LinkedIn profile-photo overlap (center-right).
+    # Text block — name as primary headline (no "Our Founder" / "Meet Our Founder").
     x = LEFT_W + 48
-    y = 58
-
-    tag_layer, tag_w = draw_tag(draw, x, y)
-    canvas.paste(tag_layer, (x, y), tag_layer)
-    y += 52
+    y = 110
 
     title_font = load_font(48, bold=True)
-    draw.text((x, y), "Meet ", font=title_font, fill="#0f172a")
-    meet_w = draw.textlength("Meet ", font=title_font)
-    draw_gradient_text(draw, (x + int(meet_w), y), "Our Founder", title_font)
-    y += 58
+    draw_gradient_text(draw, (x, y), "Faizan Khan", title_font)
+    y += 62
 
-    bold_font = load_font(21, bold=True)
-    sub_font = load_font(21, bold=False)
-    draw.text((x, y), "Faizan Khan", font=bold_font, fill="#6366f1")
-    name_w = draw.textlength("Faizan Khan", font=bold_font)
-    draw.text((x + name_w, y), ", Founder & CEO, AppsDeddy", font=sub_font, fill="#475569")
-    y += 34
+    sub_font = load_font(22, bold=False)
+    draw.text((x, y), "Founder & CEO, AppsDeddy", font=sub_font, fill="#475569")
+    y += 40
 
-    meta_font = load_font(13, bold=True)
+    meta_font = load_font(15, bold=True)
     draw.text((x, y), "Engineering Smart Solutions · Indianapolis, USA", font=meta_font, fill="#64748b")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)

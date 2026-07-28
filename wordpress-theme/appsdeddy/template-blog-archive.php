@@ -15,7 +15,7 @@ get_header();
                 <h1><?php single_cat_title(); ?></h1>
             <?php else : ?>
                 <h1>Blog</h1>
-                <p>Insights on app development, design, and technology from the AppsDeddy team.</p>
+                <p>Insights on enterprise software, AI, FinTech, healthcare, and SaaS from the AppsDeddy team.</p>
             <?php endif; ?>
         </div>
     </div>

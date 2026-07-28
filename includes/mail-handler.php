@@ -44,6 +44,9 @@ if (!empty($_POST['website_url'])) {
 $name    = sanitize($_POST['name'] ?? '');
 $email   = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
 $phone   = sanitize($_POST['phone'] ?? '');
+$company = sanitize($_POST['company'] ?? '');
+$role    = sanitize($_POST['role'] ?? '');
+$country = sanitize($_POST['country'] ?? '');
 $service = sanitize($_POST['service'] ?? '');
 $budget  = sanitize($_POST['budget'] ?? '');
 $message = sanitize($_POST['message'] ?? '');
@@ -79,7 +82,10 @@ if (!empty($errors)) {
 // Prepare labels
 $serviceLabel = getServiceLabel($service);
 $budgetLabel  = $budget ? getBudgetLabel($budget) : 'Not specified';
+$roleLabel    = getRoleLabel($role);
+$countryLabel = getCountryLabel($country);
 $phoneDisplay = $phone ?: 'Not provided';
+$companyDisplay = $company !== '' ? $company : 'Not provided';
 
 // ─── Build the Email ─────────────────────────────────────────────────────────
 
@@ -108,6 +114,9 @@ $emailBodyHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>'
     . '<div class="field"><div class="label">Full Name</div><div class="value">' . $name . '</div></div>'
     . '<div class="field"><div class="label">Email Address</div><div class="value"><a href="mailto:' . $email . '" style="color:#6366f1;text-decoration:none;">' . $email . '</a></div></div>'
     . '<div class="field"><div class="label">Phone Number</div><div class="value">' . $phoneDisplay . '</div></div>'
+    . '<div class="field"><div class="label">Company</div><div class="value">' . $companyDisplay . '</div></div>'
+    . '<div class="field"><div class="label">Role</div><div class="value">' . $roleLabel . '</div></div>'
+    . '<div class="field"><div class="label">Country</div><div class="value">' . $countryLabel . '</div></div>'
     . '<div class="field"><div class="label">Service Needed</div><div class="value"><span class="badge">' . $serviceLabel . '</span></div></div>'
     . '<div class="field"><div class="label">Estimated Budget</div><div class="value">' . $budgetLabel . '</div></div>'
     . '<div class="field"><div class="label">Project Details</div><div class="message-box">' . nl2br($message) . '</div></div>'
@@ -122,6 +131,9 @@ NEW PROJECT INQUIRY - AppsDeddy
 Name:     {$name}
 Email:    {$email}
 Phone:    {$phoneDisplay}
+Company:  {$companyDisplay}
+Role:     {$roleLabel}
+Country:  {$countryLabel}
 Service:  {$serviceLabel}
 Budget:   {$budgetLabel}
 
@@ -159,14 +171,14 @@ $autoReplyHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>'
     . '<ul style="margin:8px 0 0;padding-left:20px">'
     . '<li>Our team will review your project details</li>'
     . '<li>A senior consultant will reach out within <strong>24 hours</strong></li>'
-    . '<li>We\'ll schedule a free consultation to discuss your vision</li>'
+    . '<li>We\'ll schedule a discovery call to align on scope and next steps</li>'
     . '</ul></div>'
-    . '<p>In the meantime, feel free to explore our <a href="https://www.behance.net/AppsDeddy" style="color:#6366f1">portfolio</a> to see our recent work.</p>'
-    . '<div class="cta"><a href="https://www.behance.net/AppsDeddy">View Our Portfolio</a></div>'
+    . '<p>In the meantime, explore <a href="' . rtrim(SITE_URL, '/') . '/how-we-work" style="color:#6366f1">how we work</a> or browse our <a href="' . rtrim(SITE_URL, '/') . '/case-studies" style="color:#6366f1">case studies</a>.</p>'
+    . '<div class="cta"><a href="' . rtrim(SITE_URL, '/') . '/contact">Book a Discovery Call</a></div>'
     . '<p style="color:#6b7280;font-size:14px">If you have any urgent questions, reply directly to this email or contact us at <a href="mailto:info@appsdeddy.com" style="color:#6366f1">info@appsdeddy.com</a>.</p>'
     . '<p>Best regards,<br><strong>The AppsDeddy Team</strong><br><em>Engineering Smart Solutions</em></p>'
     . '</div>'
-    . '<div class="footer">AppsDeddy &bull; 8520 Allison Pointe Blvd Ste 223, Indianapolis, IN 46250<br>&copy; ' . $siteYear . ' AppsDeddy. All rights reserved.</div>'
+    . '<div class="footer">AppsDeddy &bull; 8520 Allison Pointe Blvd Ste 223, Indianapolis, IN 46250, United States<br>&copy; ' . $siteYear . ' AppsDeddy. All rights reserved.</div>'
     . '</div></div></body></html>';
 
 // ─── Load PHPMailer (direct include - no Composer needed) ────────────────────

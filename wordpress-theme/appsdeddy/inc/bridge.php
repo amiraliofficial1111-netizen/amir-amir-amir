@@ -42,11 +42,11 @@ function appsdeddy_render_main_header(): void {
         $pageCanonical   = get_permalink();
     } elseif (is_home() || is_front_page()) {
         $pageTitle       = 'Blog | ' . SITE_NAME;
-        $pageDescription = 'Insights, news, and guides from AppsDeddy on app development, web, mobile, and AI.';
+        $pageDescription = 'Insights on enterprise software, AI automation, FinTech, healthcare, and SaaS from the AppsDeddy team.';
         $pageCanonical   = rtrim(SITE_URL, '/') . '/blog/';
     } else {
         $pageTitle       = 'Blog | ' . SITE_NAME;
-        $pageDescription = 'AppsDeddy blog — app development insights and updates.';
+        $pageDescription = 'AppsDeddy Insights: enterprise software, product engineering, and delivery best practices.';
         $pageCanonical   = rtrim(SITE_URL, '/') . '/blog/';
     }
 

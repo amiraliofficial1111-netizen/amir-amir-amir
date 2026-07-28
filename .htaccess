@@ -9,6 +9,25 @@ RewriteBase /
 # WordPress /blog — never apply main-site PHP rewrites (must stay first)
 RewriteRule ^blog(/.*)?$ - [L]
 
+# ─── Nested routes (services, industries, case studies, technologies, insights)
+RewriteRule ^services/([a-z0-9-]+)/?$ route.php?type=services&slug=$1 [L,QSA]
+RewriteRule ^industries/([a-z0-9-]+)/?$ route.php?type=industries&slug=$1 [L,QSA]
+RewriteRule ^case-studies/([a-z0-9-]+)/?$ route.php?type=case-studies&slug=$1 [L,QSA]
+RewriteRule ^technologies/([a-z0-9-]+)/?$ route.php?type=technologies&slug=$1 [L,QSA]
+RewriteRule ^insights/([a-z0-9-]+)/?$ route.php?type=insights&slug=$1 [L,QSA]
+RewriteRule ^markets/([a-z0-9-]+)/?$ route.php?type=markets&slug=$1 [L,QSA]
+RewriteRule ^case-studies/?$ case-studies.php [L]
+RewriteRule ^industries/?$ industries.php [L]
+RewriteRule ^technologies/?$ technologies.php [L]
+RewriteRule ^insights/?$ insights.php [L]
+RewriteRule ^markets/?$ markets.php [L]
+
+# ─── Legacy service URLs → nested (301) ──────────────────────────────────────
+RewriteRule ^gen-ai-integration/?$ services/ai-automation [R=301,L]
+RewriteRule ^web-mobile-app-development/?$ services/custom-saas [R=301,L]
+RewriteRule ^data-engineering-solutions/?$ services/data-engineering [R=301,L]
+RewriteRule ^ux-ui-design/?$ services/ux-ui-design [R=301,L]
+
 # XML sitemap
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
@@ -62,7 +81,7 @@ RewriteRule ^ /%1 [NC,L,R=301]
         </Else>
     </FilesMatch>
 
-    <FilesMatch "^(index|contact|about|services|how-we-work|faq|testimonials|web-mobile-app-development|data-engineering-solutions|gen-ai-integration|ux-ui-design|privacy-policy|terms-conditions|cookie-policy|sitemap|404)\.php$">
+    <FilesMatch "^(index|contact|about|services|how-we-work|faq|testimonials|web-mobile-app-development|data-engineering-solutions|gen-ai-integration|ux-ui-design|privacy-policy|terms-conditions|cookie-policy|sitemap|404|route|case-studies|industries|technologies|insights|markets|thank-you|seo-checklist)\.php$">
         <If "%{REQUEST_URI} !~ m#^/blog/#">
             Require all granted
         </If>

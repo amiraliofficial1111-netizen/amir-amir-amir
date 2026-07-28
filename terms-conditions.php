@@ -38,7 +38,7 @@ require_once 'includes/header.php';
 
                 <div class="legal-section">
                     <h2><i class="fas fa-briefcase"></i> Our Services</h2>
-                    <p>AppsDeddy provides app development, web development, data engineering, Gen AI integration, and UX/UI design services. The specific scope, deliverables, timeline, and pricing for each project are defined in individual project agreements or statements of work (SOW) signed by both parties.</p>
+                    <p>AppsDeddy provides enterprise software development including AI automation, FinTech, healthcare software, custom SaaS, enterprise .NET, cloud solutions, data engineering, and UX/UI design. The specific scope, deliverables, timeline, and pricing for each project are defined in individual project agreements or statements of work (SOW) signed by both parties.</p>
                 </div>
 
                 <div class="legal-section">

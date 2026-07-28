@@ -36,14 +36,26 @@ if (!defined('SITE_URL')) {
 if (!defined('SITE_BASE')) {
     define('SITE_BASE', rtrim(SITE_URL, '/') . '/');
 }
-define('ASSET_VERSION', '2.3.6');
+define('ASSET_VERSION', '2.7.1');
 
 // Google Analytics (set in config.local.php, e.g. G-XXXXXXXXXX)
 if (!defined('GA_MEASUREMENT_ID')) define('GA_MEASUREMENT_ID', '');
+
+// Calendly embed URL (set in config.local.php for inline scheduling on contact page)
+if (!defined('CALENDLY_EMBED_URL')) define('CALENDLY_EMBED_URL', '');
+
 define('SITE_YEAR',     date('Y'));
-define('SITE_ADDRESS',  '8520 Allison Pointe Blvd Ste 223, Indianapolis, IN, US 46250');
+define('SITE_ADDRESS',  '8520 Allison Pointe Blvd Ste 223, Indianapolis, IN 46250, United States');
 define('SITE_EMAIL',    'info@appsdeddy.com');
 define('SITE_PHONE',    '+1-(888)-502-7038');
+define('SITE_NAP_STREET', '8520 Allison Pointe Blvd Ste 223');
+define('SITE_NAP_CITY',   'Indianapolis');
+define('SITE_NAP_REGION', 'IN');
+define('SITE_NAP_POSTAL', '46250');
+define('SITE_NAP_COUNTRY','US');
+define('SITE_GEO_LAT',    '39.7684');
+define('SITE_GEO_LNG',    '-86.1581');
+define('SITE_HOURS',      'Mo-Fr 09:00-18:00, Sa 10:00-14:00');
 
 // ─── Social Links ────────────────────────────────────────────────────────────
 define('SOCIAL_FACEBOOK',  'https://www.facebook.com/people/AppsDeddy/61575933448272/');
@@ -53,6 +65,10 @@ define('SOCIAL_TWITTER',   '#');
 define('SOCIAL_YOUTUBE',   '#');
 define('SOCIAL_BEHANCE',   'https://www.behance.net/AppsDeddy');
 
+// Review platforms (update profile URLs when claimed)
+if (!defined('REVIEW_CLUTCH_URL'))    define('REVIEW_CLUTCH_URL', 'https://clutch.co/');
+if (!defined('REVIEW_GOODFIRMS_URL')) define('REVIEW_GOODFIRMS_URL', 'https://www.goodfirms.co/');
+
 // ─── Founder ─────────────────────────────────────────────────────────────────
 define('FOUNDER_NAME',     'Faizan Khan');
 define('FOUNDER_TITLE',    'Founder & CEO');
@@ -60,7 +76,7 @@ define('FOUNDER_LINKEDIN', 'https://www.linkedin.com/in/faizan-khan-777575a7');
 define('FOUNDER_PHOTO',    'assets/images/team/faizan-khan.jpg');
 define('FOUNDER_BIO_1',    'Hi there, my name is Faizan Khan. I\'m the Founder and CEO of AppsDeddy, and it\'s a pleasure to meet you.');
 define('FOUNDER_BIO_2',    'My journey into software started as an engineer shipping production systems, leading teams, and learning what it takes to scale. Along the way, I became curious about what makes great products great. Why do some teams move fast with AI and automation while others stay buried in manual work?');
-define('FOUNDER_BIO_3',    'was born from that curiosity. We believe great software should not only look polished, but also solve real problems, automate what\'s repetitive, and help US startups grow with software they can trust long after launch.');
+define('FOUNDER_BIO_3',    'was born from that curiosity. We believe great software should not only look polished, but also solve real problems, automate what\'s repetitive, and help startups and enterprises across the US, Canada, and Australia ship products they can trust long after launch.');
 
 // ─── CSRF Token Helpers ──────────────────────────────────────────────────────
 if (session_status() === PHP_SESSION_NONE) {
@@ -134,24 +150,57 @@ function emailLink(string $email = SITE_EMAIL, ?string $label = null): string {
 // ─── Service Labels ──────────────────────────────────────────────────────────
 function getServiceLabel(string $key): string {
     $services = [
-        'mobile' => 'Mobile App Development',
-        'web'    => 'Web Development',
-        'design' => 'UI/UX Design',
-        'cloud'  => 'Cloud Solutions',
-        'ai'     => 'AI & Machine Learning',
-        'other'  => 'Other',
+        'ai'         => 'AI Automation',
+        'fintech'    => 'FinTech Solutions',
+        'healthcare' => 'Healthcare Software',
+        'saas'       => 'Custom SaaS Development',
+        'dotnet'     => 'Enterprise .NET Development',
+        'cloud'      => 'Cloud Solutions',
+        'other'      => 'Other',
+        // Legacy form values (keep mail readable if old tabs submit)
+        'mobile'     => 'Mobile App Development',
+        'web'        => 'Web Development',
+        'design'     => 'UI/UX Design',
     ];
     return $services[$key] ?? ucfirst($key);
 }
 
 require_once __DIR__ . '/service-images.php';
+require_once __DIR__ . '/pages-registry.php';
 
 function getBudgetLabel(string $key): string {
     $budgets = [
-        '2k-5k'   => '$2,000 - $5,000',
-        '5k-10k'  => '$5,000 - $10,000',
-        '10k-25k' => '$10,000 - $25,000',
-        '25k+'    => '$25,000+',
+        '25k-50k'   => '$25,000 - $50,000',
+        '50k-100k'  => '$50,000 - $100,000',
+        '100k-250k' => '$100,000 - $250,000',
+        '250k+'     => '$250,000+',
+        'unsure'    => 'Not sure',
+        // Legacy
+        '2k-5k'     => '$2,000 - $5,000',
+        '5k-10k'    => '$5,000 - $10,000',
+        '10k-25k'   => '$10,000 - $25,000',
+        '25k+'      => '$25,000+',
     ];
     return $budgets[$key] ?? $key;
+}
+
+function getRoleLabel(string $key): string {
+    $roles = [
+        'founder' => 'Founder',
+        'ceo'     => 'CEO',
+        'cto'     => 'CTO',
+        'pm'      => 'Product Manager',
+        'other'   => 'Other',
+    ];
+    return $roles[$key] ?? ($key !== '' ? ucfirst($key) : 'Not specified');
+}
+
+function getCountryLabel(string $key): string {
+    $countries = [
+        'us'    => 'United States',
+        'ca'    => 'Canada',
+        'au'    => 'Australia',
+        'other' => 'Other',
+    ];
+    return $countries[$key] ?? ($key !== '' ? strtoupper($key) : 'Not specified');
 }

@@ -30,8 +30,8 @@ if ($isCustomSite) {
     $jsonLdHtml      = seoRenderJsonLd(seoBuildSchemas($seoMeta));
 } else {
     $pageTitle       = $pageTitle       ?? (SITE_NAME . ' - ' . SITE_TAGLINE);
-    $pageDescription = $pageDescription ?? 'AppsDeddy - US-based Premium App Development Agency.';
-    $pageKeywords    = $pageKeywords    ?? 'app development, mobile apps, web development';
+    $pageDescription = $pageDescription ?? 'AppsDeddy builds AI automation, FinTech, healthcare, SaaS, and .NET solutions for companies in the US, Canada, and Australia.';
+    $pageKeywords    = $pageKeywords    ?? 'enterprise software development, AI automation, FinTech, healthcare SaaS';
     $pageRobots      = $pageRobots      ?? 'index, follow';
     $pageOgImage     = $pageOgImage     ?? (SITE_BASE . 'assets/appsdeddy-logo-full.webp');
     $pageOgType      = $pageOgType      ?? 'website';
@@ -63,8 +63,31 @@ $jsHref    = $isCustomSite ? seoAsset('js/script.js') : (SITE_BASE . 'js/script.
     <meta name="format-detection" content="telephone=no">
 
     <link rel="canonical" href="<?= sanitize($canonicalUrl) ?>">
+    <?php if ($isCustomSite && function_exists('seoPageSlug')) :
+        $baseUrl = rtrim(SITE_URL, '/');
+        if (!empty($GLOBALS['pageHreflang']) && str_starts_with((string) seoPageSlug(), 'markets/')) :
+            $hreflangLinks = [
+                'en-US' => $baseUrl . '/markets/united-states',
+                'en-CA' => $baseUrl . '/markets/canada',
+                'en-AU' => $baseUrl . '/markets/australia',
+                'x-default' => $baseUrl . '/',
+            ];
+            foreach ($hreflangLinks as $lang => $href) :
+    ?>
+    <link rel="alternate" hreflang="<?= sanitize($lang) ?>" href="<?= sanitize($href) ?>">
+    <?php
+            endforeach;
+        else :
+    ?>
     <link rel="alternate" hreflang="en-US" href="<?= sanitize($canonicalUrl) ?>">
     <link rel="alternate" hreflang="x-default" href="<?= sanitize($canonicalUrl) ?>">
+    <?php
+        endif;
+    else :
+    ?>
+    <link rel="alternate" hreflang="en-US" href="<?= sanitize($canonicalUrl) ?>">
+    <link rel="alternate" hreflang="x-default" href="<?= sanitize($canonicalUrl) ?>">
+    <?php endif; ?>
 
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="<?= SITE_NAME ?>">
@@ -73,12 +96,15 @@ $jsHref    = $isCustomSite ? seoAsset('js/script.js') : (SITE_BASE . 'js/script.
     <meta property="og:type" content="<?= sanitize($pageOgType) ?>">
     <meta property="og:url" content="<?= sanitize($canonicalUrl) ?>">
     <meta property="og:image" content="<?= sanitize($pageOgImage) ?>">
-    <meta property="og:image:alt" content="<?= SITE_NAME ?> - Premium App Development">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="<?= sanitize($pageTitle) ?>">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= sanitize($pageTitle) ?>">
     <meta name="twitter:description" content="<?= sanitize($pageDescription) ?>">
     <meta name="twitter:image" content="<?= sanitize($pageOgImage) ?>">
+    <meta name="twitter:image:alt" content="<?= sanitize($pageTitle) ?>">
     <meta name="twitter:site" content="<?= defined('SEO_TWITTER_HANDLE') ? SEO_TWITTER_HANDLE : '@appsdeddy_' ?>">
 
     <link rel="icon" type="image/webp" href="<?= SITE_BASE ?>assets/appsdeddy-favicon-daddy.webp">
@@ -102,6 +128,14 @@ $jsHref    = $isCustomSite ? seoAsset('js/script.js') : (SITE_BASE . 'js/script.
     window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
     gtag('js',new Date());gtag('config','<?= sanitize(GA_MEASUREMENT_ID) ?>',{anonymize_ip:true});
     </script>
+    <?php endif; ?>
+    <?php if (defined('LINKEDIN_PARTNER_ID') && LINKEDIN_PARTNER_ID !== '') : ?>
+    <script>
+    _linkedin_partner_id="<?= sanitize(LINKEDIN_PARTNER_ID) ?>";
+    window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+    </script>
+    <script async src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
     <?php endif; ?>
 
     <?= $jsonLdHtml ?>
@@ -151,22 +185,21 @@ $jsHref    = $isCustomSite ? seoAsset('js/script.js') : (SITE_BASE . 'js/script.
                         <i class="fas fa-search nav-search-icon" aria-hidden="true"></i>
                     </div>
                 </li>
-                <li><a href="<?= SITE_BASE ?>" class="nav-link<?= $activePage === 'home' ? ' active' : '' ?>">Home</a></li>
                 <li class="nav-dropdown">
                     <a href="<?= pageUrl('services') ?>" class="nav-link<?= $activePage === 'services' ? ' active' : '' ?>">Services <i class="fas fa-chevron-down nav-arrow" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="<?= pageUrl('services') ?>">All Services</a></li>
-                        <li><a href="<?= pageUrl('gen-ai-integration') ?>">Gen AI Integration & Consulting</a></li>
-                        <li><a href="<?= pageUrl('web-mobile-app-development') ?>">Web & Mobile App Development</a></li>
-                        <li><a href="<?= pageUrl('data-engineering-solutions') ?>">Data Engineering Solutions</a></li>
-                        <li><a href="<?= pageUrl('ux-ui-design') ?>">UX & UI Design</a></li>
+                        <li><a href="<?= pageUrl('services/ai-automation') ?>">AI Automation</a></li>
+                        <li><a href="<?= pageUrl('services/fintech') ?>">FinTech Solutions</a></li>
+                        <li><a href="<?= pageUrl('services/healthcare') ?>">Healthcare Software</a></li>
+                        <li><a href="<?= pageUrl('services/custom-saas') ?>">Custom SaaS</a></li>
+                        <li><a href="<?= pageUrl('services/enterprise-dotnet') ?>">Enterprise .NET</a></li>
+                        <li><a href="<?= pageUrl('services/cloud-solutions') ?>">Cloud Solutions</a></li>
                     </ul>
                 </li>
-                <li><a href="<?= pageUrl('how-we-work') ?>" class="nav-link<?= $activePage === 'how-we-work' ? ' active' : '' ?>">How We Work</a></li>
+                <li><a href="<?= pageUrl('case-studies') ?>" class="nav-link">Case Studies</a></li>
                 <li><a href="<?= pageUrl('about') ?>" class="nav-link<?= $activePage === 'about' ? ' active' : '' ?>">About</a></li>
-                <li><a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer" class="nav-link">Portfolio</a></li>
-                <li><a href="<?= SITE_BASE ?>blog/" class="nav-link<?= $activePage === 'blog' ? ' active' : '' ?>">Blog</a></li>
-                <li><a href="<?= pageUrl('faq') ?>" class="nav-link<?= $activePage === 'faq' ? ' active' : '' ?>">FAQ</a></li>
+                <li><a href="<?= pageUrl('insights') ?>" class="nav-link">Insights</a></li>
                 <li><a href="<?= pageUrl('contact') ?>" class="nav-link<?= $activePage === 'contact' ? ' active' : '' ?>">Contact</a></li>
                 <li class="nav-menu-theme">
                     <div class="theme-toggle-wrap">
@@ -186,7 +219,7 @@ $jsHref    = $isCustomSite ? seoAsset('js/script.js') : (SITE_BASE . 'js/script.
                     <i class="fas fa-sun" aria-hidden="true"></i>
                 </button>
                 <a href="<?= pageUrl('contact') ?>" class="btn btn-primary nav-btn">
-                    <span>Get in Touch</span>
+                    <span>Book Discovery Call</span>
                     <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>

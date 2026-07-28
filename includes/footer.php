@@ -24,8 +24,8 @@ if (defined('ABSPATH')) {
                         <a href="<?= SITE_BASE ?>" class="logo">
                             <?= brandLogo(SITE_NAME, 'logo-img') ?>
                         </a>
-                        <span class="footer-tagline">ENGINEERING SMART SOLUTIONS</span>
-                        <p>US-based Premium App Development Agency. Transforming ideas into innovative digital solutions since 2014. Serving businesses across the United States from Indianapolis, IN.</p>
+                        <span class="footer-tagline">ENTERPRISE SOFTWARE PARTNER</span>
+                        <p>US-based enterprise software partner since 2014. AI automation, FinTech, healthcare, SaaS, .NET, and cloud, serving the United States, Canada, and Australia from Indianapolis, IN.</p>
                         <div class="footer-social">
                             <a href="<?= SOCIAL_FACEBOOK ?>" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                             <a href="<?= SOCIAL_TWITTER ?>" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -43,7 +43,11 @@ if (defined('ABSPATH')) {
                                 <li><a href="<?= pageUrl('services') ?>">Services</a></li>
                                 <li><a href="<?= pageUrl('how-we-work') ?>">How We Work</a></li>
                                 <li><a href="<?= pageUrl('about') ?>">About Us</a></li>
-                                <li><a href="<?= SOCIAL_BEHANCE ?>" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
+                                <li><a href="<?= pageUrl('industries') ?>">Industries</a></li>
+                                <li><a href="<?= pageUrl('technologies') ?>">Technologies</a></li>
+                                <li><a href="<?= pageUrl('markets') ?>">Markets</a></li>
+                                <li><a href="<?= pageUrl('case-studies') ?>">Case Studies</a></li>
+                                <li><a href="<?= pageUrl('insights') ?>">Insights</a></li>
                                 <li><a href="<?= SITE_BASE ?>blog/">Blog</a></li>
                                 <li><a href="<?= pageUrl('contact') ?>">Contact</a></li>
                             </ul>
@@ -51,10 +55,13 @@ if (defined('ABSPATH')) {
                         <div class="footer-links-col">
                             <h4>Services</h4>
                             <ul>
-                                <li><a href="<?= pageUrl('gen-ai-integration') ?>">Gen AI Integration & Consulting</a></li>
-                                <li><a href="<?= pageUrl('web-mobile-app-development') ?>">Web & Mobile App Development</a></li>
-                                <li><a href="<?= pageUrl('data-engineering-solutions') ?>">Data Engineering Solutions</a></li>
-                                <li><a href="<?= pageUrl('ux-ui-design') ?>">UX & UI Design</a></li>
+                                <li><a href="<?= pageUrl('services/ai-automation') ?>">AI Automation</a></li>
+                                <li><a href="<?= pageUrl('services/fintech') ?>">FinTech Solutions</a></li>
+                                <li><a href="<?= pageUrl('services/healthcare') ?>">Healthcare Software</a></li>
+                                <li><a href="<?= pageUrl('services/custom-saas') ?>">Custom SaaS</a></li>
+                                <li><a href="<?= pageUrl('services/enterprise-dotnet') ?>">Enterprise .NET</a></li>
+                                <li><a href="<?= pageUrl('services/cloud-solutions') ?>">Cloud Solutions</a></li>
+                                <li><a href="<?= pageUrl('technologies') ?>">Technologies</a></li>
                             </ul>
                         </div>
                         <div class="footer-links-col">
@@ -90,10 +97,10 @@ if (defined('ABSPATH')) {
         <div class="footer-cta">
             <div class="container">
                 <div class="footer-cta-inner">
-                    <h3>Ready to Build Something Amazing?</h3>
-                    <p>Let's turn your idea into reality. Get a free consultation today.</p>
+                    <h3>Ready to Build Something That Scales?</h3>
+                    <p>Book a discovery call to map scope, risks, and a clear next step for US, Canada, and Australia teams.</p>
                     <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg">
-                        <span>Start Your Project</span>
+                        <span>Book a Discovery Call</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -113,19 +120,7 @@ if (defined('ABSPATH')) {
         <i class="fas fa-arrow-up"></i>
     </a>
 
-    <div class="video-modal" id="videoModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <button type="button" class="modal-close" id="closeModal" aria-label="Close video modal">
-                <i class="fas fa-times" aria-hidden="true"></i>
-            </button>
-            <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <p>Video Player Would Load Here</p>
-            </div>
-        </div>
-    </div>
-
+    <script>window.SITE_BASE = <?= json_encode(SITE_BASE) ?>;</script>
     <?php $jsSrc = function_exists('seoAsset') ? seoAsset('js/script.js') : SITE_BASE . 'js/script.js?v=' . rawurlencode(ASSET_VERSION); ?>
     <script src="<?= $jsSrc ?>" defer></script>
     <?php if (defined('ABSPATH') && function_exists('wp_footer')) {

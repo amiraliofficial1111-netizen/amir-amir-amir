@@ -2,65 +2,73 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'FAQ | AppsDeddy - Engineering Smart Solutions';
-$pageDescription = 'Answers to common questions about AI integration, app development cost, timelines, technologies, support, and working with AppsDeddy.';
-$pageKeywords = 'app development FAQ, AI integration questions, software development cost, project timeline FAQ, hire development agency';
 $bodyClass = '';
 $activePage = 'faq';
+
+$faqItems = [
+    [
+        'q' => 'How long does a typical engagement take?',
+        'a' => 'Timelines depend on scope and compliance. A focused MVP may take 4-8 weeks; complex enterprise platforms often take 3-6 months. We provide a detailed timeline after discovery.',
+    ],
+    [
+        'q' => 'What technologies do you use?',
+        'a' => 'We use .NET / C#, Node, Python, and React; Azure and AWS; plus production LLM integrations, data pipelines, and security baselines for regulated products. See our Technologies pages for stack detail.',
+    ],
+    [
+        'q' => 'Do you provide post-launch support?',
+        'a' => 'Yes. Engagements include handover documentation and optional maintenance, including bug fixes, updates, and feature enhancements after launch.',
+    ],
+    [
+        'q' => 'How much does a typical engagement cost?',
+        'a' => 'Most product builds and platform engagements start in the tens of thousands and scale with complexity, compliance, and integrations. After a discovery call, we provide a scoped estimate and recommended team shape.',
+    ],
+    [
+        'q' => 'Do you work with clients in Canada and Australia?',
+        'a' => 'Yes. AppsDeddy is US-based (Indianapolis) and works with product and engineering leaders across the United States, Canada, and Australia, with collaboration hours that overlap key time zones.',
+    ],
+    [
+        'q' => 'Will I own the source code?',
+        'a' => 'Yes. Upon project completion and final payment, clients receive ownership of the agreed source code, designs, and assets, with documentation for handover.',
+    ],
+    [
+        'q' => 'How do AI automation projects get scoped?',
+        'a' => 'We start with a measurable workflow, data readiness, and governance requirements. Pilots are time-boxed; production includes evaluation, logging, and rollout gates. Learn more on AI Automation and our Production AI playbook.',
+    ],
+    [
+        'q' => 'Can you build HIPAA-aware healthcare software?',
+        'a' => 'Yes. We design access control, audit logging, and integration patterns appropriate for PHI. Scope and BAA expectations are confirmed in discovery. See Healthcare Software and the HIPAA checklist insight.',
+    ],
+    [
+        'q' => 'Do you handle FinTech compliance requirements?',
+        'a' => 'We engineer for auditability, KYC/AML workflows, and payment integrations, then align team shape to your compliance constraints. Review FinTech Solutions and the compliance architecture insight.',
+    ],
+    [
+        'q' => 'What engagement models do you offer?',
+        'a' => 'Fixed-scope, milestone-based, and dedicated squad models. We recommend a model after discovery based on risk, urgency, and how clear requirements are.',
+    ],
+    [
+        'q' => 'How do discovery calls work?',
+        'a' => 'A 30-minute call to map goals, constraints, and risks. Most proposals follow within five business days with scope options and a recommended team shape.',
+    ],
+    [
+        'q' => 'Where can I see proof of delivery?',
+        'a' => 'Browse on-site Case Studies for Healthcare, SaaS, and AI outcomes. You can also leave or request reviews on Clutch and GoodFirms after an engagement.',
+    ],
+];
 
 $pageSchema = [
     '@context'   => 'https://schema.org',
     '@type'      => 'FAQPage',
-    'mainEntity' => [
-        [
+    'mainEntity' => array_map(static function (array $item): array {
+        return [
             '@type' => 'Question',
-            'name'  => 'How long does it take to build an app?',
+            'name'  => $item['q'],
             'acceptedAnswer' => [
                 '@type' => 'Answer',
-                'text'  => 'The timeline depends on project complexity. A simple MVP can take 4-8 weeks, while a complex enterprise app might take 3-6 months. We provide a detailed timeline after our initial consultation.',
+                'text'  => $item['a'],
             ],
-        ],
-        [
-            '@type' => 'Question',
-            'name'  => 'What technologies do you use?',
-            'acceptedAnswer' => [
-                '@type' => 'Answer',
-                'text'  => 'We use React Native, Flutter, Swift, Kotlin for mobile; React, Vue.js, Next.js for web; Node.js and Python for backend; and AWS, Google Cloud for infrastructure.',
-            ],
-        ],
-        [
-            '@type' => 'Question',
-            'name'  => 'Do you provide post-launch support?',
-            'acceptedAnswer' => [
-                '@type' => 'Answer',
-                'text'  => 'Yes. All packages include post-launch support with maintenance plans from 1 to 12 months, including bug fixes, updates, and feature enhancements.',
-            ],
-        ],
-        [
-            '@type' => 'Question',
-            'name'  => 'How much does app development cost?',
-            'acceptedAnswer' => [
-                '@type' => 'Answer',
-                'text'  => 'Costs vary by complexity and platforms. Basic apps start around $2,999, while complex apps can range from $15,000+. We offer free consultations for accurate quotes.',
-            ],
-        ],
-        [
-            '@type' => 'Question',
-            'name'  => 'How much do AI projects cost?',
-            'acceptedAnswer' => [
-                '@type' => 'Answer',
-                'text'  => 'AI projects typically start at $3,500 for a focused automation. Enterprise integrations from $15,000. Book a free scoping call to get an accurate quote for your project.',
-            ],
-        ],
-        [
-            '@type' => 'Question',
-            'name'  => 'Will I own the source code?',
-            'acceptedAnswer' => [
-                '@type' => 'Answer',
-                'text'  => 'Yes. Upon project completion and final payment, you receive full ownership of source code, designs, and assets, plus documentation for handover.',
-            ],
-        ],
-    ],
+        ];
+    }, $faqItems),
 ];
 
 require_once 'includes/header.php';
@@ -71,7 +79,7 @@ require_once 'includes/header.php';
         <div class="container">
             <div class="page-header-content">
                 <h1>Frequently Asked Questions</h1>
-                <p>Can't find the answer you're looking for? Contact our support team.</p>
+                <p>Can't find the answer you're looking for? <a href="<?= pageUrl('contact') ?>">Book a discovery call</a>.</p>
             </div>
         </div>
     </section>
@@ -82,73 +90,39 @@ require_once 'includes/header.php';
                 <div class="faq-content" data-aos="fade-right">
                     <span class="section-tag"><i class="fas fa-question-circle"></i> FAQ</span>
                     <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
-                    <p class="faq-description">Can't find the answer you're looking for? <a href="<?= pageUrl('contact') ?>">Contact our support team</a>.</p>
+                    <p class="faq-description">Long-tail answers for AI, healthcare, FinTech, engagement models, and proof. Prefer a walkthrough? <a href="<?= pageUrl('contact') ?>">Book a discovery call</a>.</p>
                     <div class="faq-stats">
                         <div class="faq-stat">
                             <div class="stat-icon"><i class="fas fa-comments"></i></div>
-                            <div class="stat-text"><span class="stat-value">24/7</span><span class="stat-label">Support</span></div>
+                            <div class="stat-text"><span class="stat-value">Discovery</span><span class="stat-label">30-min call</span></div>
                         </div>
                         <div class="faq-stat">
                             <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                            <div class="stat-text"><span class="stat-value">&lt;2hrs</span><span class="stat-label">Response Time</span></div>
+                            <div class="stat-text"><span class="stat-value">5 days</span><span class="stat-label">Typical proposal</span></div>
                         </div>
+                    </div>
+                    <div class="faq-quick-links">
+                        <a href="<?= pageUrl('services') ?>">Services</a>
+                        <a href="<?= pageUrl('technologies') ?>">Technologies</a>
+                        <a href="<?= pageUrl('insights') ?>">Insights</a>
+                        <a href="<?= pageUrl('case-studies') ?>">Case Studies</a>
                     </div>
                 </div>
                 <div class="faq-accordion" data-aos="fade-left">
-                    <div class="accordion-item active">
-                        <button type="button" class="accordion-header" aria-expanded="true" aria-controls="faq-page-panel-1" id="faq-page-trigger-1">
-                            <span>How long does it take to build an app?</span>
+                    <?php foreach ($faqItems as $i => $item) :
+                        $n = $i + 1;
+                        $active = $i === 0;
+                    ?>
+                    <div class="accordion-item<?= $active ? ' active' : '' ?>">
+                        <button type="button" class="accordion-header" aria-expanded="<?= $active ? 'true' : 'false' ?>" aria-controls="faq-page-panel-<?= $n ?>" id="faq-page-trigger-<?= $n ?>">
+                            <span><?= sanitize($item['q']) ?></span>
                             <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="accordion-content" id="faq-page-panel-1" role="region" aria-labelledby="faq-page-trigger-1">
-                            <p>The timeline depends on the complexity of your project. A simple MVP can take 4-8 weeks, while a complex enterprise app might take 3-6 months. We'll provide a detailed timeline after our initial consultation.</p>
+                        <div class="accordion-content" id="faq-page-panel-<?= $n ?>" role="region" aria-labelledby="faq-page-trigger-<?= $n ?>">
+                            <p><?= sanitize($item['a']) ?></p>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-page-panel-2" id="faq-page-trigger-2">
-                            <span>What technologies do you use?</span>
-                            <i class="fas fa-plus" aria-hidden="true"></i>
-                        </button>
-                        <div class="accordion-content" id="faq-page-panel-2" role="region" aria-labelledby="faq-page-trigger-2">
-                            <p>We use cutting-edge technologies including React Native, Flutter, Swift, Kotlin for mobile; React, Vue.js, Next.js for web; Node.js and Python for backend; and AWS, Google Cloud for infrastructure.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-page-panel-3" id="faq-page-trigger-3">
-                            <span>Do you provide post-launch support?</span>
-                            <i class="fas fa-plus" aria-hidden="true"></i>
-                        </button>
-                        <div class="accordion-content" id="faq-page-panel-3" role="region" aria-labelledby="faq-page-trigger-3">
-                            <p>Yes! All our packages include post-launch support. We offer maintenance plans ranging from 1 to 12 months, including bug fixes, updates, and feature enhancements to ensure your app runs smoothly.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-page-panel-4" id="faq-page-trigger-4">
-                            <span>How much does app development cost?</span>
-                            <i class="fas fa-plus" aria-hidden="true"></i>
-                        </button>
-                        <div class="accordion-content" id="faq-page-panel-4" role="region" aria-labelledby="faq-page-trigger-4">
-                            <p>Costs vary based on complexity, features, and platforms. Basic apps start around $2,999, while complex apps can range from $15,000+. We offer free consultations to provide accurate quotes based on your requirements.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-page-panel-5" id="faq-page-trigger-5">
-                            <span>How much do AI projects cost?</span>
-                            <i class="fas fa-plus" aria-hidden="true"></i>
-                        </button>
-                        <div class="accordion-content" id="faq-page-panel-5" role="region" aria-labelledby="faq-page-trigger-5">
-                            <p>AI projects typically start at $3,500 for a focused automation. Enterprise integrations from $15,000. Book a free scoping call to get an accurate quote for your project.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-page-panel-6" id="faq-page-trigger-6">
-                            <span>Will I own the source code?</span>
-                            <i class="fas fa-plus" aria-hidden="true"></i>
-                        </button>
-                        <div class="accordion-content" id="faq-page-panel-6" role="region" aria-labelledby="faq-page-trigger-6">
-                            <p>Absolutely! Upon project completion and final payment, you receive full ownership of all source code, designs, and assets. We also provide documentation for easy handover or future development.</p>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -159,9 +133,9 @@ require_once 'includes/header.php';
         <div class="container">
             <div class="cta-content" data-aos="fade-up">
                 <h2>Still Have Questions?</h2>
-                <p>Our team is here to help. Get in touch for a free consultation.</p>
+                <p>Book a discovery call and we'll map scope and next steps clearly.</p>
                 <div class="cta-buttons">
-                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Contact Us</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Book a Discovery Call</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

@@ -2,9 +2,6 @@
 define('APPSDEDDY', true);
 require_once 'includes/config.php';
 
-$pageTitle = 'How We Work | AppsDeddy - Engineering Smart Solutions';
-$pageDescription = 'Our proven process: discovery, design, development, QA, and launch. Transparent collaboration and on-time delivery for AI, app, and digital projects.';
-$pageKeywords = 'software development process, agile development agency, app development workflow, project delivery process, AppsDeddy how we work';
 $bodyClass = '';
 $activePage = 'how-we-work';
 
@@ -133,7 +130,7 @@ require_once 'includes/header.php';
                     <h2 class="section-title">Why Choose <span class="gradient-text">AppsDeddy?</span></h2>
                     <p class="about-intro-text">With a passion for technology and a commitment to excellence, AppsDeddy stands out as your trusted partner. We combine creativity, technical expertise, and a client-first mindset to deliver solutions that drive results.</p>
                     <div class="about-intro-actions">
-                        <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg"><span>Get Started</span><i class="fas fa-arrow-right"></i></a>
+                        <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg"><span>Book a Discovery Call</span><i class="fas fa-arrow-right"></i></a>
                         <a href="<?= pageUrl('services') ?>" class="btn btn-outline btn-lg"><span>Our Services</span></a>
                     </div>
                 </div>
@@ -154,9 +151,9 @@ require_once 'includes/header.php';
         <div class="container">
             <div class="cta-content" data-aos="fade-up">
                 <h2>Ready to Get <span class="gradient-text-light">Started?</span></h2>
-                <p>Let's turn your idea into a reality. Get a free consultation today.</p>
+                <p>Book a discovery call to map clear scope, risks, and next steps.</p>
                 <div class="cta-buttons">
-                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Get in Touch</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= pageUrl('contact') ?>" class="btn btn-white btn-lg"><span>Book a Discovery Call</span><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

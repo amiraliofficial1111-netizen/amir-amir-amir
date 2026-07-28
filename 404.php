@@ -6,8 +6,6 @@ http_response_code(404);
 
 $bodyClass  = 'error-page';
 $activePage = '';
-$pageTitle  = 'Page Not Found | AppsDeddy';
-$pageDescription = 'The page you requested was not found. Browse AppsDeddy app development services, portfolio, blog, or contact us for a free consultation.';
 $pageRobots = 'noindex, follow';
 
 require_once 'includes/header.php';
@@ -15,7 +13,7 @@ require_once 'includes/header.php';
 
     <section class="page-header">
         <div class="container">
-            <h1>404 — Page Not Found</h1>
+            <h1>404: Page Not Found</h1>
             <p>The page you are looking for may have been moved, renamed, or no longer exists.</p>
         </div>
     </section>
@@ -25,7 +23,7 @@ require_once 'includes/header.php';
             <div class="error-card">
                 <p>Here are some helpful links to get you back on track:</p>
                 <ul class="error-links">
-                    <li><a href="<?= SITE_BASE ?>">Home — App Development &amp; Design Solutions</a></li>
+                    <li><a href="<?= SITE_BASE ?>">Home: Enterprise Software Development</a></li>
                     <li><a href="<?= pageUrl('services') ?>">Our Services</a></li>
                     <li><a href="<?= pageUrl('about') ?>">About AppsDeddy</a></li>
                     <li><a href="<?= SITE_BASE ?>blog/">Blog</a></li>
@@ -33,7 +31,7 @@ require_once 'includes/header.php';
                     <li><a href="<?= pageUrl('faq') ?>">FAQ</a></li>
                 </ul>
                 <a href="<?= pageUrl('contact') ?>" class="btn btn-primary btn-lg">
-                    <span>Get a Free Consultation</span>
+                    <span>Book a Discovery Call</span>
                     <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>

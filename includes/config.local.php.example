@@ -14,3 +14,13 @@ define('SMTP_PASSWORD', 'your-titan-email-password-here');
 
 // Optional: Google Analytics 4 measurement ID (e.g. G-XXXXXXXXXX)
 // define('GA_MEASUREMENT_ID', 'G-XXXXXXXXXX');
+
+// Optional: Calendly inline embed URL for the contact page (e.g. https://calendly.com/your-org/discovery-call)
+// define('CALENDLY_EMBED_URL', 'https://calendly.com/your-org/discovery-call');
+
+// Optional: review profile URLs once claimed
+// define('REVIEW_CLUTCH_URL', 'https://clutch.co/profile/your-profile');
+// define('REVIEW_GOODFIRMS_URL', 'https://www.goodfirms.co/company/your-profile');
+
+// Optional: LinkedIn Insight Tag partner ID (ads only)
+// define('LINKEDIN_PARTNER_ID', '');

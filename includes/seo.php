@@ -25,75 +25,94 @@ function seoCanonicalUrl(): string {
 }
 
 function seoPageSlug(): string {
+    if (!empty($GLOBALS['seoPageSlug'])) {
+        return ltrim((string) $GLOBALS['seoPageSlug'], '/');
+    }
+
     $script = basename($_SERVER['SCRIPT_NAME'] ?? 'index.php');
     return $script === 'index.php' ? 'index' : preg_replace('/\.php$/i', '', $script);
 }
 
 function seoDefaultKeywords(): string {
-    return 'app development, mobile app development, web development, iOS, Android, React Native, Flutter, Indianapolis, United States, software agency';
+    return 'enterprise software development company, AI automation, FinTech software, healthcare software, custom SaaS, enterprise .NET, cloud solutions, US Canada Australia';
 }
 
 /** @return array<string, array{title: string, description: string, keywords?: string}> */
 function seoPageRegistry(): array {
     return [
         'index' => [
-            'title'       => 'AppsDeddy | AI App Development, Automation & Digital Solutions',
-            'description' => 'AI-powered app development and automation for US businesses. Custom AI agents, mobile apps, web design, data engineering, and UX — Indianapolis-based since 2014.',
-            'keywords'    => 'AI app development, AI automation agency, custom software Indianapolis, web development USA, Gen AI integration, mobile app development, AppsDeddy',
+            'title'       => 'Enterprise Software Development Company | AppsDeddy',
+            'description' => 'AppsDeddy builds AI automation, FinTech, healthcare, SaaS, and .NET solutions for companies in the US, Canada, and Australia. Book a discovery call.',
+            'keywords'    => 'enterprise software development company, AI automation development, FinTech healthcare SaaS .NET, software partner US Canada Australia, AppsDeddy',
         ],
         'about' => [
-            'title'       => 'About Us | AppsDeddy - App Development Experts',
-            'description' => 'Learn about AppsDeddy, a US digital agency since 2014. AI integration, mobile and web apps, data engineering, and UX design with agile delivery and 24/7 support from Indianapolis.',
-            'keywords'    => 'about AppsDeddy, digital agency Indianapolis, AI app development team, software company USA, web development agency, AppsDeddy',
+            'title'       => 'About AppsDeddy | US Software Engineering Partner',
+            'description' => 'Founded in 2014 in Indianapolis, AppsDeddy helps startups and enterprises across the US, Canada, and Australia ship AI, FinTech, healthcare, and SaaS platforms.',
+            'keywords'    => 'about AppsDeddy, software development company Indianapolis, US software development partner, AppsDeddy',
         ],
         'services' => [
-            'title'       => 'Digital & AI Services | AppsDeddy',
-            'description' => 'Gen AI integration, mobile & web apps, data engineering, and UX/UI design — full-stack digital services for US businesses from AppsDeddy Indianapolis.',
-            'keywords'    => 'digital agency services, AI integration services, app development services, data engineering, UX UI design, web development Indianapolis',
+            'title'       => 'Enterprise Software Services | AI, FinTech, Healthcare | AppsDeddy',
+            'description' => 'AI automation, FinTech, healthcare software, custom SaaS, enterprise .NET, and cloud solutions for US, Canada, and Australia product teams.',
+            'keywords'    => 'enterprise software services, AI automation, FinTech software development, healthcare software, custom SaaS, enterprise .NET',
         ],
         'contact' => [
-            'title'       => 'Contact AppsDeddy | Free Project Consultation',
-            'description' => 'Contact AppsDeddy for a free quote on your mobile or web project. We respond within 24 hours.',
-            'keywords'    => 'contact app developer, free app development quote, hire app development agency',
+            'title'       => 'Contact AppsDeddy | Book a Software Discovery Call',
+            'description' => 'Book a 30-minute discovery call. AppsDeddy delivers enterprise software across AI, FinTech, Healthcare, SaaS, and .NET.',
+            'keywords'    => 'book discovery call, contact AppsDeddy, software proposal request, enterprise software consultation',
         ],
         'how-we-work' => [
             'title'       => 'How We Work | AppsDeddy Development Process',
-            'description' => 'Our proven process: discovery, design, development, QA, and launch. Transparent collaboration and on-time delivery for AI, app, and digital projects.',
-            'keywords'    => 'software development process, agile development agency, app development workflow, project delivery process, AppsDeddy how we work',
+            'description' => 'Our proven process: discovery, design, development, QA, and launch. Transparent collaboration for AI, FinTech, healthcare, SaaS, and .NET engagements.',
+            'keywords'    => 'software development process, agile delivery, discovery call, AppsDeddy how we work',
         ],
         'faq' => [
-            'title'       => 'FAQ | App Development & AI Questions Answered',
-            'description' => 'Answers to common questions about AI integration, app development cost, timelines, technologies, support, and working with AppsDeddy.',
-            'keywords'    => 'app development FAQ, AI integration questions, software development cost, project timeline FAQ, hire development agency',
+            'title'       => 'FAQ | Enterprise Software & Engagement Questions',
+            'description' => 'Answers about engagement cost, technologies, IP ownership, Canada/Australia collaboration, and working with AppsDeddy.',
+            'keywords'    => 'software development cost, discovery call FAQ, enterprise software FAQ, AppsDeddy',
         ],
         'testimonials' => [
             'title'       => 'Client Reviews | AppsDeddy Testimonials',
-            'description' => 'Real client reviews of AppsDeddy AI, mobile, and web development projects. See what US businesses say about our delivery and support.',
-            'keywords'    => 'AppsDeddy reviews, app development testimonials, client reviews software agency, AI development reviews Indianapolis',
+            'description' => 'What product and engineering leaders say about AppsDeddy delivery across AI, platforms, and enterprise software.',
+            'keywords'    => 'AppsDeddy reviews, software development testimonials, client reviews',
         ],
-        'gen-ai-integration' => [
-            'title'       => 'Gen AI Integration & Consulting | AppsDeddy',
-            'description' => 'Custom AI integration and automation services for US businesses. We build AI agents, RAG pipelines, LLM integrations, and workflow automation. Based in Indianapolis.',
-            'keywords'    => 'gen AI integration, AI automation agency, custom AI development, LLM integration, AI consulting Indianapolis, workflow automation AI',
+        'case-studies' => [
+            'title'       => 'Case Studies | Enterprise Software | AppsDeddy',
+            'description' => 'Selected AppsDeddy work across healthcare, SaaS, and AI automation for US, Canada, and Australia product teams.',
+            'keywords'    => 'case studies, software development portfolio, healthcare SaaS AI projects AppsDeddy',
         ],
-        'web-mobile-app-development' => [
-            'title'       => 'Web & Mobile App Development | AppsDeddy',
-            'description' => 'Custom web and mobile app development for US businesses. Native iOS & Android, React Native, Flutter, and scalable web applications from Indianapolis.',
-            'keywords'    => 'mobile app development, iOS Android development, React Native, Flutter, web application development, custom app development Indianapolis',
+        'industries' => [
+            'title'       => 'Industries We Serve | AppsDeddy',
+            'description' => 'Enterprise software for FinTech, healthcare, and SaaS teams in the US, Canada, and Australia.',
+            'keywords'    => 'FinTech healthcare SaaS industries, enterprise software by industry, AppsDeddy',
         ],
-        'data-engineering-solutions' => [
-            'title'       => 'Data Engineering Solutions | AppsDeddy',
-            'description' => 'Data pipelines, ETL, integration, and analytics for US businesses. Turn raw data into actionable insights with secure, scalable data engineering from AppsDeddy.',
-            'keywords'    => 'data engineering services, data pipeline development, ETL integration, big data analytics, data architecture, data engineering Indianapolis',
+        'technologies' => [
+            'title'       => 'Technologies | .NET, Azure, AI | AppsDeddy',
+            'description' => 'Technology stack pages for .NET, Azure, and production AI. Evaluate fit, then book a discovery call for delivery.',
+            'keywords'    => '.NET Azure AI technologies, enterprise technology stack AppsDeddy',
         ],
-        'ux-ui-design' => [
-            'title'       => 'UX & UI Design Services | AppsDeddy',
-            'description' => 'User-centered UX research, wireframes, prototypes, and polished UI design for web and mobile products. Create engaging digital experiences with AppsDeddy.',
-            'keywords'    => 'UX UI design services, user experience design, UI design agency, wireframing prototyping, mobile app design, web design Indianapolis',
+        'insights' => [
+            'title'       => 'Insights | Enterprise Software Guides | AppsDeddy',
+            'description' => 'Pillar guides on AI automation, HIPAA-aware software, FinTech architecture, SaaS tenancy, .NET modernization, and Azure landing zones.',
+            'keywords'    => 'enterprise software insights, AI FinTech SaaS guides, AppsDeddy insights',
+        ],
+        'markets' => [
+            'title'       => 'Markets | US, Canada, Australia | AppsDeddy',
+            'description' => 'US-based enterprise software partner serving the United States, Canada, and Australia with timezone-aware collaboration.',
+            'keywords'    => 'US Canada Australia software partner, Indianapolis software company markets',
+        ],
+        'thank-you' => [
+            'title'       => 'Thank You | AppsDeddy',
+            'description' => 'Thanks for contacting AppsDeddy. We will review your request and follow up within one working day.',
+            'robots'      => 'noindex, follow',
+        ],
+        'seo-checklist' => [
+            'title'       => 'Technical SEO Checklist | AppsDeddy Internal',
+            'description' => 'Quarterly technical SEO checklist for AppsDeddy operators.',
+            'robots'      => 'noindex, nofollow',
         ],
         'privacy-policy' => [
             'title'       => 'Privacy Policy | AppsDeddy',
-            'description' => 'AppsDeddy privacy policy — how we collect, use, and protect your personal information.',
+            'description' => 'AppsDeddy privacy policy: how we collect, use, and protect your personal information.',
             'robots'      => 'noindex, follow',
         ],
         'terms-conditions' => [
@@ -106,6 +125,11 @@ function seoPageRegistry(): array {
             'description' => 'Learn how AppsDeddy uses cookies and similar technologies on our website.',
             'robots'      => 'noindex, follow',
         ],
+        '404' => [
+            'title'       => 'Page Not Found | AppsDeddy',
+            'description' => 'The page you requested was not found. Browse enterprise software services, case studies, insights, or book a discovery call.',
+            'robots'      => 'noindex, follow',
+        ],
     ];
 }
 
@@ -116,7 +140,7 @@ function seoResolveMeta(): array {
 
     return [
         'title'       => $GLOBALS['pageTitle'] ?? ($meta['title'] ?? (SITE_NAME . ' | ' . SITE_TAGLINE)),
-        'description' => $GLOBALS['pageDescription'] ?? ($meta['description'] ?? 'AppsDeddy is a US-based app development agency delivering custom mobile apps, web design, and business software solutions from Indianapolis.'),
+        'description' => $GLOBALS['pageDescription'] ?? ($meta['description'] ?? 'AppsDeddy builds AI automation, FinTech, healthcare, SaaS, and .NET solutions for companies in the US, Canada, and Australia.'),
         'keywords'    => $GLOBALS['pageKeywords'] ?? ($meta['keywords'] ?? seoDefaultKeywords()),
         'robots'      => $GLOBALS['pageRobots'] ?? ($meta['robots'] ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'),
         'og_image'    => $GLOBALS['pageOgImage'] ?? SEO_OG_IMAGE,
@@ -125,6 +149,15 @@ function seoResolveMeta(): array {
 }
 
 function seoOrganizationSchema(): array {
+    $sameAs = array_values(array_filter([
+        SOCIAL_FACEBOOK,
+        SOCIAL_INSTAGRAM,
+        SOCIAL_LINKEDIN,
+        SOCIAL_BEHANCE,
+        defined('REVIEW_CLUTCH_URL') && str_contains(REVIEW_CLUTCH_URL, '/profile/') ? REVIEW_CLUTCH_URL : null,
+        defined('REVIEW_GOODFIRMS_URL') && str_contains(REVIEW_GOODFIRMS_URL, '/company/') ? REVIEW_GOODFIRMS_URL : null,
+    ], fn($url) => $url && $url !== '#'));
+
     return [
         '@context' => 'https://schema.org',
         '@type'    => 'Organization',
@@ -137,18 +170,52 @@ function seoOrganizationSchema(): array {
         'telephone'=> SITE_PHONE,
         'address'  => [
             '@type'           => 'PostalAddress',
-            'streetAddress'   => '8520 Allison Pointe Blvd Ste 223',
-            'addressLocality' => 'Indianapolis',
-            'addressRegion'   => 'IN',
-            'postalCode'      => '46250',
-            'addressCountry'  => 'US',
+            'streetAddress'   => defined('SITE_NAP_STREET') ? SITE_NAP_STREET : '8520 Allison Pointe Blvd Ste 223',
+            'addressLocality' => defined('SITE_NAP_CITY') ? SITE_NAP_CITY : 'Indianapolis',
+            'addressRegion'   => defined('SITE_NAP_REGION') ? SITE_NAP_REGION : 'IN',
+            'postalCode'      => defined('SITE_NAP_POSTAL') ? SITE_NAP_POSTAL : '46250',
+            'addressCountry'  => defined('SITE_NAP_COUNTRY') ? SITE_NAP_COUNTRY : 'US',
         ],
-        'sameAs' => array_values(array_filter([
-            SOCIAL_FACEBOOK,
-            SOCIAL_INSTAGRAM,
-            SOCIAL_LINKEDIN,
-            SOCIAL_BEHANCE,
-        ], fn($url) => $url && $url !== '#')),
+        'areaServed' => [
+            ['@type' => 'Country', 'name' => 'United States'],
+            ['@type' => 'Country', 'name' => 'Canada'],
+            ['@type' => 'Country', 'name' => 'Australia'],
+        ],
+        'sameAs' => $sameAs,
+    ];
+}
+
+function seoLocalBusinessSchema(): array {
+    return [
+        '@context'  => 'https://schema.org',
+        '@type'     => 'ProfessionalService',
+        '@id'       => SITE_URL . '/#localbusiness',
+        'name'      => SITE_NAME,
+        'url'       => SITE_URL,
+        'image'     => SEO_OG_IMAGE,
+        'email'     => SITE_EMAIL,
+        'telephone' => SITE_PHONE,
+        'priceRange'=> '$$$$',
+        'address'   => [
+            '@type'           => 'PostalAddress',
+            'streetAddress'   => defined('SITE_NAP_STREET') ? SITE_NAP_STREET : '8520 Allison Pointe Blvd Ste 223',
+            'addressLocality' => defined('SITE_NAP_CITY') ? SITE_NAP_CITY : 'Indianapolis',
+            'addressRegion'   => defined('SITE_NAP_REGION') ? SITE_NAP_REGION : 'IN',
+            'postalCode'      => defined('SITE_NAP_POSTAL') ? SITE_NAP_POSTAL : '46250',
+            'addressCountry'  => defined('SITE_NAP_COUNTRY') ? SITE_NAP_COUNTRY : 'US',
+        ],
+        'geo' => [
+            '@type'     => 'GeoCoordinates',
+            'latitude'  => defined('SITE_GEO_LAT') ? SITE_GEO_LAT : '39.7684',
+            'longitude' => defined('SITE_GEO_LNG') ? SITE_GEO_LNG : '-86.1581',
+        ],
+        'openingHours' => defined('SITE_HOURS') ? SITE_HOURS : 'Mo-Fr 09:00-18:00',
+        'areaServed' => [
+            ['@type' => 'Country', 'name' => 'United States'],
+            ['@type' => 'Country', 'name' => 'Canada'],
+            ['@type' => 'Country', 'name' => 'Australia'],
+        ],
+        'parentOrganization' => ['@id' => SITE_URL . '/#organization'],
     ];
 }
 
@@ -202,7 +269,11 @@ function seoServiceSchema(string $name, string $description): array {
         'name'        => $name,
         'description' => $description,
         'provider'    => ['@id' => SITE_URL . '/#organization'],
-        'areaServed'  => 'United States',
+        'areaServed'  => [
+            ['@type' => 'Country', 'name' => 'United States'],
+            ['@type' => 'Country', 'name' => 'Canada'],
+            ['@type' => 'Country', 'name' => 'Australia'],
+        ],
         'url'         => seoCanonicalUrl(),
     ];
 }
@@ -220,24 +291,21 @@ function seoRenderJsonLd(array $schemas): string {
 }
 
 function seoAutoServiceSchema(string $slug): ?array {
-    $pages = seoPageRegistry();
-    if (!isset($pages[$slug]) || !str_contains($slug, '-')) {
+    if (!function_exists('pagesServiceRegistry')) {
+        require_once __DIR__ . '/pages-registry.php';
+    }
+
+    if (!str_starts_with($slug, 'services/')) {
         return null;
     }
-    $serviceSlugs = [
-        'gen-ai-integration',
-        'web-mobile-app-development',
-        'data-engineering-solutions',
-        'ux-ui-design',
-    ];
-    if (!in_array($slug, $serviceSlugs, true)) {
+
+    $serviceSlug = substr($slug, strlen('services/'));
+    $page = pagesServiceRegistry()[$serviceSlug] ?? null;
+    if (!$page) {
         return null;
     }
-    $page = $pages[$slug];
-    return seoServiceSchema(
-        preg_replace('/ \| AppsDeddy$/', '', $page['title']),
-        $page['description']
-    );
+
+    return seoServiceSchema($page['h1'] ?? $serviceSlug, $page['description'] ?? '');
 }
 
 function seoBuildSchemas(array $meta): array {
@@ -247,7 +315,12 @@ function seoBuildSchemas(array $meta): array {
         seoWebPageSchema($meta),
     ];
 
-    $autoService = seoAutoServiceSchema(seoPageSlug());
+    $slug = seoPageSlug();
+    if ($slug === 'index' || $slug === 'contact' || $slug === 'markets' || str_starts_with($slug, 'markets/')) {
+        $schemas[] = seoLocalBusinessSchema();
+    }
+
+    $autoService = seoAutoServiceSchema($slug);
     if ($autoService) {
         $schemas[] = $autoService;
     }
@@ -279,6 +352,10 @@ function seoSitemapUrls(): array {
             'changefreq' => $slug === 'index' ? 'weekly' : 'monthly',
             'priority'   => $slug === 'index' ? '1.0' : '0.8',
         ];
+    }
+
+    if (function_exists('pagesSitemapEntries')) {
+        $urls = array_merge($urls, pagesSitemapEntries());
     }
 
     return $urls;

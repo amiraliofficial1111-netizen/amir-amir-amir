@@ -28,6 +28,25 @@
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
+    function trackEvent(eventName, params) {
+        if (typeof gtag === 'function') {
+            gtag('event', eventName, params || {});
+        }
+    }
+
+    document.querySelectorAll('a[href]').forEach(function(link) {
+        const text = (link.textContent || '').toLowerCase();
+        const href = link.getAttribute('href') || '';
+        if (text.includes('discovery') || text.includes('request a proposal') || (href.includes('contact') && link.classList.contains('nav-btn'))) {
+            link.addEventListener('click', function() {
+                trackEvent('discovery_call_click', {
+                    link_url: link.href,
+                    link_text: (link.textContent || '').trim()
+                });
+            });
+        }
+    });
+
     // ===== Preloader =====
     const preloader = document.getElementById('preloader');
     
@@ -165,13 +184,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchData = [
         { title: 'Home', url: '/', keywords: 'home main page index', icon: 'fa-home' },
         { title: 'Services', url: '/services', keywords: 'services all offerings', icon: 'fa-cogs' },
-        { title: 'Gen AI Integration', url: '/gen-ai-integration', keywords: 'ai artificial intelligence generative ai machine learning chatbot', icon: 'fa-robot' },
-        { title: 'Web & Mobile App Development', url: '/web-mobile-app-development', keywords: 'web mobile app development ios android react native flutter application', icon: 'fa-mobile-alt' },
-        { title: 'Data Engineering Solutions', url: '/data-engineering-solutions', keywords: 'data engineering pipeline analytics big data integration', icon: 'fa-database' },
-        { title: 'UX & UI Design', url: '/ux-ui-design', keywords: 'ux ui design user experience interface wireframe prototype', icon: 'fa-paint-brush' },
+        { title: 'AI Automation', url: '/services/ai-automation', keywords: 'ai automation artificial intelligence llm workflow machine learning chatbot', icon: 'fa-robot' },
+        { title: 'FinTech Solutions', url: '/services/fintech', keywords: 'fintech payments lending kyc aml banking software', icon: 'fa-university' },
+        { title: 'Healthcare Software', url: '/services/healthcare', keywords: 'healthcare hipaa ehr patient portal clinical software', icon: 'fa-heartbeat' },
+        { title: 'Custom SaaS', url: '/services/custom-saas', keywords: 'custom saas web application development multi-tenant platform', icon: 'fa-cloud' },
+        { title: 'Enterprise .NET', url: '/services/enterprise-dotnet', keywords: 'enterprise dotnet asp.net core azure modernization', icon: 'fa-server' },
+        { title: 'Cloud Solutions', url: '/services/cloud-solutions', keywords: 'cloud aws azure devops infrastructure', icon: 'fa-network-wired' },
+        { title: 'Data Engineering', url: '/services/data-engineering', keywords: 'data engineering pipeline analytics big data integration', icon: 'fa-database' },
+        { title: 'UX UI Design', url: '/services/ux-ui-design', keywords: 'ux ui design user experience interface wireframe prototype', icon: 'fa-paint-brush' },
+        { title: 'Industries', url: '/industries', keywords: 'industries fintech healthcare saas verticals', icon: 'fa-building' },
+        { title: 'Technologies', url: '/technologies', keywords: 'technologies stack dotnet azure ai llm', icon: 'fa-microchip' },
+        { title: '.NET Technology', url: '/technologies/dotnet', keywords: 'dotnet asp.net core csharp azure', icon: 'fa-code' },
+        { title: 'Azure Technology', url: '/technologies/azure', keywords: 'azure cloud landing zone devops', icon: 'fa-cloud' },
+        { title: 'AI Technology', url: '/technologies/ai', keywords: 'ai llm rag agents mLops', icon: 'fa-robot' },
+        { title: 'Markets', url: '/markets', keywords: 'markets us canada australia timezone', icon: 'fa-globe' },
+        { title: 'United States Market', url: '/markets/united-states', keywords: 'united states indianapolis est cst', icon: 'fa-flag-usa' },
+        { title: 'Canada Market', url: '/markets/canada', keywords: 'canada canadian software partner', icon: 'fa-maple-leaf' },
+        { title: 'Australia Market', url: '/markets/australia', keywords: 'australia aest aedt software partner', icon: 'fa-globe-asia' },
+        { title: 'Insights', url: '/insights', keywords: 'insights guides playbooks articles', icon: 'fa-lightbulb' },
+        { title: 'Case Studies', url: '/case-studies', keywords: 'portfolio projects case studies work healthcare saas ai', icon: 'fa-briefcase' },
         { title: 'How We Work', url: '/how-we-work', keywords: 'how we work process methodology', icon: 'fa-project-diagram' },
         { title: 'About Us', url: '/about', keywords: 'about us company team', icon: 'fa-info-circle' },
-        { title: 'Portfolio', url: 'https://www.behance.net/AppsDeddy', keywords: 'portfolio projects case studies work', icon: 'fa-briefcase' },
         { title: 'FAQ', url: '/faq', keywords: 'faq frequently asked questions help', icon: 'fa-question-circle' },
         { title: 'Contact', url: '/contact', keywords: 'contact get in touch email phone message', icon: 'fa-envelope' },
         { title: 'Privacy Policy', url: '/privacy-policy', keywords: 'privacy policy data', icon: 'fa-shield-alt' },
@@ -356,12 +389,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ===== Counter Animation =====
-    const counters = document.querySelectorAll('.stat-number');
+    const counters = document.querySelectorAll('.stat-number[data-count]');
     let countersAnimated = false;
+
+    function ensureCounterFallback() {
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-count'), 10);
+            if (isNaN(target)) return;
+            const current = parseInt(String(counter.textContent).replace(/\D/g, ''), 10);
+            if (isNaN(current) || current === 0) {
+                counter.textContent = target;
+            }
+        });
+    }
+
+    ensureCounterFallback();
     
     function animateCounters() {
         counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-count'));
+            const target = parseInt(counter.getAttribute('data-count'), 10);
+            if (isNaN(target)) return;
+
+            const shown = parseInt(String(counter.textContent).replace(/\D/g, ''), 10);
+            // Already showing the final value — do not flash back to 0
+            if (!isNaN(shown) && shown === target) {
+                return;
+            }
+
             const duration = 2500;
             const startTime = performance.now();
             
@@ -395,10 +449,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     countersAnimated = true;
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.2 });
         
         statsObserver.observe(heroStats);
+    } else {
+        // Non-home pages with static stats — keep displayed values
+        countersAnimated = true;
     }
+
+    // Prefill contact form service from ?service=
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const serviceParam = params.get('service');
+        if (serviceParam) {
+            const serviceSelect = document.querySelector('#service, select[name="service"]');
+            if (serviceSelect) {
+                const option = Array.from(serviceSelect.options).find(o => o.value === serviceParam);
+                if (option) {
+                    serviceSelect.value = serviceParam;
+                }
+            }
+        }
+    } catch (e) { /* ignore */ }
 
     // ===== AOS (Animate On Scroll) =====
     const animatedElements = document.querySelectorAll('[data-aos]');
@@ -644,14 +716,10 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    btn.innerHTML = '<i class="fas fa-check"></i> <span>Message Sent!</span>';
-                    btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-                    this.reset();
-                    setTimeout(() => {
-                        btn.innerHTML = originalContent;
-                        btn.style.background = '';
-                        btn.disabled = false;
-                    }, 4000);
+                    trackEvent('form_submit', { form_name: 'contact' });
+                    trackEvent('proposal_request', { form_name: 'contact' });
+                    window.location.href = (window.SITE_BASE || '/') + 'thank-you';
+                    return;
                 } else {
                     btn.innerHTML = '<i class="fas fa-exclamation-circle"></i> <span>' + (data.message || 'Error') + '</span>';
                     btn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';

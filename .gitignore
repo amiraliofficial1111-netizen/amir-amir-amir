@@ -22,3 +22,10 @@ Thumbs.db
 # Dev utilities (optional local scripts)
 remove_logo_bg.js
 remove_logo_bg.py
+
+# Local archives / duplicate dumps (not part of site)
+*.zip
+Appsdeddy-New-main/
+rotate cards/
+rotate cards.zip
+js/hero-scene.js

@@ -123,6 +123,19 @@ if (defined('ABSPATH')) {
     <script>window.SITE_BASE = <?= json_encode(SITE_BASE) ?>;</script>
     <?php $jsSrc = function_exists('seoAsset') ? seoAsset('js/script.js') : SITE_BASE . 'js/script.js?v=' . rawurlencode(ASSET_VERSION); ?>
     <script src="<?= $jsSrc ?>" defer></script>
+    <?php if (!empty($loadHeroLaptop)) :
+        $hero3dSrc = function_exists('seoAsset') ? seoAsset('js/hero-laptop-stage.js') : SITE_BASE . 'js/hero-laptop-stage.js?v=' . rawurlencode(ASSET_VERSION);
+    ?>
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+    </script>
+    <script type="module" src="<?= $hero3dSrc ?>"></script>
+    <?php endif; ?>
     <?php if (defined('ABSPATH') && function_exists('wp_footer')) {
         wp_footer();
     } ?>

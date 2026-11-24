@@ -1,26 +1,22 @@
 /**
- * Hero 3D stage: laptop on the disk, side icons, flush chrome Apple mark, smooth Y rotation.
- * Expects #hero-laptop-stage mount and window.SITE_BASE.
+ * Hero 3D stage: laptop on the disk, squircle-orbit media icons, chrome Apple mark.
+ * The laptop and disk spin together. Icons orbit in a soft rounded square and stay
+ * outside that spin. Expects #hero-laptop-stage mount and window.SITE_BASE.
  */
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import { DecalGeometry } from 'three/addons/geometries/DecalGeometry.js';
 
 const mount = document.getElementById('hero-laptop-stage');
-if (!mount) {
-  // Not on home hero
-} else {
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (mount) {
   const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
   const laptopUrl = `${base}src/laptop.glb`;
   const diskUrl = `${base}src/laptop-disk.glb`;
-  const appleUrl = `${base}assets/images/apple-logo-chrome.jpg`;
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(38, 1, 0.05, 200);
-  camera.position.set(0, 0.25, 4.2);
+  const camera = new THREE.PerspectiveCamera(32, 1, 0.05, 200);
+  camera.position.set(0, 0.2, 3.45);
 
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
@@ -34,61 +30,76 @@ if (!mount) {
   renderer.setClearColor(0x000000, 0);
   mount.appendChild(renderer.domElement);
 
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-  scene.environmentIntensity = 0.55;
+  const envScene = new THREE.Scene();
+  function addLightformer(intensity, position, scale, rotation, color = '#ffffff') {
+    const mesh = new THREE.Mesh(
+      new THREE.PlaneGeometry(1, 1),
+      new THREE.MeshBasicMaterial({
+        color,
+        side: THREE.DoubleSide,
+        toneMapped: false,
+      })
+    );
+    mesh.material.color.multiplyScalar(intensity);
+    mesh.position.set(position[0], position[1], position[2]);
+    mesh.scale.set(scale[0], scale[1], scale[2]);
+    if (rotation) mesh.rotation.set(rotation[0], rotation[1], rotation[2]);
+    envScene.add(mesh);
+  }
+  addLightformer(1.6, [0, 4.5, 2], [9, 4, 1]);
+  addLightformer(1.15, [4.5, 2, 3], [5, 3, 1], [0, -0.8, 0]);
+  addLightformer(0.9, [-4, 1.5, -2], [4, 5, 1], [0, 0.7, 0], '#d7ecff');
+  addLightformer(0.55, [0, -2.5, 1], [8, 2, 1]);
 
-  scene.add(new THREE.AmbientLight(0xffffff, 0.72));
-  const key = new THREE.DirectionalLight(0xffffff, 2.15);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(envScene, 0.04).texture;
+  scene.environmentIntensity = 0.55;
+  pmrem.dispose();
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+  const key = new THREE.DirectionalLight(0xffffff, 1.7);
   key.position.set(3.2, 5.4, 4);
   scene.add(key);
-  const fill = new THREE.DirectionalLight(0xf3f7ff, 0.85);
+  const fill = new THREE.DirectionalLight(0xeef6ff, 0.75);
   fill.position.set(-3.4, 2.4, 2.2);
   scene.add(fill);
-  const rim = new THREE.DirectionalLight(0xffffff, 0.7);
-  rim.position.set(-1.2, 3.8, -3.5);
-  scene.add(rim);
 
-  const product = new THREE.Group();
-  product.position.set(0, -0.02, 0);
-  product.rotation.set(0.08, 0.5, 0);
-  product.scale.setScalar(0.84);
-  scene.add(product);
+  const rig = new THREE.Group();
+  rig.position.set(0, -0.02, 0);
+  rig.scale.setScalar(0.84);
+  scene.add(rig);
+
+  const spinner = new THREE.Group();
+  spinner.rotation.set(0.08, 0.5, 0);
+  rig.add(spinner);
 
   const loader = new GLTFLoader();
   loader.setMeshoptDecoder(MeshoptDecoder);
-  const textureLoader = new THREE.TextureLoader();
   const clock = new THREE.Clock();
   let ready = false;
   let iconSprites = [];
-  let iconLayout = null;
+  let orbit = null;
 
   function toGlossy(material, opts) {
     const next = new THREE.MeshPhysicalMaterial({
       map: material.map || null,
-      normalMap: material.normalMap || null,
       color: new THREE.Color('#ffffff'),
       metalness: opts.metalness,
       roughness: opts.roughness,
-      normalScale: new THREE.Vector2(0.18, 0.18),
       clearcoat: opts.clearcoat,
       clearcoatRoughness: opts.clearcoatRoughness,
-      reflectivity: 0.45,
-      ior: 1.45,
-      specularIntensity: 0.45,
       envMapIntensity: opts.env,
     });
-    const saturation = opts.saturation.toFixed(2);
+    const lift = opts.lift.toFixed(2);
     const gamma = opts.gamma.toFixed(2);
-    const gain = opts.gain.toFixed(2);
     next.onBeforeCompile = (shader) => {
       shader.fragmentShader = shader.fragmentShader.replace(
         '#include <color_fragment>',
         `#include <color_fragment>
          vec3 tuned = max(diffuseColor.rgb, vec3(0.0));
          float luma = dot(tuned, vec3(0.2126, 0.7152, 0.0722));
-         vec3 saturated = mix(vec3(luma), tuned, ${saturation});
-         diffuseColor.rgb = pow(max(saturated, vec3(0.0)), vec3(${gamma})) * ${gain};`
+         float shadowLift = mix(${lift}, 1.0, smoothstep(0.01, 0.2, luma));
+         diffuseColor.rgb = pow(tuned, vec3(${gamma})) * shadowLift;`
       );
     };
     return next;
@@ -111,16 +122,14 @@ if (!mount) {
     return box.getSize(new THREE.Vector3());
   }
 
-  function createChromeAppleTexture() {
-    const size = 2048;
+  function createAppleTexture() {
+    const size = 1024;
     const canvas = document.createElement('canvas');
     canvas.width = size;
     canvas.height = size;
     const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, size, size);
-
     const cx = size * 0.5;
-    const cy = size * 0.54;
+    const cy = size * 0.56;
 
     const body = new Path2D();
     body.moveTo(cx, cy - size * 0.3);
@@ -131,32 +140,12 @@ if (!mount) {
     body.bezierCurveTo(cx + size * 0.26, cy - size * 0.28, cx + size * 0.1, cy - size * 0.36, cx, cy - size * 0.3);
     body.closePath();
 
-    const leaf = new Path2D();
-    leaf.moveTo(cx + size * 0.02, cy - size * 0.28);
-    leaf.bezierCurveTo(cx + size * 0.18, cy - size * 0.5, cx + size * 0.38, cy - size * 0.4, cx + size * 0.2, cy - size * 0.24);
-    leaf.bezierCurveTo(cx + size * 0.12, cy - size * 0.32, cx + size * 0.05, cy - size * 0.32, cx + size * 0.02, cy - size * 0.28);
-    leaf.closePath();
-
-    ctx.save();
-    ctx.filter = `blur(${size * 0.006}px)`;
-    ctx.fillStyle = 'rgba(255,255,255,0.55)';
-    ctx.fill(body);
-    ctx.fill(leaf);
-    ctx.restore();
-
-    const metal = ctx.createLinearGradient(
-      cx - size * 0.42,
-      cy - size * 0.4,
-      cx + size * 0.42,
-      cy + size * 0.42
-    );
-    metal.addColorStop(0.0, '#ffffff');
-    metal.addColorStop(0.28, '#f4f6fa');
-    metal.addColorStop(0.42, '#c8ced8');
-    metal.addColorStop(0.52, '#2a2e36');
-    metal.addColorStop(0.62, '#0a0b0d');
-    metal.addColorStop(0.78, '#6e7584');
-    metal.addColorStop(1.0, '#eef1f6');
+    const metal = ctx.createLinearGradient(cx - size * 0.34, cy - size * 0.36, cx + size * 0.36, cy + size * 0.36);
+    metal.addColorStop(0, '#ffffff');
+    metal.addColorStop(0.34, '#f3f5f8');
+    metal.addColorStop(0.52, '#8d93a1');
+    metal.addColorStop(0.68, '#d9dee7');
+    metal.addColorStop(1, '#ffffff');
 
     ctx.fillStyle = metal;
     ctx.fill(body);
@@ -167,21 +156,21 @@ if (!mount) {
     ctx.fill();
     ctx.globalCompositeOperation = 'source-over';
 
+    const leaf = new Path2D();
+    leaf.moveTo(cx + size * 0.02, cy - size * 0.28);
+    leaf.bezierCurveTo(cx + size * 0.18, cy - size * 0.5, cx + size * 0.38, cy - size * 0.4, cx + size * 0.2, cy - size * 0.24);
+    leaf.bezierCurveTo(cx + size * 0.12, cy - size * 0.32, cx + size * 0.05, cy - size * 0.32, cx + size * 0.02, cy - size * 0.28);
+    leaf.closePath();
     ctx.fillStyle = metal;
     ctx.fill(leaf);
 
     ctx.strokeStyle = '#f7f8fb';
-    ctx.lineWidth = size * 0.026;
+    ctx.lineWidth = size * 0.028;
     ctx.lineCap = 'round';
     ctx.beginPath();
     ctx.moveTo(cx, cy - size * 0.3);
     ctx.quadraticCurveTo(cx + size * 0.03, cy - size * 0.4, cx + size * 0.07, cy - size * 0.43);
     ctx.stroke();
-
-    ctx.strokeStyle = 'rgba(255,255,255,0.35)';
-    ctx.lineWidth = size * 0.01;
-    ctx.stroke(body);
-    ctx.stroke(leaf);
 
     const texture = new THREE.CanvasTexture(canvas);
     texture.colorSpace = THREE.SRGBColorSpace;
@@ -308,6 +297,55 @@ if (!mount) {
       return;
     }
 
+    if (kind === 'code') {
+      ctx.lineWidth = 16;
+      ctx.beginPath();
+      ctx.moveTo(104, 78);
+      ctx.lineTo(68, 128);
+      ctx.lineTo(104, 178);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(152, 78);
+      ctx.lineTo(188, 128);
+      ctx.lineTo(152, 178);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(148, 68);
+      ctx.lineTo(112, 188);
+      ctx.stroke();
+      return;
+    }
+
+    if (kind === 'cloud') {
+      ctx.beginPath();
+      ctx.arc(108, 142, 30, 0, Math.PI * 2);
+      ctx.arc(148, 122, 38, 0, Math.PI * 2);
+      ctx.arc(184, 146, 26, 0, Math.PI * 2);
+      ctx.fill();
+      roundRect(ctx, 82, 142, 120, 40, 18);
+      ctx.fill();
+      return;
+    }
+
+    if (kind === 'chat') {
+      roundRect(ctx, 48, 58, 160, 118, 28);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(82, 176);
+      ctx.lineTo(118, 176);
+      ctx.lineTo(74, 210);
+      ctx.closePath();
+      ctx.fill();
+      ctx.globalCompositeOperation = 'destination-out';
+      [92, 128, 164].forEach((x) => {
+        ctx.beginPath();
+        ctx.arc(x, 116, 11, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalCompositeOperation = 'source-over';
+      return;
+    }
+
     if (kind === 'rocket') {
       ctx.beginPath();
       ctx.moveTo(128, 48);
@@ -354,15 +392,27 @@ if (!mount) {
   }
 
   const MEDIA_ICONS = [
-    { id: 'chart', colors: ['#3dffb0', '#0e9f6e'], kind: 'chart', side: -1, y: 1.22, out: 0.58, scale: 0.15, z: 0.12, lean: 0.42, bob: 0.05, phase: 0.2 },
-    { id: 'target', colors: ['#ff5a7a', '#e1063a'], kind: 'target', side: -1, y: 0.52, out: 0.0, scale: 0.23, z: -0.05, lean: 0.08, bob: 0.038, phase: 1.7 },
-    { id: 'megaphone', colors: ['#ffb020', '#ff6a3d'], kind: 'megaphone', side: -1, y: -0.38, out: 0.08, scale: 0.19, z: 0.1, lean: -0.14, bob: 0.045, phase: 2.8 },
-    { id: 'bulb', colors: ['#ffe08a', '#ff9f1c'], kind: 'bulb', side: -1, y: -1.02, out: 0.54, scale: 0.15, z: -0.08, lean: 0.38, bob: 0.055, phase: 3.6 },
-    { id: 'rocket', colors: ['#8b6cff', '#3c78ff'], kind: 'rocket', side: 1, y: 1.22, out: 0.58, scale: 0.15, z: 0.12, lean: 0.42, bob: 0.05, phase: 0.9 },
-    { id: 'mail', colors: ['#67e6ff', '#0aa8e0'], kind: 'mail', side: 1, y: 0.52, out: 0.0, scale: 0.23, z: -0.05, lean: 0.08, bob: 0.038, phase: 2.2 },
-    { id: 'briefcase', colors: ['#3a415c', '#161924'], kind: 'briefcase', side: 1, y: -0.38, out: 0.08, scale: 0.19, z: 0.1, lean: -0.14, bob: 0.045, phase: 3.1 },
-    { id: 'tasks', colors: ['#6aa4ff', '#3c5bff'], kind: 'tasks', side: 1, y: -1.02, out: 0.54, scale: 0.15, z: -0.08, lean: 0.38, bob: 0.055, phase: 4.1 },
+    { id: 'chart', colors: ['#3dffb0', '#0e9f6e'], kind: 'chart', scale: 0.16 },
+    { id: 'target', colors: ['#ff5a7a', '#e1063a'], kind: 'target', scale: 0.15 },
+    { id: 'megaphone', colors: ['#ffb020', '#ff6a3d'], kind: 'megaphone', scale: 0.145 },
+    { id: 'bulb', colors: ['#ffe08a', '#ff9f1c'], kind: 'bulb', scale: 0.14 },
+    { id: 'rocket', colors: ['#8b6cff', '#3c78ff'], kind: 'rocket', scale: 0.155 },
+    { id: 'mail', colors: ['#67e6ff', '#0aa8e0'], kind: 'mail', scale: 0.15 },
+    { id: 'briefcase', colors: ['#3a415c', '#161924'], kind: 'briefcase', scale: 0.145 },
+    { id: 'tasks', colors: ['#6aa4ff', '#3c5bff'], kind: 'tasks', scale: 0.14 },
+    { id: 'code', colors: ['#5eead4', '#0f766e'], kind: 'code', scale: 0.15 },
+    { id: 'cloud', colors: ['#7dd3fc', '#0369a1'], kind: 'cloud', scale: 0.155 },
+    { id: 'chat', colors: ['#f9a8d4', '#db2777'], kind: 'chat', scale: 0.145 },
   ];
+
+  // Soft rounded-square. Power below 1 pushes the corners outward,
+  // so the closest points stay on the left, right, top, and bottom.
+  const ORBIT_POWER = 0.62;
+  const ORBIT_SECONDS = 18;
+
+  function orbitAxis(component) {
+    return Math.sign(component) * Math.abs(component) ** ORBIT_POWER;
+  }
 
   function createMediaTexture(icon) {
     const size = 256;
@@ -391,17 +441,20 @@ if (!mount) {
     return texture;
   }
 
-  let iconHome = null;
-
-  function placeIcon(sprite, icon, time) {
-    if (!iconHome) return;
-    const bob = time == null ? 0 : Math.sin(time * 1.15 + icon.phase) * icon.bob;
+  function placeIcon(sprite, icon, index, time) {
+    if (!orbit) return;
+    const speed = (Math.PI * 2) / ORBIT_SECONDS;
+    const angle = time * speed + (index / MEDIA_ICONS.length) * Math.PI * 2;
+    const along = orbitAxis(Math.sin(angle));
+    const bob = Math.sin(time * 1.7 + index) * orbit.bob;
     sprite.position.set(
-      iconHome.center.x + icon.side * (iconHome.reach + icon.out),
-      iconHome.center.y + icon.y + bob,
-      iconHome.center.z + icon.z
+      orbitAxis(Math.cos(angle)) * orbit.rx,
+      orbit.centerY + along * orbit.ry + bob,
+      along * orbit.rz
     );
-    sprite.material.rotation = -icon.side * icon.lean;
+    const pop = 0.82 + (Math.sin(angle) * 0.5 + 0.5) * 0.34;
+    const size = icon.scale * pop;
+    sprite.scale.set(size, size, 1);
   }
 
   function findLidMesh(laptop) {
@@ -434,70 +487,72 @@ if (!mount) {
     const up = new THREE.Vector3(-0.346401191703631, 0.9380864642378678, 0).normalize();
     const right = new THREE.Vector3(0, 0, 1);
 
-    const position = new THREE.Vector3(-0.3801263831627151, -0.015472771608485592, 0.000885009765625);
-    position.addScaledVector(normal, 0.0008);
+    const localPosition = new THREE.Vector3(-0.3801263831627151, -0.015472771608485592, 0.000885009765625);
+    localPosition.addScaledVector(normal, 0.0015);
 
-    const basis = new THREE.Matrix4().makeBasis(right, up, normal);
-    const orientation = new THREE.Euler().setFromRotationMatrix(basis);
-    const size = new THREE.Vector3(0.18, 0.18, 0.022);
+    const worldScale = new THREE.Vector3();
+    const worldQuat = new THREE.Quaternion();
+    mesh.matrixWorld.decompose(new THREE.Vector3(), worldQuat, worldScale);
+    const position = localPosition.applyMatrix4(mesh.matrixWorld);
+    const orientation = new THREE.Euler().setFromRotationMatrix(
+      new THREE.Matrix4().makeBasis(
+        right.clone().applyQuaternion(worldQuat),
+        up.clone().applyQuaternion(worldQuat),
+        normal.clone().applyQuaternion(worldQuat)
+      )
+    );
+    const size = new THREE.Vector3(0.16 * worldScale.x, 0.16 * worldScale.y, 0.012 * worldScale.z);
     const geometry = new DecalGeometry(mesh, position, orientation, size);
+    geometry.applyMatrix4(laptopGroup.matrixWorld.clone().invert());
 
     const material = new THREE.MeshPhysicalMaterial({
       map: texture,
       emissiveMap: texture,
-      emissive: new THREE.Color('#f4f7fb'),
-      emissiveIntensity: 0.48,
-      metalness: 0.96,
-      roughness: 0.1,
-      clearcoat: 1,
-      clearcoatRoughness: 0.05,
-      envMapIntensity: 2.6,
+      emissive: new THREE.Color('#f7f8fb'),
+      emissiveIntensity: 0.12,
+      metalness: 0.35,
+      roughness: 0.4,
+      clearcoat: 0.35,
+      clearcoatRoughness: 0.3,
       transparent: true,
-      alphaTest: 0.32,
-      depthWrite: false,
+      alphaTest: 0.55,
       polygonOffset: true,
-      polygonOffsetFactor: -8,
-      polygonOffsetUnits: -8,
+      polygonOffsetFactor: -2,
+      polygonOffsetUnits: -2,
     });
 
     const decal = new THREE.Mesh(geometry, material);
-    decal.renderOrder = 3;
+    decal.renderOrder = 2;
     decal.name = 'apple-mark';
     laptopGroup.add(decal);
   }
 
-  function loadAppleTexture() {
-    return new Promise((resolve) => {
-      const procedural = createChromeAppleTexture();
-      textureLoader.load(
-        appleUrl,
-        (tex) => {
-          tex.dispose?.();
-          resolve(procedural);
-        },
-        undefined,
-        () => resolve(procedural)
-      );
-    });
-  }
-
   function frameProduct() {
-    product.updateMatrixWorld(true);
-    const box = new THREE.Box3().setFromObject(product);
-    if (iconHome) {
-      const edge = iconHome.reach + iconHome.maxOut + iconHome.spriteHalf + 0.14;
-      box.expandByPoint(new THREE.Vector3(iconHome.center.x - edge, iconHome.center.y + iconHome.yBottom, iconHome.center.z));
-      box.expandByPoint(new THREE.Vector3(iconHome.center.x + edge, iconHome.center.y + iconHome.yTop, iconHome.center.z));
+    rig.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(spinner);
+    if (orbit) {
+      const pad = (Math.max(...MEDIA_ICONS.map((icon) => icon.scale)) * 1.16) / 2;
+      const hx = orbit.rx + pad;
+      const hy = orbit.ry + orbit.bob + pad;
+      const hz = orbit.rz + pad;
+      const point = new THREE.Vector3();
+      for (const x of [-hx, hx]) {
+        for (const y of [orbit.centerY - hy, orbit.centerY + hy]) {
+          for (const z of [-hz, hz]) {
+            point.set(x, y, z).applyMatrix4(rig.matrixWorld);
+            box.expandByPoint(point);
+          }
+        }
+      }
     }
     if (box.isEmpty()) return;
 
     const size = box.getSize(new THREE.Vector3());
     const center = box.getCenter(new THREE.Vector3());
-    const maxDim = Math.max(size.x, size.y, size.z, 0.001);
     const fovRad = (camera.fov * Math.PI) / 180;
-    const fitH = maxDim / (2 * Math.tan(fovRad / 2));
-    const fitW = fitH / Math.max(camera.aspect, 0.001);
-    const dist = Math.max(fitH, fitW) * 1.16;
+    const fitH = size.y / (2 * Math.tan(fovRad / 2));
+    const fitW = size.x / (2 * Math.tan(fovRad / 2)) / Math.max(camera.aspect, 0.001);
+    const dist = Math.max(fitH, fitW) * 1.12;
 
     camera.position.set(center.x, center.y + size.y * 0.02, center.z + dist);
     camera.near = Math.max(dist / 100, 0.05);
@@ -526,41 +581,37 @@ if (!mount) {
   Promise.all([
     loader.loadAsync(laptopUrl),
     loader.loadAsync(diskUrl),
-    loadAppleTexture(),
   ])
-    .then(([laptopGltf, diskGltf, appleTexture]) => {
+    .then(([laptopGltf, diskGltf]) => {
       const laptop = laptopGltf.scene;
       const disk = diskGltf.scene;
 
       const laptopSize = centerModel(laptop, {
-        metalness: 0.18,
-        roughness: 0.34,
-        clearcoat: 0.22,
-        clearcoatRoughness: 0.28,
-        env: 0.42,
-        saturation: 1.42,
-        gamma: 0.82,
-        gain: 1.18,
+        metalness: 0.16,
+        roughness: 0.42,
+        clearcoat: 0.18,
+        clearcoatRoughness: 0.35,
+        env: 0.4,
+        lift: 1.02,
+        gamma: 0.96,
       });
       const diskSize = centerModel(disk, {
-        metalness: 0.04,
-        roughness: 0.24,
+        metalness: 0.28,
+        roughness: 0.28,
         clearcoat: 0.4,
-        clearcoatRoughness: 0.18,
-        env: 0.5,
-        saturation: 1.7,
-        gamma: 0.78,
-        gain: 1.22,
+        clearcoatRoughness: 0.22,
+        env: 0.65,
+        lift: 1.06,
+        gamma: 0.92,
       });
 
-      const laptopScale = 3.9;
-      const k = laptopScale / 1.05;
-      const diskScale = 1.45 * k;
-      const gap = 0.05 * k;
+      const laptopScale = 1.05;
+      const diskScale = 1.45;
+      const gap = 0.05;
       const diskY = -((diskSize.y * diskScale) / 2 + gap / 2);
       const diskTop = diskY + (diskSize.y * diskScale) / 2;
 
-      // Raise the hinge / screen side 12°, pivoting so the front lip stays on the disk.
+      // Raise the hinge side 12° so the front lip stays planted on the disk stand.
       const tilt = -THREE.MathUtils.degToRad(12);
       laptop.rotation.z = tilt;
       const half = {
@@ -568,79 +619,72 @@ if (!mount) {
         y: laptopSize.y / 2,
         z: laptopSize.z / 2,
       };
+      const cosT = Math.cos(tilt);
+      const sinT = Math.sin(tilt);
       let lowest = Infinity;
+      let highest = -Infinity;
+      let spinRadius = 0;
       for (const x of [-half.x, half.x]) {
         for (const y of [-half.y, half.y]) {
-          const yRot = x * Math.sin(tilt) + y * Math.cos(tilt);
+          const xRot = x * cosT - y * sinT;
+          const yRot = x * sinT + y * cosT;
           if (yRot < lowest) lowest = yRot;
+          if (yRot > highest) highest = yRot;
+          for (const z of [-half.z, half.z]) {
+            spinRadius = Math.max(spinRadius, Math.hypot(xRot, z));
+          }
         }
       }
-      // Barely tuck the front lip so it meets the disk without crossing into it.
-      const nest = 0.008 * k;
-      const laptopY = diskTop - nest - lowest * laptopScale;
+      const nest = 0.008;
+      const laptopBottom = lowest * laptopScale;
+      const laptopTop = highest * laptopScale;
+      const laptopY = diskTop - nest - laptopBottom;
+      const diskHalf = {
+        x: (diskSize.x * diskScale) / 2,
+        z: (diskSize.z * diskScale) / 2,
+      };
+      const spriteHalf = Math.max(...MEDIA_ICONS.map((icon) => icon.scale)) / 2;
+      const bob = 0.026;
+      const clearance = spriteHalf + 0.14 + bob;
+      const wide = Math.max(spinRadius * laptopScale, diskHalf.x, diskHalf.z);
+      orbit = {
+        rx: wide + clearance,
+        ry: (laptopTop - laptopBottom) / 2 + clearance,
+        rz: wide + clearance,
+        centerY: laptopY + (laptopTop + laptopBottom) / 2,
+        bob,
+      };
 
       const diskGroup = new THREE.Group();
       diskGroup.position.set(0, diskY, 0);
       diskGroup.scale.setScalar(diskScale);
       diskGroup.add(disk);
-      product.add(diskGroup);
+      spinner.add(diskGroup);
 
       const laptopGroup = new THREE.Group();
       laptopGroup.position.set(0, laptopY, 0);
       laptopGroup.scale.setScalar(laptopScale);
       laptopGroup.add(laptop);
-      product.add(laptopGroup);
+      spinner.add(laptopGroup);
 
-      product.updateMatrixWorld(true);
-      const iconCenter = new THREE.Vector3();
-      laptopGroup.getWorldPosition(iconCenter);
-      const worldScale = laptopScale * product.scale.x;
-      const cosT = Math.cos(tilt);
-      const sinT = Math.sin(tilt);
-      const hx = laptopSize.x / 2;
-      const hy = laptopSize.y / 2;
-      const hz = laptopSize.z / 2;
-      let spinRadius = 0;
-      for (const x of [-hx, hx]) {
-        for (const y of [-hy, hy]) {
-          const xRot = x * cosT - y * sinT;
-          for (const z of [-hz, hz]) {
-            spinRadius = Math.max(spinRadius, Math.hypot(xRot, z));
-          }
-        }
-      }
-      spinRadius *= worldScale;
-      const iconScale = worldScale / 1.05;
-      const maxScale = Math.max(...MEDIA_ICONS.map((icon) => icon.scale));
-      const spriteHalf = maxScale * iconScale * 0.5;
-      iconHome = {
-        center: iconCenter,
-        reach: spinRadius + spriteHalf + 0.18,
-        spriteHalf,
-        maxOut: Math.max(...MEDIA_ICONS.map((icon) => icon.out)),
-        yTop: Math.max(...MEDIA_ICONS.map((icon) => icon.y)) + spriteHalf + 0.1,
-        yBottom: Math.min(...MEDIA_ICONS.map((icon) => icon.y)) - spriteHalf - 0.1,
-      };
       const icons = new THREE.Group();
       icons.name = 'media-icons';
-      iconSprites = MEDIA_ICONS.map((icon) => {
+      iconSprites = MEDIA_ICONS.map((icon, index) => {
         const sprite = new THREE.Sprite(new THREE.SpriteMaterial({
           map: createMediaTexture(icon),
           transparent: true,
           depthWrite: false,
           toneMapped: false,
         }));
-        sprite.scale.set(icon.scale * iconScale, icon.scale * iconScale, 1);
         sprite.renderOrder = 4;
-        placeIcon(sprite, icon, null);
+        placeIcon(sprite, icon, index, 0);
         icons.add(sprite);
         return sprite;
       });
-      scene.add(icons);
-      iconLayout = { laptopY, k };
+      rig.add(icons);
 
-      product.updateMatrixWorld(true);
-      attachAppleMark(laptopGroup, laptop, appleTexture);
+      rig.updateMatrixWorld(true);
+      attachAppleMark(laptopGroup, laptop, createAppleTexture());
 
       ready = true;
       frameProduct();
@@ -654,14 +698,13 @@ if (!mount) {
 
   function tick() {
     const delta = clock.getDelta();
-    if (ready && !reducedMotion) {
-      product.rotation.y += delta * 0.38;
-      if (iconLayout) {
-        const time = clock.elapsedTime;
-        iconSprites.forEach((sprite, index) => {
-          placeIcon(sprite, MEDIA_ICONS[index], time);
-        });
-      }
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (ready && !reduce) {
+      spinner.rotation.y += delta * 0.38;
+      const time = clock.elapsedTime;
+      iconSprites.forEach((sprite, index) => {
+        placeIcon(sprite, MEDIA_ICONS[index], index, time);
+      });
     }
     renderer.render(scene, camera);
     requestAnimationFrame(tick);

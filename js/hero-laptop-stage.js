@@ -1,5 +1,5 @@
 /**
- * Hero 3D stage: laptop only, flush chrome Apple mark, smooth Y rotation.
+ * Hero 3D stage: laptop on the disk, side icons, flush chrome Apple mark, smooth Y rotation.
  * Expects #hero-laptop-stage mount and window.SITE_BASE.
  */
 import * as THREE from 'three';
@@ -15,6 +15,7 @@ if (!mount) {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
   const laptopUrl = `${base}src/laptop.glb`;
+  const diskUrl = `${base}src/laptop-disk.glb`;
   const appleUrl = `${base}assets/images/apple-logo-chrome.jpg`;
 
   const scene = new THREE.Scene();
@@ -28,28 +29,25 @@ if (!mount) {
   });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.28;
+  renderer.toneMapping = THREE.NeutralToneMapping;
+  renderer.toneMappingExposure = 1.12;
   renderer.setClearColor(0x000000, 0);
   mount.appendChild(renderer.domElement);
 
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-  scene.environmentIntensity = 1.55;
+  scene.environmentIntensity = 0.55;
 
-  scene.add(new THREE.AmbientLight(0xf4f7fb, 0.22));
-  const key = new THREE.DirectionalLight(0xffffff, 5.2);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.72));
+  const key = new THREE.DirectionalLight(0xffffff, 2.15);
   key.position.set(3.2, 5.4, 4);
   scene.add(key);
-  const fill = new THREE.DirectionalLight(0xdbe7f5, 1.9);
+  const fill = new THREE.DirectionalLight(0xf3f7ff, 0.85);
   fill.position.set(-3.4, 2.4, 2.2);
   scene.add(fill);
-  const rim = new THREE.DirectionalLight(0xffffff, 2.4);
+  const rim = new THREE.DirectionalLight(0xffffff, 0.7);
   rim.position.set(-1.2, 3.8, -3.5);
   scene.add(rim);
-  const sparkle = new THREE.DirectionalLight(0xf0f6ff, 1.4);
-  sparkle.position.set(2.2, 1.2, 3.6);
-  scene.add(sparkle);
 
   const product = new THREE.Group();
   product.position.set(0, -0.02, 0);
@@ -62,35 +60,35 @@ if (!mount) {
   const textureLoader = new THREE.TextureLoader();
   const clock = new THREE.Clock();
   let ready = false;
+  let iconSprites = [];
+  let iconLayout = null;
 
   function toGlossy(material, opts) {
-    const tint = new THREE.Color(opts.tint || '#ffffff');
     const next = new THREE.MeshPhysicalMaterial({
       map: material.map || null,
       normalMap: material.normalMap || null,
-      color: tint,
+      color: new THREE.Color('#ffffff'),
       metalness: opts.metalness,
       roughness: opts.roughness,
-      normalScale: new THREE.Vector2(0.22, 0.22),
+      normalScale: new THREE.Vector2(0.18, 0.18),
       clearcoat: opts.clearcoat,
       clearcoatRoughness: opts.clearcoatRoughness,
-      reflectivity: opts.reflectivity ?? 1,
-      ior: opts.ior ?? 1.5,
-      specularIntensity: opts.specularIntensity ?? 1,
+      reflectivity: 0.45,
+      ior: 1.45,
+      specularIntensity: 0.45,
       envMapIntensity: opts.env,
-      sheen: opts.sheen ?? 0,
-      sheenRoughness: opts.sheenRoughness ?? 0.3,
-      sheenColor: new THREE.Color(opts.sheenColor || '#ffffff'),
     });
+    const saturation = opts.saturation.toFixed(2);
+    const gamma = opts.gamma.toFixed(2);
+    const gain = opts.gain.toFixed(2);
     next.onBeforeCompile = (shader) => {
       shader.fragmentShader = shader.fragmentShader.replace(
         '#include <color_fragment>',
         `#include <color_fragment>
          vec3 tuned = max(diffuseColor.rgb, vec3(0.0));
          float luma = dot(tuned, vec3(0.2126, 0.7152, 0.0722));
-         float shadowLift = mix(${opts.lift.toFixed(2)}, 1.0, smoothstep(0.01, 0.22, luma));
-         float glossPush = mix(1.0, ${opts.glossPush.toFixed(2)}, smoothstep(0.18, 0.75, luma));
-         diffuseColor.rgb = pow(tuned, vec3(${opts.gamma.toFixed(2)})) * shadowLift * glossPush;`
+         vec3 saturated = mix(vec3(luma), tuned, ${saturation});
+         diffuseColor.rgb = pow(max(saturated, vec3(0.0)), vec3(${gamma})) * ${gain};`
       );
     };
     return next;
@@ -192,6 +190,220 @@ if (!mount) {
     return texture;
   }
 
+  function roundRect(ctx, x, y, w, h, radius) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.arcTo(x + w, y, x + w, y + h, radius);
+    ctx.arcTo(x + w, y + h, x, y + h, radius);
+    ctx.arcTo(x, y + h, x, y, radius);
+    ctx.arcTo(x, y, x + w, y, radius);
+    ctx.closePath();
+  }
+
+  function paintMediaGlyph(ctx, kind) {
+    ctx.fillStyle = '#ffffff';
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 16;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    if (kind === 'chart') {
+      ctx.beginPath();
+      ctx.moveTo(62, 184);
+      ctx.lineTo(110, 128);
+      ctx.lineTo(146, 152);
+      ctx.lineTo(198, 74);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(166, 70);
+      ctx.lineTo(206, 66);
+      ctx.lineTo(190, 104);
+      ctx.closePath();
+      ctx.fill();
+      return;
+    }
+
+    if (kind === 'target') {
+      ctx.lineWidth = 14;
+      ctx.beginPath();
+      ctx.arc(128, 128, 64, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(128, 128, 36, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(128, 128, 12, 0, Math.PI * 2);
+      ctx.fill();
+      return;
+    }
+
+    if (kind === 'megaphone') {
+      ctx.beginPath();
+      ctx.moveTo(58, 112);
+      ctx.lineTo(138, 78);
+      ctx.lineTo(138, 178);
+      ctx.lineTo(58, 148);
+      ctx.closePath();
+      ctx.fill();
+      roundRect(ctx, 134, 96, 30, 64, 10);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(78, 146);
+      ctx.lineTo(96, 188);
+      ctx.lineTo(118, 146);
+      ctx.closePath();
+      ctx.fill();
+      ctx.lineWidth = 12;
+      ctx.beginPath();
+      ctx.arc(168, 128, 24, -0.9, 0.9);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(168, 128, 44, -0.75, 0.75);
+      ctx.stroke();
+      return;
+    }
+
+    if (kind === 'mail') {
+      roundRect(ctx, 48, 74, 160, 112, 18);
+      ctx.fill();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.lineWidth = 14;
+      ctx.beginPath();
+      ctx.moveTo(64, 96);
+      ctx.lineTo(128, 146);
+      ctx.lineTo(192, 96);
+      ctx.stroke();
+      ctx.globalCompositeOperation = 'source-over';
+      return;
+    }
+
+    if (kind === 'bulb') {
+      ctx.beginPath();
+      ctx.arc(128, 108, 50, Math.PI * 0.15, Math.PI * 0.85, true);
+      ctx.lineTo(108, 168);
+      ctx.lineTo(148, 168);
+      ctx.closePath();
+      ctx.fill();
+      roundRect(ctx, 104, 172, 48, 12, 4);
+      ctx.fill();
+      roundRect(ctx, 110, 188, 36, 12, 4);
+      ctx.fill();
+      return;
+    }
+
+    if (kind === 'tasks') {
+      roundRect(ctx, 64, 52, 128, 152, 18);
+      ctx.fill();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.lineWidth = 10;
+      [92, 128, 164].forEach((y) => {
+        ctx.beginPath();
+        ctx.moveTo(86, y);
+        ctx.lineTo(96, y + 12);
+        ctx.lineTo(116, y - 8);
+        ctx.stroke();
+        ctx.fillRect(132, y - 2, 40, 12);
+      });
+      ctx.globalCompositeOperation = 'source-over';
+      return;
+    }
+
+    if (kind === 'rocket') {
+      ctx.beginPath();
+      ctx.moveTo(128, 48);
+      ctx.quadraticCurveTo(176, 96, 162, 156);
+      ctx.lineTo(128, 140);
+      ctx.lineTo(94, 156);
+      ctx.quadraticCurveTo(80, 96, 128, 48);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(94, 128);
+      ctx.lineTo(62, 170);
+      ctx.lineTo(104, 154);
+      ctx.closePath();
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(162, 128);
+      ctx.lineTo(194, 170);
+      ctx.lineTo(152, 154);
+      ctx.closePath();
+      ctx.fill();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(128, 100, 14, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalCompositeOperation = 'source-over';
+      return;
+    }
+
+    roundRect(ctx, 54, 96, 148, 92, 16);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(96, 96);
+    ctx.lineTo(96, 78);
+    ctx.quadraticCurveTo(128, 58, 160, 78);
+    ctx.lineTo(160, 96);
+    ctx.closePath();
+    ctx.fill();
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.fillRect(54, 132, 148, 14);
+    ctx.beginPath();
+    ctx.arc(128, 140, 12, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  const MEDIA_ICONS = [
+    { id: 'chart', colors: ['#3dffb0', '#0e9f6e'], kind: 'chart', side: -1, y: 1.22, out: 0.58, scale: 0.15, z: 0.12, lean: 0.42, bob: 0.05, phase: 0.2 },
+    { id: 'target', colors: ['#ff5a7a', '#e1063a'], kind: 'target', side: -1, y: 0.52, out: 0.0, scale: 0.23, z: -0.05, lean: 0.08, bob: 0.038, phase: 1.7 },
+    { id: 'megaphone', colors: ['#ffb020', '#ff6a3d'], kind: 'megaphone', side: -1, y: -0.38, out: 0.08, scale: 0.19, z: 0.1, lean: -0.14, bob: 0.045, phase: 2.8 },
+    { id: 'bulb', colors: ['#ffe08a', '#ff9f1c'], kind: 'bulb', side: -1, y: -1.02, out: 0.54, scale: 0.15, z: -0.08, lean: 0.38, bob: 0.055, phase: 3.6 },
+    { id: 'rocket', colors: ['#8b6cff', '#3c78ff'], kind: 'rocket', side: 1, y: 1.22, out: 0.58, scale: 0.15, z: 0.12, lean: 0.42, bob: 0.05, phase: 0.9 },
+    { id: 'mail', colors: ['#67e6ff', '#0aa8e0'], kind: 'mail', side: 1, y: 0.52, out: 0.0, scale: 0.23, z: -0.05, lean: 0.08, bob: 0.038, phase: 2.2 },
+    { id: 'briefcase', colors: ['#3a415c', '#161924'], kind: 'briefcase', side: 1, y: -0.38, out: 0.08, scale: 0.19, z: 0.1, lean: -0.14, bob: 0.045, phase: 3.1 },
+    { id: 'tasks', colors: ['#6aa4ff', '#3c5bff'], kind: 'tasks', side: 1, y: -1.02, out: 0.54, scale: 0.15, z: -0.08, lean: 0.38, bob: 0.055, phase: 4.1 },
+  ];
+
+  function createMediaTexture(icon) {
+    const size = 256;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    roundRect(ctx, 10, 10, size - 20, size - 20, 58);
+    const fill = ctx.createLinearGradient(20, 16, size - 16, size - 16);
+    fill.addColorStop(0, icon.colors[0]);
+    fill.addColorStop(1, icon.colors[1]);
+    ctx.fillStyle = fill;
+    ctx.fill();
+    ctx.save();
+    ctx.globalCompositeOperation = 'source-atop';
+    ctx.fillStyle = 'rgba(255,255,255,0.24)';
+    ctx.beginPath();
+    ctx.ellipse(128, 62, 78, 28, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+    paintMediaGlyph(ctx, icon.kind);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.needsUpdate = true;
+    return texture;
+  }
+
+  let iconHome = null;
+
+  function placeIcon(sprite, icon, time) {
+    if (!iconHome) return;
+    const bob = time == null ? 0 : Math.sin(time * 1.15 + icon.phase) * icon.bob;
+    sprite.position.set(
+      iconHome.center.x + icon.side * (iconHome.reach + icon.out),
+      iconHome.center.y + icon.y + bob,
+      iconHome.center.z + icon.z
+    );
+    sprite.material.rotation = -icon.side * icon.lean;
+  }
+
   function findLidMesh(laptop) {
     let best = null;
     let bestScore = -1;
@@ -272,6 +484,11 @@ if (!mount) {
   function frameProduct() {
     product.updateMatrixWorld(true);
     const box = new THREE.Box3().setFromObject(product);
+    if (iconHome) {
+      const edge = iconHome.reach + iconHome.maxOut + iconHome.spriteHalf + 0.14;
+      box.expandByPoint(new THREE.Vector3(iconHome.center.x - edge, iconHome.center.y + iconHome.yBottom, iconHome.center.z));
+      box.expandByPoint(new THREE.Vector3(iconHome.center.x + edge, iconHome.center.y + iconHome.yTop, iconHome.center.z));
+    }
     if (box.isEmpty()) return;
 
     const size = box.getSize(new THREE.Vector3());
@@ -280,7 +497,7 @@ if (!mount) {
     const fovRad = (camera.fov * Math.PI) / 180;
     const fitH = maxDim / (2 * Math.tan(fovRad / 2));
     const fitW = fitH / Math.max(camera.aspect, 0.001);
-    const dist = Math.max(fitH, fitW) * 1.06;
+    const dist = Math.max(fitH, fitW) * 1.16;
 
     camera.position.set(center.x, center.y + size.y * 0.02, center.z + dist);
     camera.near = Math.max(dist / 100, 0.05);
@@ -308,35 +525,120 @@ if (!mount) {
 
   Promise.all([
     loader.loadAsync(laptopUrl),
+    loader.loadAsync(diskUrl),
     loadAppleTexture(),
   ])
-    .then(([laptopGltf, appleTexture]) => {
+    .then(([laptopGltf, diskGltf, appleTexture]) => {
       const laptop = laptopGltf.scene;
+      const disk = diskGltf.scene;
 
-      centerModel(laptop, {
-        tint: '#d8dde6',
-        metalness: 0.92,
-        roughness: 0.045,
-        clearcoat: 1,
-        clearcoatRoughness: 0.02,
-        reflectivity: 1,
-        ior: 1.55,
-        specularIntensity: 1.15,
-        env: 2.35,
-        lift: 1.08,
-        gamma: 0.92,
-        glossPush: 1.12,
-        sheen: 0.18,
-        sheenRoughness: 0.22,
-        sheenColor: '#e8eef8',
+      const laptopSize = centerModel(laptop, {
+        metalness: 0.18,
+        roughness: 0.34,
+        clearcoat: 0.22,
+        clearcoatRoughness: 0.28,
+        env: 0.42,
+        saturation: 1.42,
+        gamma: 0.82,
+        gain: 1.18,
+      });
+      const diskSize = centerModel(disk, {
+        metalness: 0.04,
+        roughness: 0.24,
+        clearcoat: 0.4,
+        clearcoatRoughness: 0.18,
+        env: 0.5,
+        saturation: 1.7,
+        gamma: 0.78,
+        gain: 1.22,
       });
 
       const laptopScale = 3.9;
+      const k = laptopScale / 1.05;
+      const diskScale = 1.45 * k;
+      const gap = 0.05 * k;
+      const diskY = -((diskSize.y * diskScale) / 2 + gap / 2);
+      const diskTop = diskY + (diskSize.y * diskScale) / 2;
+
+      // Raise the hinge / screen side 12°, pivoting so the front lip stays on the disk.
+      const tilt = -THREE.MathUtils.degToRad(12);
+      laptop.rotation.z = tilt;
+      const half = {
+        x: laptopSize.x / 2,
+        y: laptopSize.y / 2,
+        z: laptopSize.z / 2,
+      };
+      let lowest = Infinity;
+      for (const x of [-half.x, half.x]) {
+        for (const y of [-half.y, half.y]) {
+          const yRot = x * Math.sin(tilt) + y * Math.cos(tilt);
+          if (yRot < lowest) lowest = yRot;
+        }
+      }
+      // Barely tuck the front lip so it meets the disk without crossing into it.
+      const nest = 0.008 * k;
+      const laptopY = diskTop - nest - lowest * laptopScale;
+
+      const diskGroup = new THREE.Group();
+      diskGroup.position.set(0, diskY, 0);
+      diskGroup.scale.setScalar(diskScale);
+      diskGroup.add(disk);
+      product.add(diskGroup);
+
       const laptopGroup = new THREE.Group();
-      laptopGroup.position.set(0, 0, 0);
+      laptopGroup.position.set(0, laptopY, 0);
       laptopGroup.scale.setScalar(laptopScale);
       laptopGroup.add(laptop);
       product.add(laptopGroup);
+
+      product.updateMatrixWorld(true);
+      const iconCenter = new THREE.Vector3();
+      laptopGroup.getWorldPosition(iconCenter);
+      const worldScale = laptopScale * product.scale.x;
+      const cosT = Math.cos(tilt);
+      const sinT = Math.sin(tilt);
+      const hx = laptopSize.x / 2;
+      const hy = laptopSize.y / 2;
+      const hz = laptopSize.z / 2;
+      let spinRadius = 0;
+      for (const x of [-hx, hx]) {
+        for (const y of [-hy, hy]) {
+          const xRot = x * cosT - y * sinT;
+          for (const z of [-hz, hz]) {
+            spinRadius = Math.max(spinRadius, Math.hypot(xRot, z));
+          }
+        }
+      }
+      spinRadius *= worldScale;
+      const iconScale = worldScale / 1.05;
+      const maxScale = Math.max(...MEDIA_ICONS.map((icon) => icon.scale));
+      const spriteHalf = maxScale * iconScale * 0.5;
+      iconHome = {
+        center: iconCenter,
+        reach: spinRadius + spriteHalf + 0.18,
+        spriteHalf,
+        maxOut: Math.max(...MEDIA_ICONS.map((icon) => icon.out)),
+        yTop: Math.max(...MEDIA_ICONS.map((icon) => icon.y)) + spriteHalf + 0.1,
+        yBottom: Math.min(...MEDIA_ICONS.map((icon) => icon.y)) - spriteHalf - 0.1,
+      };
+      const icons = new THREE.Group();
+      icons.name = 'media-icons';
+      iconSprites = MEDIA_ICONS.map((icon) => {
+        const sprite = new THREE.Sprite(new THREE.SpriteMaterial({
+          map: createMediaTexture(icon),
+          transparent: true,
+          depthWrite: false,
+          toneMapped: false,
+        }));
+        sprite.scale.set(icon.scale * iconScale, icon.scale * iconScale, 1);
+        sprite.renderOrder = 4;
+        placeIcon(sprite, icon, null);
+        icons.add(sprite);
+        return sprite;
+      });
+      scene.add(icons);
+      iconLayout = { laptopY, k };
+
       product.updateMatrixWorld(true);
       attachAppleMark(laptopGroup, laptop, appleTexture);
 
@@ -354,6 +656,12 @@ if (!mount) {
     const delta = clock.getDelta();
     if (ready && !reducedMotion) {
       product.rotation.y += delta * 0.38;
+      if (iconLayout) {
+        const time = clock.elapsedTime;
+        iconSprites.forEach((sprite, index) => {
+          placeIcon(sprite, MEDIA_ICONS[index], time);
+        });
+      }
     }
     renderer.render(scene, camera);
     requestAnimationFrame(tick);

@@ -36,7 +36,7 @@ if (!defined('SITE_URL')) {
 if (!defined('SITE_BASE')) {
     define('SITE_BASE', rtrim(SITE_URL, '/') . '/');
 }
-define('ASSET_VERSION', '2.9.3');
+define('ASSET_VERSION', '2.9.17');
 
 // Google Analytics (set in config.local.php, e.g. G-XXXXXXXXXX)
 if (!defined('GA_MEASUREMENT_ID')) define('GA_MEASUREMENT_ID', '');
